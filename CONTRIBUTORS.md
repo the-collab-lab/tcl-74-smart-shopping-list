@@ -8,6 +8,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Nicholas Rocco](https://github.com/NickRoccodev11) 🎹
 - [Shuveksha Tuladhar](https://github.com/shuveksha-tuladhar) 🚗
+- [Doribel Tercero - Parker](https://github.com/dterceroparker) 🤍
 
 ## Mentors
 
