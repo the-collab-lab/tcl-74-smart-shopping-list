@@ -7,6 +7,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Cohort Participants
 
 - [Nicholas Rocco](https://github.com/NickRoccodev11) 🎹
+- [Shuveksha Tuladhar] (https://github.com/shuveksha-tuladhar) 🚗
 
 ## Mentors
 
