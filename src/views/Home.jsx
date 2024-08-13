@@ -1,5 +1,5 @@
 import './Home.css';
-
+import { SingleList } from '../components';
 export function Home({ data, setListPath }) {
 	return (
 		<div className="Home">
@@ -8,9 +8,18 @@ export function Home({ data, setListPath }) {
 			</p>
 			<ul>
 				{/**
-				 * TODO: write some JavaScript that renders the `lists` array
-				 * so we can see which lists the user has access to.
+				 * TASK: data is an array of objects
 				 */}
+				{data.map((list) => {
+					return (
+						<SingleList
+							key={list.path}
+							name={list.name}
+							path={list.path}
+							setListPath={setListPath}
+						/>
+					);
+				})}
 			</ul>
 		</div>
 	);
