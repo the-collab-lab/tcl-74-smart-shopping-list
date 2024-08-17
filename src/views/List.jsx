@@ -8,10 +8,15 @@ export function List({ data }) {
 			</p>
 			<ul>
 				{/**
-				 * TODO: write some JavaScript that renders the `data` array
-				 * using the `ListItem` component that's imported at the top
-				 * of this file.
+				 * uses ternary operator to display "no items" msg if list is empty
 				 */}
+				{data.length !== 0 ? (
+					data.map((item) => {
+						return <ListItem key={item.id} name={item.name} />;
+					})
+				) : (
+					<li> No items available!</li>
+				)}
 			</ul>
 		</>
 	);
