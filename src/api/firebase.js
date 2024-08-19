@@ -124,9 +124,12 @@ export async function createList(userId, userEmail, listName) {
 
 	const userDocumentRef = doc(db, 'users', userEmail);
 
-	updateDoc(userDocumentRef, {
+	await updateDoc(userDocumentRef, {
 		sharedLists: arrayUnion(listDocRef),
 	});
+
+	const docSnap = await getDoc(listDocRef);
+	return docSnap;
 }
 
 /**
