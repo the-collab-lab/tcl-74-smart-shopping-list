@@ -5,6 +5,10 @@ export function ManageList() {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+	};
+
 	return (
 		<div>
 			<h1>Manage Your Shopping List</h1>
@@ -46,6 +50,11 @@ export function ManageList() {
 					Not soon (30 days)
 				</label>
 			</fieldset>
+			<br />
+
+			<form onSubmit={handleSubmit}>
+				<button type="submit">Add Item</button>
+			</form>
 		</div>
 	);
 }
