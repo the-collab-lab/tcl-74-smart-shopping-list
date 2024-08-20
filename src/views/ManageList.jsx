@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function ManageList() {
+export function ManageList({ listPath }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
@@ -9,7 +9,6 @@ export function ManageList() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const listPath = 'your-list-path';
 			await addItem(listPath, { itemName, daysUntilNextPurchase });
 			setMessage('Item was successfully saved to the database.');
 		} catch (error) {
