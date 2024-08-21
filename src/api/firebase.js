@@ -128,8 +128,7 @@ export async function createList(userId, userEmail, listName) {
 		sharedLists: arrayUnion(listDocRef),
 	});
 
-	const docSnap = await getDoc(listDocRef);
-	return docSnap;
+	return listDocRef.path;
 }
 
 /**

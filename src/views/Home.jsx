@@ -17,18 +17,18 @@ export function Home({ data, setListPath, user }) {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		if (!listName) {
-			alert('Please enter a valid name');
-			return;
-		}
-
-		const newList = await createList(userId, userEmail, listName);
-		if (newList.ref.path) {
-			alert('List is sucessfully created');
-			setListPath(newList.ref.path);
-			navigate('/list');
+		if (listName) {
+			try {
+				// throw new Error ("Error")
+				const newListPath = await createList(userId, userEmail, listName);
+				alert('List is sucessfully created');
+				setListPath(newListPath);
+				navigate('/list');
+			} catch {
+				alert('There was an error adding your list to db');
+			}
 		} else {
-			alert('There was a problem creating your list. Please try again.');
+			alert('Please enter a valid name');
 		}
 	};
 
