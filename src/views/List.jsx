@@ -30,13 +30,16 @@ export function List({ data }) {
 				{searchInput && <button onClick={clearSearchInput}>X</button>}
 			</div>
 			<ul>
-				{/**
-				 * uses ternary operator to display "no items" msg if list is empty
-				 */}
 				{data.length !== 0 ? (
-					data.map((item) => {
-						return <ListItem key={item.id} name={item.name} />;
-					})
+					data
+						.filter((item) => {
+							return searchInput
+								? item.name.toLowerCase().includes(searchInput.toLowerCase())
+								: item;
+						})
+						.map((item) => {
+							return <ListItem key={item.id} name={item.name} />;
+						})
 				) : (
 					<li> No items available!</li>
 				)}
