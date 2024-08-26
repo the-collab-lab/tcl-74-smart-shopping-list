@@ -5,6 +5,7 @@ export function ManageList({ listPath }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
+	const [recipentEmail, setRecipientEmail] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -16,6 +17,11 @@ export function ManageList({ listPath }) {
 		}
 		setItemName('');
 		setDaysUntilNextPurchase(7);
+	};
+
+	const handleShare = (event) => {
+		event.preventDefault();
+		console.log('shareButtonClick');
 	};
 
 	return (
@@ -63,7 +69,22 @@ export function ManageList({ listPath }) {
 				<br />
 				<button type="submit">Add Item</button>
 			</form>
+			<br></br>
 			{message && <p>{message}</p>}
+
+			<div>
+				<form onSubmit={handleShare}>
+					<label htmlFor="recipientEmail"> Recipient Email: </label>
+					<input
+						type="email"
+						id="recipientEmail"
+						value={recipentEmail}
+						onChange={(e) => setRecipientEmail(e.target.value)}
+						required
+					/>
+					<button type="submit">Share List</button>
+				</form>
+			</div>
 		</div>
 	);
 }
