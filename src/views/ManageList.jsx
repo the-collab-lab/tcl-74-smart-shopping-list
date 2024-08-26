@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { addItem } from '../api/firebase';
+import { addItem, shareList } from '../api/firebase';
 
-export function ManageList({ listPath }) {
+export function ManageList({ listPath, user }) {
+	const currentUserId = user?.uid;
+
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
-	const [recipentEmail, setRecipientEmail] = useState('');
+	const [recipientEmail, setRecipientEmail] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -21,7 +23,7 @@ export function ManageList({ listPath }) {
 
 	const handleShare = (event) => {
 		event.preventDefault();
-		console.log('shareButtonClick');
+		shareList(listPath, currentUserId, recipientEmail);
 	};
 
 	return (
@@ -78,7 +80,7 @@ export function ManageList({ listPath }) {
 					<input
 						type="email"
 						id="recipientEmail"
-						value={recipentEmail}
+						value={recipientEmail}
 						onChange={(e) => setRecipientEmail(e.target.value)}
 						required
 					/>
