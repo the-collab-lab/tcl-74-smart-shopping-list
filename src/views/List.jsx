@@ -18,7 +18,7 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 			<div className="listSearch">
-				<label htmlFor="search"> Search Items</label>
+				<label htmlFor="search">Search Items</label>
 				<br />
 				<input
 					type="text"
@@ -27,7 +27,11 @@ export function List({ data }) {
 					onChange={handleInputChange}
 					placeholder="Type to search..."
 				/>
-				{searchInput && <button onClick={clearSearchInput}>X</button>}
+				{searchInput && (
+					<button onClick={clearSearchInput} aria-label="Clear search input">
+						X
+					</button>
+				)}
 			</div>
 			<ul>
 				{data.length !== 0 ? (
