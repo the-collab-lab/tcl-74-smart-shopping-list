@@ -23,8 +23,14 @@ export function ManageList({ listPath, user }) {
 
 	const handleShare = (event) => {
 		event.preventDefault();
-		shareList(listPath, currentUserId, recipientEmail);
-		setRecipientEmail('');
+		shareList(listPath, currentUserId, recipientEmail)
+			.then((result) => {
+				alert(result);
+				setRecipientEmail('');
+			})
+			.catch((error) => {
+				alert(error);
+			});
 	};
 
 	return (
