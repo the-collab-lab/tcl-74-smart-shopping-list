@@ -12,6 +12,12 @@ export function List({ data }) {
 		setSearchInput('');
 	};
 
+	const filterList = data.filter((item) => {
+		return searchInput
+			? item.name.toLowerCase().includes(searchInput.toLowerCase())
+			: item;
+	});
+
 	return (
 		<>
 			<p>
@@ -28,24 +34,18 @@ export function List({ data }) {
 					placeholder="Type to search..."
 				/>
 				{searchInput && (
-					<button onClick={clearSearchInput} aria-label="Clear search input">
+					<button onClick={clearSearchInput} aria-label="clear search">
 						X
 					</button>
 				)}
 			</div>
 			<ul>
-				{data.length !== 0 ? (
-					data
-						.filter((item) => {
-							return searchInput
-								? item.name.toLowerCase().includes(searchInput.toLowerCase())
-								: item;
-						})
-						.map((item) => {
-							return <ListItem key={item.id} name={item.name} />;
-						})
+				{filterList.length ? (
+					filterList.map((item) => {
+						return <ListItem key={item.id} name={item.name} />;
+					})
 				) : (
-					<li> No items available!</li>
+					<li> No items found!</li>
 				)}
 			</ul>
 		</>
