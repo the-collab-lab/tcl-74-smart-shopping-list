@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { addItem } from '../api/firebase';
+import { addItem, shareList } from '../api/firebase';
 
-export function ManageList({ listPath }) {
+export function ManageList({ listPath, user }) {
+	const currentUserId = user?.uid;
+
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
+	const [recipientEmail, setRecipientEmail] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -16,6 +19,18 @@ export function ManageList({ listPath }) {
 		}
 		setItemName('');
 		setDaysUntilNextPurchase(7);
+	};
+
+	const handleShare = (event) => {
+		event.preventDefault();
+		shareList(listPath, currentUserId, recipientEmail)
+			.then((result) => {
+				alert(result);
+				setRecipientEmail('');
+			})
+			.catch((error) => {
+				alert(error);
+			});
 	};
 
 	return (
@@ -63,7 +78,22 @@ export function ManageList({ listPath }) {
 				<br />
 				<button type="submit">Add Item</button>
 			</form>
+			<br></br>
 			{message && <p>{message}</p>}
+
+			<div>
+				<form onSubmit={handleShare}>
+					<label htmlFor="recipientEmail"> Recipient Email: </label>
+					<input
+						type="email"
+						id="recipientEmail"
+						value={recipientEmail}
+						onChange={(e) => setRecipientEmail(e.target.value)}
+						required
+					/>
+					<button type="submit">Share List</button>
+				</form>
+			</div>
 		</div>
 	);
 }

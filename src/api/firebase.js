@@ -140,21 +140,40 @@ export async function createList(userId, userEmail, listName) {
 export async function shareList(listPath, currentUserId, recipientEmail) {
 	// Check if current user is owner.
 	if (!listPath.includes(currentUserId)) {
-		return;
+		return Promise.reject(
+			`You are not the owner of this list and cannot be shared`,
+		);
 	}
 	// Get the document for the recipient user.
 	const usersCollectionRef = collection(db, 'users');
 	const recipientDoc = await getDoc(doc(usersCollectionRef, recipientEmail));
 	// If the recipient user doesn't exist, we can't share the list.
 	if (!recipientDoc.exists()) {
-		return;
+		return Promise.reject(`${recipientEmail} does not exist.`);
 	}
+
+	// Check if the list has already been shared with the recipient.
+	const sharedLists = recipientDoc.data().sharedLists;
+	const listAlreadyShared = sharedLists.some(
+		(shareList) => shareList.path === listPath,
+	);
+
+	if (listAlreadyShared) {
+		return Promise.reject(
+			`This list has already been shared with ${recipientEmail} and cannot be reshared`,
+		);
+	}
+
 	// Add the list to the recipient user's sharedLists array.
 	const listDocumentRef = doc(db, listPath);
 	const userDocumentRef = doc(db, 'users', recipientEmail);
+
 	updateDoc(userDocumentRef, {
 		sharedLists: arrayUnion(listDocumentRef),
 	});
+	return Promise.resolve(
+		`You have successfully shared your list to ${recipientEmail}`,
+	);
 }
 
 /**
