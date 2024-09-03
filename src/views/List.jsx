@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export function List({ data }) {
 	const [searchInput, setSearchInput] = useState('');
-	const [welcomeMessage, setWelcomeMessage] = useState('');
 	const navigate = useNavigate();
 
 	const handleInputChange = (e) => {
@@ -15,16 +13,6 @@ export function List({ data }) {
 	const clearSearchInput = () => {
 		setSearchInput('');
 	};
-
-	useEffect(() => {
-		if (data.length === 0) {
-			setWelcomeMessage(
-				"To get started, simply click the 'add items' button below ",
-			);
-		} else {
-			setWelcomeMessage("Add extra items on the 'Manage List' page. ");
-		}
-	}, []);
 
 	const filterList = data.filter((item) => {
 		return searchInput
@@ -36,13 +24,24 @@ export function List({ data }) {
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
-				<br />
-				<br />
-				{welcomeMessage}
 			</p>
+			{data.length ? (
+				<p>
+					Add additional items on the
+					<button
+						aria-label="Navigate to Manage List page"
+						onClick={() => navigate('/manage-list')}
+						className="code-button"
+					>
+						/Manage List
+					</button>
+					page
+				</p>
+			) : (
+				<p> To get started, click the &apos;Add item&apos; button below </p>
+			)}
 			<div className="listSearch">
-				<label htmlFor="search">Search Items</label>
-				<br />
+				<label htmlFor="search">Search Items</label> <br />
 				<input
 					type="text"
 					id="search"
