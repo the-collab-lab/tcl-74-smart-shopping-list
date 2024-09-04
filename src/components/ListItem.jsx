@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
 import { updateItem } from '../api/firebase.js';
+// import { getFutureDate} from '../utils/dates.js'
 
 export function ListItem({
 	name,
@@ -10,14 +12,31 @@ export function ListItem({
 	totalPurchases,
 	dateLastPurchased,
 }) {
-	// console.log("listitem", listPath)
-	const [purchased, unpurchased] = useToggle(false);
+	const [purchased, setPurchased] = useToggle(false);
+
+	useEffect(() => {
+		if (dateLastPurchased) {
+			const checkExpiration = () => {
+				const expirationDate = new Date(
+					dateLastPurchased.toMillis() + 24 * 60 * 60 * 1000,
+				);
+				const currentDate = new Date();
+				if (currentDate > expirationDate) {
+					setPurchased(false);
+				} else {
+					setPurchased(true);
+				}
+			};
+			checkExpiration();
+			const refreshInterval = setInterval(checkExpiration, 1000);
+			return () => clearInterval(refreshInterval);
+		}
+	}, [dateLastPurchased]);
 
 	const handleToggle = async () => {
 		const isPurchasing = !purchased;
-		unpurchased();
+		setPurchased();
 		if (isPurchasing) {
-			// console.log("OK")
 			try {
 				await updateItem(listPath, {
 					itemId,
@@ -33,9 +52,14 @@ export function ListItem({
 	};
 
 	return (
-		<li className="ListItem">
-			<div className="item-name">{name}</div>
-			<Toggle toggle={handleToggle} on={purchased} name={name} />
-		</li>
+		<div>
+			<li className="ListItem">
+				<div className="item-name">{name}</div>
+				<Toggle toggle={handleToggle} on={purchased} name={name} />
+				<div>
+					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
+				</div>
+			</li>
+		</div>
 	);
 }
