@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
@@ -13,6 +13,7 @@ export function ListItem({
 	dateLastPurchased,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
+	const [isDisabled, setIsDisabled] = useState(false);
 
 	useEffect(() => {
 		if (dateLastPurchased) {
@@ -23,12 +24,14 @@ export function ListItem({
 				const currentDate = new Date();
 				if (currentDate > expirationDate) {
 					setPurchased(false);
+					setIsDisabled(false);
 				} else {
 					setPurchased(true);
+					setIsDisabled(true);
 				}
 			};
 			checkExpiration();
-			const refreshInterval = setInterval(checkExpiration, 1000);
+			const refreshInterval = setInterval(checkExpiration, 60000);
 			return () => clearInterval(refreshInterval);
 		}
 	}, [dateLastPurchased]);
@@ -36,6 +39,7 @@ export function ListItem({
 	const handleToggle = async () => {
 		const isPurchasing = !purchased;
 		setPurchased();
+
 		if (isPurchasing) {
 			try {
 				await updateItem(listPath, {
@@ -45,8 +49,10 @@ export function ListItem({
 				});
 				console.log(`${name} updated successfully`);
 				alert(`${name} is purchased successfully`);
+				setIsDisabled(true);
 			} catch (error) {
 				console.error('Error updating item:', error);
+				setPurchased(false);
 			}
 		}
 	};
@@ -55,7 +61,12 @@ export function ListItem({
 		<div>
 			<li className="ListItem">
 				<div className="item-name">{name}</div>
-				<Toggle toggle={handleToggle} on={purchased} name={name} />
+				<Toggle
+					toggle={handleToggle}
+					on={purchased}
+					name={name}
+					isDisabled={isDisabled}
+				/>
 				<div>
 					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
 				</div>
