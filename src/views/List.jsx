@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ListItem } from '../components';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export function List({ data }) {
 	const [searchInput, setSearchInput] = useState('');
-	const navigate = useNavigate();
+	//const navigate = useNavigate();
 
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
@@ -27,18 +28,14 @@ export function List({ data }) {
 			</p>
 			{data.length ? (
 				<p>
-					Add additional items on the
-					<button
-						aria-label="Navigate to Manage List page"
-						onClick={() => navigate('/manage-list')}
-						className="code-button"
-					>
-						/Manage List
-					</button>
+					Add additional items on the{' '}
+					<NavLink to="/manage-list" className="code-button">
+						Manage List
+					</NavLink>{' '}
 					page
 				</p>
 			) : (
-				<p> To get started, click the &apos;Add item&apos; button below </p>
+				<p> To get started, click &apos;Add item&apos; below </p>
 			)}
 			<div className="listSearch">
 				<label htmlFor="search">Search Items</label> <br />
@@ -63,8 +60,7 @@ export function List({ data }) {
 				) : (
 					<li>
 						{' '}
-						No items found!
-						<button onClick={() => navigate('/manage-list')}> Add item </button>
+						No items found! <NavLink to="/manage-list"> Add item</NavLink>
 					</li>
 				)}
 			</ul>
