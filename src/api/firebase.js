@@ -207,7 +207,6 @@ export async function updateItem(
 	 * to update an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
-	console.table({ listPath, itemId, totalPurchases });
 	const itemDocRef = doc(db, `${listPath}/items`, itemId);
 
 	await updateDoc(itemDocRef, {

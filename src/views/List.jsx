@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ListItem } from '../components';
 
 export function List({ data, listPath }) {
-	// console.log("list", listPath)
 	const [searchInput, setSearchInput] = useState('');
 
 	const handleInputChange = (e) => {

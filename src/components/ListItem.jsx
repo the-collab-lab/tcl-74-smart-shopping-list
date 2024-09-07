@@ -3,7 +3,6 @@ import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
 import { updateItem } from '../api/firebase.js';
-// import { getFutureDate} from '../utils/dates.js'
 
 export function ListItem({
 	name,
