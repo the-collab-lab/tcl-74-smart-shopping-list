@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { ListItem } from '../components';
+// import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
+	//const navigate = useNavigate();
 
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
@@ -23,9 +26,19 @@ export function List({ data, listPath }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
+			{data.length ? (
+				<p>
+					Add additional items on the{' '}
+					<NavLink to="/manage-list" className="code-button">
+						Manage List
+					</NavLink>{' '}
+					page
+				</p>
+			) : (
+				<p> To get started, click &apos;Add item&apos; below </p>
+			)}
 			<div className="listSearch">
-				<label htmlFor="search">Search Items</label>
-				<br />
+				<label htmlFor="search">Search Items</label> <br />
 				<input
 					type="text"
 					id="search"
@@ -54,7 +67,10 @@ export function List({ data, listPath }) {
 						);
 					})
 				) : (
-					<li> No items found!</li>
+					<li>
+						{' '}
+						No items found! <NavLink to="/manage-list"> Add item</NavLink>
+					</li>
 				)}
 			</ul>
 		</>
