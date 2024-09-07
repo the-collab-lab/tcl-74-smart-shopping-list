@@ -57,7 +57,7 @@ export function ListItem({
 	};
 
 	return (
-		<div>
+		<>
 			<li className="ListItem">
 				<div className="item-name">{name}</div>
 				<Toggle
@@ -65,11 +65,11 @@ export function ListItem({
 					on={purchased}
 					name={name}
 					isDisabled={isDisabled}
+					dateLastPurchased={dateLastPurchased}
 				/>
-				<div>
-					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
-				</div>
+
+				{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
 			</li>
-		</div>
+		</>
 	);
 }
