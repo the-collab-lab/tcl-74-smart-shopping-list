@@ -110,10 +110,16 @@ export function ManageList({ listPath, user, data }) {
 					</label>
 				</fieldset>
 				<br />
-				<button type="submit">Add Item</button>
+				<button type="submit" aria-label="Add item to your list">
+					Add Item
+				</button>
 			</form>
 			<br></br>
-			{message && <p>{messages[message] || ''}</p>}
+			{message && (
+				<p aria-live="assertive" role="alert">
+					{messages[message] || ''}
+				</p>
+			)}
 
 			<div>
 				<form onSubmit={handleShare}>
