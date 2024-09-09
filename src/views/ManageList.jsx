@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { addItem, shareList } from '../api/firebase';
 
-export function ManageList({ listPath, user }) {
+export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
-
+	// console.log("Data", {data})
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
@@ -17,11 +17,34 @@ export function ManageList({ listPath, user }) {
 		duplicate: 'Item already exists!',
 	};
 
+	const normalizeString = (str) => str.toLowerCase().replace(/[^a-z0-9-]/g, '');
+
+	const normalizedData = useMemo(
+		() => data.map((item) => normalizeString(item.name)),
+		[data],
+	);
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+
+		const normalizedItemName = normalizeString(itemName);
+
+		if (!normalizedItemName) {
+			setMessage('empty');
+			return;
+		}
+
+		const itemMatch = normalizedData.includes(normalizedItemName);
+
+		if (itemMatch) {
+			setMessage('duplicate');
+			return;
+		}
+
 		try {
 			await addItem(listPath, { itemName, daysUntilNextPurchase });
 			setMessage('added');
+			setItemName('');
 		} catch (error) {
 			setMessage('failed');
 		}
