@@ -3,7 +3,6 @@ import { addItem, shareList } from '../api/firebase';
 
 export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
-	// console.log("Data", {data})
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
@@ -17,7 +16,8 @@ export function ManageList({ listPath, user, data }) {
 		duplicate: 'Item already exists!',
 	};
 
-	const normalizeString = (str) => str.toLowerCase().replace(/[^a-z0-9-]/g, '');
+	const normalizeString = (str) =>
+		str.toLowerCase().replace(/[^a-z0-9-]+/g, '');
 
 	const normalizedData = useMemo(
 		() => data.map((item) => normalizeString(item.name)),
@@ -27,7 +27,7 @@ export function ManageList({ listPath, user, data }) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const normalizedItemName = normalizeString(itemName);
+		const normalizedItemName = normalizeString(itemName.trim());
 
 		if (!normalizedItemName) {
 			setMessage('empty');
@@ -42,14 +42,17 @@ export function ManageList({ listPath, user, data }) {
 		}
 
 		try {
-			await addItem(listPath, { itemName, daysUntilNextPurchase });
+			await addItem(listPath, {
+				itemName: normalizedItemName,
+				daysUntilNextPurchase,
+			});
 			setMessage('added');
 			setItemName('');
+			setDaysUntilNextPurchase(7);
 		} catch (error) {
+			console.error('Error adding item:', error);
 			setMessage('failed');
 		}
-		setItemName('');
-		setDaysUntilNextPurchase(7);
 	};
 
 	const handleShare = (event) => {
