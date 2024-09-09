@@ -9,13 +9,21 @@ export function ManageList({ listPath, user }) {
 	const [message, setMessage] = useState('');
 	const [recipientEmail, setRecipientEmail] = useState('');
 
+	const messages = {
+		added: 'Your item was successfully added!',
+		failed:
+			"Your item wasn't added! There was an error saving the item. Please try again.",
+		empty: 'Please enter an item to add to your list.',
+		duplicate: 'Item already exists!',
+	};
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
 			await addItem(listPath, { itemName, daysUntilNextPurchase });
-			setMessage('Item was successfully saved to the database.');
+			setMessage('added');
 		} catch (error) {
-			setMessage('There was an error saving the item to the database.');
+			setMessage('failed');
 		}
 		setItemName('');
 		setDaysUntilNextPurchase(7);
@@ -43,7 +51,7 @@ export function ManageList({ listPath, user }) {
 					id="itemName"
 					value={itemName}
 					onChange={(e) => setItemName(e.target.value)}
-					required
+					// required
 				/>
 				<fieldset>
 					<legend>How soon will you need to buy this item again?</legend>
@@ -79,7 +87,7 @@ export function ManageList({ listPath, user }) {
 				<button type="submit">Add Item</button>
 			</form>
 			<br></br>
-			{message && <p>{message}</p>}
+			{message && <p>{messages[message] || ''}</p>}
 
 			<div>
 				<form onSubmit={handleShare}>
