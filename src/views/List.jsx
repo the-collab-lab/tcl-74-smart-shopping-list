@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { ListItem } from '../components';
-// import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
-	//const navigate = useNavigate();
-
+	console.log(data);
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
 	};
@@ -63,6 +61,8 @@ export function List({ data, listPath }) {
 								listPath={listPath}
 								totalPurchases={item.totalPurchases}
 								dateLastPurchased={item.dateLastPurchased}
+								interval={item.interval}
+								dateCreated={item.dateCreated}
 							/>
 						);
 					})

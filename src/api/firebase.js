@@ -10,8 +10,8 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
-
+import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
  * database and returns new data whenever the lists change.
@@ -186,6 +186,7 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	const listCollectionRef = collection(db, listPath, 'items');
 	// TODO: Replace this call to console.log with the appropriate
+	console.log('hello', daysUntilNextPurchase);
 	// Firebase function, so this information is sent to your database!
 	return await addDoc(listCollectionRef, {
 		dateCreated: new Date(),
@@ -195,12 +196,20 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
+		interval: daysUntilNextPurchase,
 	});
 }
 
 export async function updateItem(
 	listPath,
-	{ itemId, totalPurchases, dateLastPurchased },
+	{
+		itemId,
+		totalPurchases,
+		dateLastPurchased,
+		previousLastPurchaseDate,
+		interval,
+		dateCreated,
+	},
 ) {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
@@ -209,9 +218,29 @@ export async function updateItem(
 	 */
 	const itemDocRef = doc(db, `${listPath}/items`, itemId);
 
+	let daysSinceLastPurchase;
+
+	if (previousLastPurchaseDate) {
+		daysSinceLastPurchase = getDaysBetweenDates(previousLastPurchaseDate);
+	} else {
+		daysSinceLastPurchase = getDaysBetweenDates(dateCreated);
+	}
+	console.log('daysSinceLastPurchase', daysSinceLastPurchase);
+	const daysUntilNextPurchase = calculateEstimate(
+		interval,
+		daysSinceLastPurchase,
+		totalPurchases,
+	);
+	console.log('days until NEXT purcahse', daysUntilNextPurchase);
+	interval = daysUntilNextPurchase;
+
+	const dateNextPurchased = getFutureDate(daysUntilNextPurchase);
+
 	await updateDoc(itemDocRef, {
 		totalPurchases,
 		dateLastPurchased,
+		dateNextPurchased,
+		interval,
 	});
 }
 

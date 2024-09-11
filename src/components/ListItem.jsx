@@ -10,6 +10,8 @@ export function ListItem({
 	itemId,
 	totalPurchases,
 	dateLastPurchased,
+	interval,
+	dateCreated,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -41,10 +43,15 @@ export function ListItem({
 
 		if (isPurchasing) {
 			try {
+				const previousLastPurchaseDate = dateLastPurchased;
+
 				await updateItem(listPath, {
 					itemId,
 					totalPurchases: totalPurchases + 1,
 					dateLastPurchased: new Date(),
+					previousLastPurchaseDate,
+					interval,
+					dateCreated,
 				});
 				console.log(`${name} updated successfully`);
 				alert(`${name} is purchased successfully`);
