@@ -186,7 +186,6 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	const listCollectionRef = collection(db, listPath, 'items');
 	// TODO: Replace this call to console.log with the appropriate
-	console.log('hello', daysUntilNextPurchase);
 	// Firebase function, so this information is sent to your database!
 	return await addDoc(listCollectionRef, {
 		dateCreated: new Date(),
@@ -196,51 +195,44 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
-		interval: daysUntilNextPurchase,
+		purchaseInterval: daysUntilNextPurchase,
 	});
 }
 
 export async function updateItem(
 	listPath,
-	{
-		itemId,
-		totalPurchases,
-		dateLastPurchased,
-		previousLastPurchaseDate,
-		interval,
-		dateCreated,
-	},
+	{ itemId, totalPurchases, dateLastPurchased, purchaseInterval, dateCreated },
 ) {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to update an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+
 	const itemDocRef = doc(db, `${listPath}/items`, itemId);
 
 	let daysSinceLastPurchase;
 
-	if (previousLastPurchaseDate) {
-		daysSinceLastPurchase = getDaysBetweenDates(previousLastPurchaseDate);
+	if (dateLastPurchased) {
+		daysSinceLastPurchase = getDaysBetweenDates(dateLastPurchased);
 	} else {
 		daysSinceLastPurchase = getDaysBetweenDates(dateCreated);
 	}
-	console.log('daysSinceLastPurchase', daysSinceLastPurchase);
+
 	const daysUntilNextPurchase = calculateEstimate(
-		interval,
+		purchaseInterval,
 		daysSinceLastPurchase,
 		totalPurchases,
 	);
-	console.log('days until NEXT purcahse', daysUntilNextPurchase);
-	interval = daysUntilNextPurchase;
+
+	purchaseInterval = daysUntilNextPurchase;
 
 	const dateNextPurchased = getFutureDate(daysUntilNextPurchase);
-
 	await updateDoc(itemDocRef, {
-		totalPurchases,
-		dateLastPurchased,
+		totalPurchases: totalPurchases + 1,
+		dateLastPurchased: new Date(),
 		dateNextPurchased,
-		interval,
+		purchaseInterval,
 	});
 }
 

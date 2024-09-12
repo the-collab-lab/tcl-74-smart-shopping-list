@@ -12,12 +12,7 @@ export function getFutureDate(offset) {
 }
 export function getDaysBetweenDates(previousPurchaseDate) {
 	const pastDate = previousPurchaseDate.toDate();
-	console.log('past date', pastDate);
 	const presentDate = new Date();
-
 	const diffInMilliseconds = presentDate.getTime() - pastDate.getTime();
-	console.log('diff', diffInMilliseconds);
-	const days = Math.round(diffInMilliseconds / ONE_DAY_IN_MILLISECONDS);
-	console.log('days', days);
-	return days;
+	return Math.round(diffInMilliseconds / ONE_DAY_IN_MILLISECONDS);
 }

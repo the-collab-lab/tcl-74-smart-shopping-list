@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
-	console.log(data);
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
 	};
@@ -61,7 +60,7 @@ export function List({ data, listPath }) {
 								listPath={listPath}
 								totalPurchases={item.totalPurchases}
 								dateLastPurchased={item.dateLastPurchased}
-								interval={item.interval}
+								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
 							/>
 						);
