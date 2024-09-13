@@ -203,14 +203,9 @@ export async function updateItem(
 	listPath,
 	{ itemId, totalPurchases, dateLastPurchased, purchaseInterval, dateCreated },
 ) {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
-
 	const itemDocRef = doc(db, `${listPath}/items`, itemId);
 
+	// Calculate days since last purchase with a conditional check
 	let daysSinceLastPurchase;
 
 	if (dateLastPurchased) {
@@ -219,12 +214,14 @@ export async function updateItem(
 		daysSinceLastPurchase = getDaysBetweenDates(dateCreated);
 	}
 
+	// Calculate days until next purchase
 	const daysUntilNextPurchase = calculateEstimate(
-		purchaseInterval,
-		daysSinceLastPurchase,
-		totalPurchases,
+		purchaseInterval, // The interval between purchases
+		daysSinceLastPurchase, // The number of days since last purchase
+		totalPurchases, // The total number of purchases made
 	);
 
+	// Update Purchase Interval with the estimated days & Next Purchase Date
 	purchaseInterval = daysUntilNextPurchase;
 
 	const dateNextPurchased = getFutureDate(daysUntilNextPurchase);
