@@ -1,24 +1,58 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { addItem, shareList } from '../api/firebase';
 
-export function ManageList({ listPath, user }) {
+export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
-
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
 	const [recipientEmail, setRecipientEmail] = useState('');
 
+	const messages = {
+		added: 'Your item was successfully added!',
+		failed:
+			"Your item wasn't added! There was an error saving the item. Please try again.",
+		empty: 'Please enter an item to add to your list.',
+		duplicate: 'Item already exists!',
+	};
+
+	const normalizeString = (str) =>
+		str.toLowerCase().replace(/[^a-z0-9-]+/g, '');
+
+	const normalizedData = useMemo(
+		() => data.map((item) => normalizeString(item.name)),
+		[data],
+	);
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		try {
-			await addItem(listPath, { itemName, daysUntilNextPurchase });
-			setMessage('Item was successfully saved to the database.');
-		} catch (error) {
-			setMessage('There was an error saving the item to the database.');
+
+		const normalizedItemName = normalizeString(itemName.trim());
+
+		if (!normalizedItemName) {
+			setMessage('empty');
+			return;
 		}
-		setItemName('');
-		setDaysUntilNextPurchase(7);
+
+		const itemMatch = normalizedData.includes(normalizedItemName);
+
+		if (itemMatch) {
+			setMessage('duplicate');
+			return;
+		}
+
+		try {
+			await addItem(listPath, {
+				itemName: normalizedItemName,
+				daysUntilNextPurchase,
+			});
+			setMessage('added');
+			setItemName('');
+			setDaysUntilNextPurchase(7);
+		} catch (error) {
+			console.error('Error adding item:', error);
+			setMessage('failed');
+		}
 	};
 
 	const handleShare = (event) => {
@@ -43,7 +77,7 @@ export function ManageList({ listPath, user }) {
 					id="itemName"
 					value={itemName}
 					onChange={(e) => setItemName(e.target.value)}
-					required
+					// required
 				/>
 				<fieldset>
 					<legend>How soon will you need to buy this item again?</legend>
@@ -76,10 +110,16 @@ export function ManageList({ listPath, user }) {
 					</label>
 				</fieldset>
 				<br />
-				<button type="submit">Add Item</button>
+				<button type="submit" aria-label="Add item to your list">
+					Add Item
+				</button>
 			</form>
 			<br></br>
-			{message && <p>{message}</p>}
+			{message && (
+				<p aria-live="assertive" role="alert">
+					{messages[message] || ''}
+				</p>
+			)}
 
 			<div>
 				<form onSubmit={handleShare}>
