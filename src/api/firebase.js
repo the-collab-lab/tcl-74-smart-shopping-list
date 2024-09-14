@@ -10,8 +10,8 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
-
+import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
  * database and returns new data whenever the lists change.
@@ -195,23 +195,41 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
+		purchaseInterval: daysUntilNextPurchase,
 	});
 }
 
 export async function updateItem(
 	listPath,
-	{ itemId, totalPurchases, dateLastPurchased },
+	{ itemId, totalPurchases, dateLastPurchased, purchaseInterval, dateCreated },
 ) {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 	const itemDocRef = doc(db, `${listPath}/items`, itemId);
 
+	// Calculate days since last purchase with a conditional check
+	let daysSinceLastPurchase;
+
+	if (dateLastPurchased) {
+		daysSinceLastPurchase = getDaysBetweenDates(dateLastPurchased);
+	} else {
+		daysSinceLastPurchase = getDaysBetweenDates(dateCreated);
+	}
+
+	// Calculate days until next purchase
+	const daysUntilNextPurchase = calculateEstimate(
+		purchaseInterval, // The interval between purchases
+		daysSinceLastPurchase, // The number of days since last purchase
+		totalPurchases, // The total number of purchases made
+	);
+
+	// Update Purchase Interval with the estimated days & Next Purchase Date
+	purchaseInterval = daysUntilNextPurchase;
+
+	const dateNextPurchased = getFutureDate(daysUntilNextPurchase);
 	await updateDoc(itemDocRef, {
-		totalPurchases,
-		dateLastPurchased,
+		totalPurchases: totalPurchases + 1,
+		dateLastPurchased: new Date(),
+		dateNextPurchased,
+		purchaseInterval,
 	});
 }
 

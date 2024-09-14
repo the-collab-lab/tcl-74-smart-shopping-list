@@ -10,10 +10,11 @@ export function ListItem({
 	itemId,
 	totalPurchases,
 	dateLastPurchased,
+	purchaseInterval,
+	dateCreated,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
-
 	useEffect(() => {
 		if (dateLastPurchased) {
 			const checkExpiration = () => {
@@ -43,8 +44,10 @@ export function ListItem({
 			try {
 				await updateItem(listPath, {
 					itemId,
-					totalPurchases: totalPurchases + 1,
-					dateLastPurchased: new Date(),
+					totalPurchases,
+					dateLastPurchased,
+					purchaseInterval,
+					dateCreated,
 				});
 				console.log(`${name} updated successfully`);
 				alert(`${name} is purchased successfully`);
