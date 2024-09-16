@@ -176,6 +176,21 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 	);
 }
 
+export function comparePurchaseUrgency(list) {
+	// Create a copy of the list to avoid mutating original array
+	const sortedList = [...list].sort((a, b) => {
+		const daysA = getDaysBetweenDates(a.dateNextPurchased);
+		const daysB = getDaysBetweenDates(b.dateNextPurchased);
+		// Inactive items (60 days or more)
+		// Sort by dats until next purchase
+		if (daysA < daysB) return -1;
+		if (daysB < daysA) return 1;
+		// If days are the same, sort alphabetically
+		return a.name.localeCompare(b.name);
+	});
+	return sortedList;
+}
+
 /**
  * Add a new item to the user's list in Firestore.
  * @param {string} listPath The path of the list we're adding to.

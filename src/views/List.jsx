@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ListItem } from '../components';
 import { NavLink } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../api/firebase';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
