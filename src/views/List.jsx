@@ -9,6 +9,9 @@ export function List({ data, listPath }) {
 		setSearchInput(e.target.value);
 	};
 
+	let sorted = comparePurchaseUrgency(data);
+	console.log(sorted);
+
 	const clearSearchInput = () => {
 		setSearchInput('');
 	};

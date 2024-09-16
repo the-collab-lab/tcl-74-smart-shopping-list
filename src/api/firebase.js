@@ -178,17 +178,44 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 
 export function comparePurchaseUrgency(list) {
 	// Create a copy of the list to avoid mutating original array
-	const sortedList = [...list].sort((a, b) => {
-		const daysA = getDaysBetweenDates(a.dateNextPurchased);
-		const daysB = getDaysBetweenDates(b.dateNextPurchased);
-		// Inactive items (60 days or more)
-		// Sort by dats until next purchase
-		if (daysA < daysB) return -1;
-		if (daysB < daysA) return 1;
-		// If days are the same, sort alphabetically
-		return a.name.localeCompare(b.name);
+	const overdueItems = [];
+	const pendingItems = [];
+	list.forEach((item) => {
+		const dateToCompare = item.dateNextPurchased.toDate();
+		const now = new Date();
+		if (dateToCompare < now) {
+			overdueItems.push(item);
+		} else {
+			pendingItems.push(item);
+		}
 	});
-	return sortedList;
+	const sortList = (list) => {
+		const sortedList = [...list].sort((a, b) => {
+			const daysA = getDaysBetweenDates(a.dateNextPurchased);
+			const daysB = getDaysBetweenDates(b.dateNextPurchased);
+			if (daysA < daysB) return -1;
+			if (daysB < daysA) return 1;
+			// If days are the same, sort alphabetically
+			return a.name.localeCompare(b.name);
+		});
+		return sortedList;
+	};
+	return sortList(overdueItems).concat(pendingItems);
+	// const sortedList = [...list].sort((a, b) => {
+	// 	const daysA = getDaysBetweenDates(a.dateNextPurchased);
+	// 	const daysB = getDaysBetweenDates(b.dateNextPurchased);
+	// 	a.daysUntilPurchase = daysA;
+	// 	b.daysUntilPurchase = daysB;
+	// 	//if daysA< 7 the call it soon
+	// 	//if daysA >7 and < 30 call it
+	// 	// Inactive items (60 days or more)
+	// 	// Sort by dats until next purchase
+	// 	if (daysA < daysB) return -1;
+	// 	if (daysB < daysA) return 1;
+	// 	// If days are the same, sort alphabetically
+	// 	return a.name.localeCompare(b.name);
+	// });
+	// return sortedList;
 }
 
 /**

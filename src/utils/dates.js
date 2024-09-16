@@ -14,8 +14,6 @@ export function getDaysBetweenDates(dateToCompare) {
 	const comparisonDate = dateToCompare.toDate();
 	console.log(comparisonDate);
 	const presentDate = new Date();
-	const diffInMilliseconds = Math.abs(
-		presentDate.getTime() - comparisonDate.getTime(),
-	);
+	const diffInMilliseconds = presentDate.getTime() - comparisonDate.getTime();
 	return Math.round(diffInMilliseconds / ONE_DAY_IN_MILLISECONDS);
 }
