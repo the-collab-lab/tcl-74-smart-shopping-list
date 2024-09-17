@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
+	const [message, setMessage] = useState('');
+
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
 	};
@@ -62,6 +64,7 @@ export function List({ data, listPath }) {
 								dateLastPurchased={item.dateLastPurchased}
 								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
+								setMessage={setMessage}
 							/>
 						);
 					})
@@ -71,6 +74,8 @@ export function List({ data, listPath }) {
 						No items found! <NavLink to="/manage-list"> Add item</NavLink>
 					</li>
 				)}
+				<br />
+				<span>{message}</span>
 			</ul>
 		</>
 	);
