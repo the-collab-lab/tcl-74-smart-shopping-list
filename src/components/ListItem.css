@@ -1,4 +1,4 @@
-.ListItem {
+/* .ListItem {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -19,4 +19,13 @@
 .item-name {
 	flex-grow: 1;
 	margin-right: 10px;
+} */
+
+td {
+	border-bottom: 1px solid whitesmoke;
+}
+
+th {
+	background-color: #3e27ed;
+	border-bottom: 2px solid #ddd;
 }

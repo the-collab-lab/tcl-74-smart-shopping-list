@@ -9,23 +9,17 @@ export function List({ data, listPath }) {
 		setSearchInput(e.target.value);
 	};
 
-	let sorted = comparePurchaseUrgency(data);
-	let names = [];
-	sorted.forEach((item) => {
-		names.push(item.name);
-	});
-	console.log('names', names);
-
 	const clearSearchInput = () => {
 		setSearchInput('');
 	};
 
-	const filterList = data.filter((item) => {
+	const sortedByUrgency = comparePurchaseUrgency(data);
+
+	const filterList = sortedByUrgency.filter((item) => {
 		return searchInput
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
 	});
-	const listInfo = comparePurchaseUrgency(filterList);
 
 	return (
 		<>
@@ -58,7 +52,40 @@ export function List({ data, listPath }) {
 					</button>
 				)}
 			</div>
-			<ul>
+			{filterList.length ? (
+				<table>
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Buy Now</th>
+							<th>Last Purchase Date</th>
+							<th>Urgency</th>
+						</tr>
+					</thead>
+					<tbody>
+						{filterList.map((item) => (
+							<ListItem
+								key={item.id}
+								name={item.name}
+								itemId={item.id}
+								listPath={listPath}
+								totalPurchases={item.totalPurchases}
+								dateLastPurchased={item.dateLastPurchased}
+								purchaseInterval={item.purchaseInterval}
+								dateCreated={item.dateCreated}
+								sortCriteria={item.sortCriteria}
+							/>
+						))}
+					</tbody>
+				</table>
+			) : (
+				<p>No items to display</p>
+			)}
+		</>
+	);
+}
+{
+	/* <ul>
 				{filterList.length ? (
 					filterList.map((item) => {
 						return (
@@ -71,6 +98,7 @@ export function List({ data, listPath }) {
 								dateLastPurchased={item.dateLastPurchased}
 								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
+								sortCriteria={item.sortCriteria}
 							/>
 						);
 					})
@@ -80,7 +108,8 @@ export function List({ data, listPath }) {
 						No items found! <NavLink to="/manage-list"> Add item</NavLink>
 					</li>
 				)}
-			</ul>
-		</>
-	);
+			</ul> */
 }
+// 		</>
+// 	);
+// }

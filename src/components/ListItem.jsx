@@ -12,6 +12,7 @@ export function ListItem({
 	dateLastPurchased,
 	purchaseInterval,
 	dateCreated,
+	sortCriteria,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -61,18 +62,22 @@ export function ListItem({
 
 	return (
 		<>
-			<li className="ListItem">
-				<div className="item-name">{name}</div>
-				<Toggle
-					toggle={handleToggle}
-					on={purchased}
-					name={name}
-					isDisabled={isDisabled}
-					dateLastPurchased={dateLastPurchased}
-				/>
-
-				{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
-			</li>
+			<tr className="ListItem">
+				<td>{name}</td>
+				<td>
+					<Toggle
+						toggle={handleToggle}
+						on={purchased}
+						name={name}
+						isDisabled={isDisabled}
+						dateLastPurchased={dateLastPurchased}
+					/>
+				</td>
+				<td>
+					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
+				</td>
+				<td>{sortCriteria.tag}</td>
+			</tr>
 		</>
 	);
 }

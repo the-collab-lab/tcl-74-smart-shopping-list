@@ -186,13 +186,25 @@ export function comparePurchaseUrgency(list) {
 		const days = getDaysBetweenDates(item.dateNextPurchased);
 		if (days >= 60) {
 			//flip the days to negative for inactive items
-			item.sortCriteria = { tag: 'inactive', daysUntilNextPurchase: -days };
+			item.sortCriteria = {
+				tag: 'No longer active',
+				daysUntilNextPurchase: -days,
+			};
 			inactive.push(item);
 		} else if (days < 60 && days > 0) {
-			item.sortCriteria = { tag: 'overdue', daysUntilNextPurchase: days };
+			item.sortCriteria = { tag: 'Past due date', daysUntilNextPurchase: days };
 			overdue.push(item);
-		} else {
-			item.sortCriteria = { tag: 'future', daysUntilNextPurchase: days };
+		} else if (days <= 0 && days >= -7) {
+			item.sortCriteria = { tag: 'Due soon', daysUntilNextPurchase: days };
+			future.push(item);
+		} else if (days < -7 && days >= -30) {
+			item.sortCriteria = {
+				tag: 'Due kind of soon',
+				daysUntilNextPurchase: days,
+			};
+			future.push(item);
+		} else if (days < -30) {
+			item.sortCriteria = { tag: 'Due not soon', daysUntilNextPurchase: days };
 			future.push(item);
 		}
 	});
