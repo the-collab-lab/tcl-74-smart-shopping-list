@@ -10,7 +10,11 @@ export function List({ data, listPath }) {
 	};
 
 	let sorted = comparePurchaseUrgency(data);
-	console.log(sorted);
+	let names = [];
+	sorted.forEach((item) => {
+		names.push(item.name);
+	});
+	console.log('names', names);
 
 	const clearSearchInput = () => {
 		setSearchInput('');
@@ -21,6 +25,7 @@ export function List({ data, listPath }) {
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
 	});
+	const listInfo = comparePurchaseUrgency(filterList);
 
 	return (
 		<>

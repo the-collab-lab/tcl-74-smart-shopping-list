@@ -177,45 +177,49 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 }
 
 export function comparePurchaseUrgency(list) {
-	// Create a copy of the list to avoid mutating original array
-	const overdueItems = [];
-	const pendingItems = [];
+	const inactive = [];
+	const overdue = [];
+	const future = [];
+	//iterate through the list and categorize each item
 	list.forEach((item) => {
-		const dateToCompare = item.dateNextPurchased.toDate();
-		const now = new Date();
-		if (dateToCompare < now) {
-			overdueItems.push(item);
+		//positive numbers represent the past, negative numbers represent the future
+		const days = getDaysBetweenDates(item.dateNextPurchased);
+		if (days >= 60) {
+			//flip the days to negative for inactive items
+			item.sortCriteria = { tag: 'inactive', daysUntilNextPurchase: -days };
+			inactive.push(item);
+		} else if (days < 60 && days > 0) {
+			item.sortCriteria = { tag: 'overdue', daysUntilNextPurchase: days };
+			overdue.push(item);
 		} else {
-			pendingItems.push(item);
+			item.sortCriteria = { tag: 'future', daysUntilNextPurchase: days };
+			future.push(item);
 		}
 	});
+	//function to sort lists by days until next purchase and alphabetically if days are equal
 	const sortList = (list) => {
 		const sortedList = [...list].sort((a, b) => {
-			const daysA = getDaysBetweenDates(a.dateNextPurchased);
-			const daysB = getDaysBetweenDates(b.dateNextPurchased);
-			if (daysA < daysB) return -1;
-			if (daysB < daysA) return 1;
-			// If days are the same, sort alphabetically
-			return a.name.localeCompare(b.name);
+			if (
+				a.sortCriteria.daysUntilNextPurchase ===
+				b.sortCriteria.daysUntilNextPurchase
+			) {
+				//sorts alphabetically if days are the same
+				return a.name.localeCompare(b.name);
+			}
+			return (
+				//sort by days until next purchase
+				b.sortCriteria.daysUntilNextPurchase -
+				a.sortCriteria.daysUntilNextPurchase
+			);
 		});
 		return sortedList;
 	};
-	return sortList(overdueItems).concat(pendingItems);
-	// const sortedList = [...list].sort((a, b) => {
-	// 	const daysA = getDaysBetweenDates(a.dateNextPurchased);
-	// 	const daysB = getDaysBetweenDates(b.dateNextPurchased);
-	// 	a.daysUntilPurchase = daysA;
-	// 	b.daysUntilPurchase = daysB;
-	// 	//if daysA< 7 the call it soon
-	// 	//if daysA >7 and < 30 call it
-	// 	// Inactive items (60 days or more)
-	// 	// Sort by dats until next purchase
-	// 	if (daysA < daysB) return -1;
-	// 	if (daysB < daysA) return 1;
-	// 	// If days are the same, sort alphabetically
-	// 	return a.name.localeCompare(b.name);
-	// });
-	// return sortedList;
+
+	const sortedOverdue = sortList(overdue);
+	const sortedFuture = sortList(future);
+	const sortedInactive = sortList(inactive);
+
+	return sortedOverdue.concat(sortedFuture).concat(sortedInactive);
 }
 
 /**
