@@ -10,7 +10,11 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate, getDaysBetweenDates } from '../utils';
+import {
+	getFutureDate,
+	cal,
+	calculateDaysDifferenceFromNowculateDaysDifferenceFromNow,
+} from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
@@ -176,64 +180,6 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 	);
 }
 
-export function comparePurchaseUrgency(list) {
-	const inactive = [];
-	const overdue = [];
-	const future = [];
-	//iterate through the list and categorize each item
-	list.forEach((item) => {
-		//positive numbers represent the past, negative numbers represent the future
-		const days = getDaysBetweenDates(item.dateNextPurchased);
-		if (days >= 60) {
-			//flip the days to negative for inactive items
-			item.sortCriteria = {
-				tag: 'No longer active',
-				daysUntilNextPurchase: -days,
-			};
-			inactive.push(item);
-		} else if (days < 60 && days > 0) {
-			item.sortCriteria = { tag: 'Past due date', daysUntilNextPurchase: days };
-			overdue.push(item);
-		} else if (days <= 0 && days >= -7) {
-			item.sortCriteria = { tag: 'Due soon', daysUntilNextPurchase: days };
-			future.push(item);
-		} else if (days < -7 && days >= -30) {
-			item.sortCriteria = {
-				tag: 'Due kind of soon',
-				daysUntilNextPurchase: days,
-			};
-			future.push(item);
-		} else if (days < -30) {
-			item.sortCriteria = { tag: 'Due not soon', daysUntilNextPurchase: days };
-			future.push(item);
-		}
-	});
-	//function to sort lists by days until next purchase and alphabetically if days are equal
-	const sortList = (list) => {
-		const sortedList = [...list].sort((a, b) => {
-			if (
-				a.sortCriteria.daysUntilNextPurchase ===
-				b.sortCriteria.daysUntilNextPurchase
-			) {
-				//sorts alphabetically if days are the same
-				return a.name.localeCompare(b.name);
-			}
-			return (
-				//sort by days until next purchase
-				b.sortCriteria.daysUntilNextPurchase -
-				a.sortCriteria.daysUntilNextPurchase
-			);
-		});
-		return sortedList;
-	};
-
-	const sortedOverdue = sortList(overdue);
-	const sortedFuture = sortList(future);
-	const sortedInactive = sortList(inactive);
-
-	return sortedOverdue.concat(sortedFuture).concat(sortedInactive);
-}
-
 /**
  * Add a new item to the user's list in Firestore.
  * @param {string} listPath The path of the list we're adding to.
@@ -267,9 +213,9 @@ export async function updateItem(
 	let daysSinceLastPurchase;
 
 	if (dateLastPurchased) {
-		daysSinceLastPurchase = getDaysBetweenDates(dateLastPurchased);
+		daysSinceLastPurchase = calculateDaysDifferenceFromNow(dateLastPurchased);
 	} else {
-		daysSinceLastPurchase = getDaysBetweenDates(dateCreated);
+		daysSinceLastPurchase = calculateDaysDifferenceFromNow(dateCreated);
 	}
 
 	// Calculate days until next purchase
