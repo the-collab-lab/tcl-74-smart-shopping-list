@@ -29,3 +29,28 @@ th {
 	background-color: #3e27ed;
 	border-bottom: 2px solid #ddd;
 }
+
+.duesoon {
+	color: orange;
+	font-weight: bold;
+}
+
+.duekindofsoon {
+	color: yellow;
+	font-weight: bold;
+}
+
+.notduesoon {
+	color: green;
+	font-weight: bold;
+}
+
+.nolongeractive {
+	color: gray;
+	font-weight: bold;
+}
+
+.overdue {
+	color: red;
+	font-weight: bold;
+}

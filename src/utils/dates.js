@@ -37,7 +37,7 @@ export function comparePurchaseUrgency(list) {
 			};
 			inactive.push(item);
 		} else if (days < 60 && days > 0) {
-			item.sortCriteria = { tag: 'Past due date', daysUntilNextPurchase: days };
+			item.sortCriteria = { tag: 'Overdue', daysUntilNextPurchase: days };
 			overdue.push(item);
 		} else if (days <= 0 && days >= -7) {
 			item.sortCriteria = { tag: 'Due soon', daysUntilNextPurchase: days };
@@ -49,7 +49,7 @@ export function comparePurchaseUrgency(list) {
 			};
 			future.push(item);
 		} else if (days < -30) {
-			item.sortCriteria = { tag: 'Due not soon', daysUntilNextPurchase: days };
+			item.sortCriteria = { tag: 'Not due soon', daysUntilNextPurchase: days };
 			future.push(item);
 		}
 	});

@@ -56,10 +56,10 @@ export function List({ data, listPath }) {
 				<table>
 					<thead>
 						<tr>
-							<th>Product</th>
-							<th>Buy Now</th>
-							<th>Last Purchase Date</th>
-							<th>Urgency</th>
+							<th scope="col">Product</th>
+							<th scope="col">Buy Now</th>
+							<th scope="col">Last Purchase Date</th>
+							<th scope="col">Urgency</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,32 +84,3 @@ export function List({ data, listPath }) {
 		</>
 	);
 }
-{
-	/* <ul>
-				{filterList.length ? (
-					filterList.map((item) => {
-						return (
-							<ListItem
-								key={item.id}
-								name={item.name}
-								itemId={item.id}
-								listPath={listPath}
-								totalPurchases={item.totalPurchases}
-								dateLastPurchased={item.dateLastPurchased}
-								purchaseInterval={item.purchaseInterval}
-								dateCreated={item.dateCreated}
-								sortCriteria={item.sortCriteria}
-							/>
-						);
-					})
-				) : (
-					<li>
-						{' '}
-						No items found! <NavLink to="/manage-list"> Add item</NavLink>
-					</li>
-				)}
-			</ul> */
-}
-// 		</>
-// 	);
-// }

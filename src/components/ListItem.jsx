@@ -60,6 +60,8 @@ export function ListItem({
 		}
 	};
 
+	const urgencyClass = sortCriteria.tag.toLowerCase().replace(/\s/g, '');
+
 	return (
 		<>
 			<tr className="ListItem">
@@ -76,7 +78,7 @@ export function ListItem({
 				<td>
 					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
 				</td>
-				<td>{sortCriteria.tag}</td>
+				<td className={urgencyClass}>{sortCriteria.tag}</td>
 			</tr>
 		</>
 	);

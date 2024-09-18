@@ -10,11 +10,7 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import {
-	getFutureDate,
-	cal,
-	calculateDaysDifferenceFromNowculateDaysDifferenceFromNow,
-} from '../utils';
+import { getFutureDate, calculateDaysDifferenceFromNow } from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
