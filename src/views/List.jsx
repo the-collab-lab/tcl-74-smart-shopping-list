@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { NavLink } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ export function List({ data, listPath }) {
 
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
+		setMessage('');
 	};
 
 	const clearSearchInput = () => {
@@ -19,6 +20,14 @@ export function List({ data, listPath }) {
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
 	});
+
+	useEffect(() => {
+		if (message !== '') {
+			setInterval(() => {
+				setMessage('');
+			}, 5000);
+		}
+	}, [message]);
 
 	return (
 		<>
