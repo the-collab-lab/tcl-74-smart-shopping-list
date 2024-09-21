@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
-import { updateItem } from '../api/firebase.js';
+import { updateItem, deleteItem } from '../api/firebase.js';
 
 export function ListItem({
 	name,
@@ -13,9 +13,11 @@ export function ListItem({
 	purchaseInterval,
 	dateCreated,
 	sortCriteria,
+	setMessage,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
+
 	useEffect(() => {
 		if (dateLastPurchased) {
 			const checkExpiration = () => {
@@ -59,13 +61,35 @@ export function ListItem({
 			}
 		}
 	};
+  
+  
+	// handleDelete Function
+	const handleDelete = async () => {
+	const deleteConfirm = window.confirm(
+			`Are you sure you want to delete ${name}?`,
+		);
+
+		if (deleteConfirm) {
+			try {
+				await deleteItem(listPath, itemId);
+				setMessage(`${name} has been deleted successfully!`);
+			} catch (error) {
+				console.log(`Error:`, error);
+			}
+		}
+	};
 
 	const urgencyClass = sortCriteria.tag.toLowerCase().replace(/\s/g, '');
 
 	return (
 		<>
 			<tr className="ListItem">
-				<td>{name}</td>
+				<td>{name}
+	        <button onClick={handleDelete} aria-label={`Delete ${name}`}>
+					Delete
+				</button>
+         </td>
+
 				<td>
 					<Toggle
 						toggle={handleToggle}
@@ -80,6 +104,7 @@ export function ListItem({
 				</td>
 				<td className={urgencyClass}>{sortCriteria.tag}</td>
 			</tr>
+
 		</>
 	);
 }

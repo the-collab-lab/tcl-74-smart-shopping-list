@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { NavLink } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../utils/dates.js';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
+	const [message, setMessage] = useState('');
+
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
+		setMessage('');
 	};
 
 	const clearSearchInput = () => {
@@ -20,6 +23,14 @@ export function List({ data, listPath }) {
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
 	});
+
+	useEffect(() => {
+		if (message !== '') {
+			setInterval(() => {
+				setMessage('');
+			}, 5000);
+		}
+	}, [message]);
 
 	return (
 		<>
@@ -73,6 +84,7 @@ export function List({ data, listPath }) {
 								dateLastPurchased={item.dateLastPurchased}
 								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
+               	setMessage={setMessage}
 								sortCriteria={item.sortCriteria}
 							/>
 						))}
@@ -80,7 +92,10 @@ export function List({ data, listPath }) {
 				</table>
 			) : (
 				<p>No items to display</p>
-			)}
+			)}	
+				<br />
+				<span>{message}</span>
+
 		</>
 	);
 }
