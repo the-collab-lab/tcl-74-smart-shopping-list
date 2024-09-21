@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { NavLink } from 'react-router-dom';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
+	const [message, setMessage] = useState('');
+
 	const handleInputChange = (e) => {
 		setSearchInput(e.target.value);
+		setMessage('');
 	};
 
 	const clearSearchInput = () => {
@@ -17,6 +20,14 @@ export function List({ data, listPath }) {
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
 	});
+
+	useEffect(() => {
+		if (message !== '') {
+			setInterval(() => {
+				setMessage('');
+			}, 5000);
+		}
+	}, [message]);
 
 	return (
 		<>
@@ -62,6 +73,7 @@ export function List({ data, listPath }) {
 								dateLastPurchased={item.dateLastPurchased}
 								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
+								setMessage={setMessage}
 							/>
 						);
 					})
@@ -71,6 +83,8 @@ export function List({ data, listPath }) {
 						No items found! <NavLink to="/manage-list"> Add item</NavLink>
 					</li>
 				)}
+				<br />
+				<span>{message}</span>
 			</ul>
 		</>
 	);

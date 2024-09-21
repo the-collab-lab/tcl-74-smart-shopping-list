@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
-import { updateItem } from '../api/firebase.js';
+import { updateItem, deleteItem } from '../api/firebase.js';
 
 export function ListItem({
 	name,
@@ -12,9 +12,11 @@ export function ListItem({
 	dateLastPurchased,
 	purchaseInterval,
 	dateCreated,
+	setMessage,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
+
 	useEffect(() => {
 		if (dateLastPurchased) {
 			const checkExpiration = () => {
@@ -59,6 +61,22 @@ export function ListItem({
 		}
 	};
 
+	// handleDelete Function
+	const handleDelete = async () => {
+		const deleteConfirm = window.confirm(
+			`Are you sure you want to delete ${name}?`,
+		);
+
+		if (deleteConfirm) {
+			try {
+				await deleteItem(listPath, itemId);
+				setMessage(`${name} has been deleted successfully!`);
+			} catch (error) {
+				console.log(`Error:`, error);
+			}
+		}
+	};
+
 	return (
 		<>
 			<li className="ListItem">
@@ -72,6 +90,9 @@ export function ListItem({
 				/>
 
 				{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
+				<button onClick={handleDelete} aria-label={`Delete ${name}`}>
+					Delete
+				</button>
 			</li>
 		</>
 	);
