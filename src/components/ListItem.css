@@ -1,22 +1,33 @@
-.ListItem {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	padding: 8px;
-	border-bottom: 1px solid var(--color-border);
-	font-size: 1.2em;
+td {
+	border-bottom: 1px solid whitesmoke;
 }
 
-.ListItem-checkbox {
-	accent-color: var(--color-accent);
+th {
+	background-color: #3e27ed;
+	border-bottom: 2px solid #ddd;
 }
 
-.ListItem-label {
-	margin-left: 0.2em;
+.duesoon {
+	color: orange;
+	font-weight: bold;
 }
 
-.item-name {
-	flex-grow: 1;
-	margin-right: 10px;
+.duekindofsoon {
+	color: yellow;
+	font-weight: bold;
+}
+
+.notduesoon {
+	color: green;
+	font-weight: bold;
+}
+
+.nolongeractive {
+	color: gray;
+	font-weight: bold;
+}
+
+.overdue {
+	color: red;
+	font-weight: bold;
 }

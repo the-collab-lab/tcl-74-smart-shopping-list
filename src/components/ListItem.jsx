@@ -12,6 +12,7 @@ export function ListItem({
 	dateLastPurchased,
 	purchaseInterval,
 	dateCreated,
+	sortCriteria,
 	setMessage,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
@@ -60,10 +61,11 @@ export function ListItem({
 			}
 		}
 	};
-
+  
+  
 	// handleDelete Function
 	const handleDelete = async () => {
-		const deleteConfirm = window.confirm(
+	const deleteConfirm = window.confirm(
 			`Are you sure you want to delete ${name}?`,
 		);
 
@@ -77,23 +79,32 @@ export function ListItem({
 		}
 	};
 
+	const urgencyClass = sortCriteria.tag.toLowerCase().replace(/\s/g, '');
+
 	return (
 		<>
-			<li className="ListItem">
-				<div className="item-name">{name}</div>
-				<Toggle
-					toggle={handleToggle}
-					on={purchased}
-					name={name}
-					isDisabled={isDisabled}
-					dateLastPurchased={dateLastPurchased}
-				/>
-
-				{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
-				<button onClick={handleDelete} aria-label={`Delete ${name}`}>
+			<tr className="ListItem">
+				<td>{name}
+	        <button onClick={handleDelete} aria-label={`Delete ${name}`}>
 					Delete
 				</button>
-			</li>
+         </td>
+
+				<td>
+					<Toggle
+						toggle={handleToggle}
+						on={purchased}
+						name={name}
+						isDisabled={isDisabled}
+						dateLastPurchased={dateLastPurchased}
+					/>
+				</td>
+				<td>
+					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
+				</td>
+				<td className={urgencyClass}>{sortCriteria.tag}</td>
+			</tr>
+
 		</>
 	);
 }

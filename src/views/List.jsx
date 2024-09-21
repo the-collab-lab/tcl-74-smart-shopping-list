@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { NavLink } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../utils/dates.js';
 
 export function List({ data, listPath }) {
 	const [searchInput, setSearchInput] = useState('');
@@ -15,7 +16,9 @@ export function List({ data, listPath }) {
 		setSearchInput('');
 	};
 
-	const filterList = data.filter((item) => {
+	const sortedByUrgency = comparePurchaseUrgency(data);
+
+	const filterList = sortedByUrgency.filter((item) => {
 		return searchInput
 			? item.name.toLowerCase().includes(searchInput.toLowerCase())
 			: item;
@@ -60,10 +63,18 @@ export function List({ data, listPath }) {
 					</button>
 				)}
 			</div>
-			<ul>
-				{filterList.length ? (
-					filterList.map((item) => {
-						return (
+			{filterList.length ? (
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Product</th>
+							<th scope="col">Buy Now</th>
+							<th scope="col">Last Purchase Date</th>
+							<th scope="col">Urgency</th>
+						</tr>
+					</thead>
+					<tbody>
+						{filterList.map((item) => (
 							<ListItem
 								key={item.id}
 								name={item.name}
@@ -73,19 +84,18 @@ export function List({ data, listPath }) {
 								dateLastPurchased={item.dateLastPurchased}
 								purchaseInterval={item.purchaseInterval}
 								dateCreated={item.dateCreated}
-								setMessage={setMessage}
+               	setMessage={setMessage}
+								sortCriteria={item.sortCriteria}
 							/>
-						);
-					})
-				) : (
-					<li>
-						{' '}
-						No items found! <NavLink to="/manage-list"> Add item</NavLink>
-					</li>
-				)}
+						))}
+					</tbody>
+				</table>
+			) : (
+				<p>No items to display</p>
+			)}	
 				<br />
 				<span>{message}</span>
-			</ul>
+
 		</>
 	);
 }
