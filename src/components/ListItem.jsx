@@ -61,11 +61,10 @@ export function ListItem({
 			}
 		}
 	};
-  
-  
+
 	// handleDelete Function
 	const handleDelete = async () => {
-	const deleteConfirm = window.confirm(
+		const deleteConfirm = window.confirm(
 			`Are you sure you want to delete ${name}?`,
 		);
 
@@ -84,11 +83,7 @@ export function ListItem({
 	return (
 		<>
 			<tr className="ListItem">
-				<td>{name}
-	        <button onClick={handleDelete} aria-label={`Delete ${name}`}>
-					Delete
-				</button>
-         </td>
+				<td>{name}</td>
 
 				<td>
 					<Toggle
@@ -103,8 +98,10 @@ export function ListItem({
 					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
 				</td>
 				<td className={urgencyClass}>{sortCriteria.tag}</td>
+				<button onClick={handleDelete} aria-label={`Delete ${name}`}>
+					Delete
+				</button>
 			</tr>
-
 		</>
 	);
 }
