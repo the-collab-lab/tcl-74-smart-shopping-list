@@ -22,6 +22,7 @@ export const SignInButton = () => (
  */
 export const SignOutButton = () => (
 	<button type="button" onClick={() => auth.signOut()}>
+		<i className="fa-solid fa-right-from-bracket"></i> <br />
 		Sign Out
 	</button>
 );

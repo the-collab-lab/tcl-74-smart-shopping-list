@@ -67,13 +67,8 @@
 	text-underline-offset: 0.1em;
 }
 
-/* .Nav-link.active {
+.Nav-link.active > * {
 	text-decoration-thickness: 0.22em;
 	text-underline-offset: 0.1em;
-} */
-
-.Nav-link.active {
-	text-decoration-thickness: 0.22em;
-	text-underline-offset: 0.1em;
-	background-color: green;
+	background-color: var(--color-border);
 }

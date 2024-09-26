@@ -21,8 +21,7 @@ export function Layout() {
 					<h1>Smart shopping list</h1>
 					{!!user ? (
 						<div>
-							<span>Signed in as {auth.currentUser.displayName}</span> (
-							<SignOutButton />)
+							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					) : (
 						<SignInButton />
@@ -33,17 +32,14 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<NavLink to="/list" className="Nav-link" end>
-							<IconButton icon="fa-solid fa-right-to-bracket" label="Login" />
-						</NavLink>
 						<NavLink to="/" className="Nav-link" end>
-							Home
-						</NavLink>
-						<NavLink to="/list" className="Nav-link" end>
-							List
+							<IconButton icon="fa-solid fa-list" label="View Lists" />
 						</NavLink>
 						<NavLink to="/manage-list" className="Nav-link" end>
-							Manage List
+							<IconButton icon="fa-solid fa-cart-plus" label="Add Item" />
+						</NavLink>
+						<NavLink to="/" className="Nav-link" end>
+							<SignOutButton />
 						</NavLink>
 					</div>
 				</nav>
