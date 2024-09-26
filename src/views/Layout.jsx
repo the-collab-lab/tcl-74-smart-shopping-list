@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-
+import { IconButton } from '../components/IconButton';
 import './Layout.css';
 import { auth } from '../api/config.js';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
@@ -33,6 +33,9 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
+						<NavLink to="/list" className="Nav-link" end>
+							<IconButton icon="fa-solid fa-right-to-bracket" label="Login" />
+						</NavLink>
 						<NavLink to="/" className="Nav-link" end>
 							Home
 						</NavLink>
