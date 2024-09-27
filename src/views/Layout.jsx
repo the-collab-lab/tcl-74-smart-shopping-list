@@ -45,9 +45,9 @@ export function Layout() {
 							link="/manage-list"
 						/>
 						<IconButton
-							as="NavLink"
+							as="SignOut"
 							icon="fa-solid fa-right-from-bracket"
-							label="Add Item"
+							label="Sign Out"
 							link="/"
 						/>
 					</div>
