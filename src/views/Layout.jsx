@@ -1,8 +1,8 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import './Layout.css';
 import { auth } from '../api/config.js';
-import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
+import { useAuth, SignInButton } from '../api/useAuth.jsx';
 
 /**
  * TODO: The links defined in this file don't work!
