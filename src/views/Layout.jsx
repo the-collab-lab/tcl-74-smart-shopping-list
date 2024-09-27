@@ -32,15 +32,24 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<NavLink to="/" className="Nav-link" end>
-							<IconButton icon="fa-solid fa-list" label="View Lists" />
-						</NavLink>
-						<NavLink to="/manage-list" className="Nav-link" end>
-							<IconButton icon="fa-solid fa-cart-plus" label="Add Item" />
-						</NavLink>
-						<NavLink to="/" className="Nav-link" end>
-							<SignOutButton />
-						</NavLink>
+						<IconButton
+							as="NavLink"
+							icon="fa-solid fa-list"
+							label="View Lists"
+							link="/"
+						/>
+						<IconButton
+							as="NavLink"
+							icon="fa-solid fa-cart-plus"
+							label="Add Item"
+							link="/manage-list"
+						/>
+						<IconButton
+							as="NavLink"
+							icon="fa-solid fa-right-from-bracket"
+							label="Add Item"
+							link="/"
+						/>
 					</div>
 				</nav>
 			</div>
