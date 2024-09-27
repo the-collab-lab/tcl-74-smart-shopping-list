@@ -35,8 +35,6 @@ export function Toggle({ on, toggle, name, isDisabled }) {
 					disabled={isDisabled}
 					aria-label={`Toggle purchase status for ${name}`}
 				/>
-
-				<span className="Toggle-text">{on ? 'Purchased' : 'Unpurchased'}</span>
 			</label>
 			{message && <p className="Toggle-message">{message}</p>}
 		</div>
