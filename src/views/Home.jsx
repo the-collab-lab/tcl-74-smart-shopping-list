@@ -3,6 +3,8 @@ import { SingleList } from '../components';
 import { useState } from 'react';
 import { createList } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+import Disclosure from './Disclosure';
 
 export function Home({ data, setListPath, user }) {
 	const navigate = useNavigate();
@@ -37,18 +39,27 @@ export function Home({ data, setListPath, user }) {
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			<ul>
-				{data.map((list) => {
-					return (
-						<SingleList
-							key={list.path}
-							name={list.name}
-							path={list.path}
-							setListPath={setListPath}
-						/>
-					);
-				})}
-			</ul>
+
+			{/*parent commponent that controls the visibility of its children (ie list)*/}
+			<Disclosure
+				buttonText="View My List"
+				iconExpanded={<FaMinus />}
+				iconCollapsed={<FaPlus />}
+			>
+				<ul>
+					{data.map((list) => {
+						return (
+							<SingleList
+								key={list.path}
+								name={list.name}
+								path={list.path}
+								setListPath={setListPath}
+							/>
+						);
+					})}
+				</ul>
+			</Disclosure>
+			<br></br>
 			<div>
 				<form onSubmit={handleSubmit}>
 					<label htmlFor="list-name">List Name : </label>
