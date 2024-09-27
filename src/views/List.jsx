@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
-import { NavLink } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../utils/dates.js';
 
 export function List({ data, listPath }) {
@@ -34,22 +33,8 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/list</code> page!
-			</p>
-			{data.length ? (
-				<p>
-					Add additional items on the{' '}
-					<NavLink to="/manage-list" className="code-button">
-						Manage List
-					</NavLink>{' '}
-					page
-				</p>
-			) : (
-				<p> To get started, click &apos;Add item&apos; below </p>
-			)}
 			<div className="listSearch">
-				<label htmlFor="search">Search Items</label> <br />
+				<label htmlFor="search">Search Items </label>
 				<input
 					type="text"
 					id="search"
@@ -64,38 +49,27 @@ export function List({ data, listPath }) {
 				)}
 			</div>
 			{filterList.length ? (
-				<table>
-					<thead>
-						<tr>
-							<th scope="col">Product</th>
-							<th scope="col">Buy Now</th>
-							<th scope="col">Last Purchase Date</th>
-							<th scope="col">Urgency</th>
-						</tr>
-					</thead>
-					<tbody>
-						{filterList.map((item) => (
-							<ListItem
-								key={item.id}
-								name={item.name}
-								itemId={item.id}
-								listPath={listPath}
-								totalPurchases={item.totalPurchases}
-								dateLastPurchased={item.dateLastPurchased}
-								purchaseInterval={item.purchaseInterval}
-								dateCreated={item.dateCreated}
-               	setMessage={setMessage}
-								sortCriteria={item.sortCriteria}
-							/>
-						))}
-					</tbody>
-				</table>
+				<div>
+					{filterList.map((item) => (
+						<ListItem
+							key={item.id}
+							name={item.name}
+							itemId={item.id}
+							listPath={listPath}
+							totalPurchases={item.totalPurchases}
+							dateLastPurchased={item.dateLastPurchased}
+							purchaseInterval={item.purchaseInterval}
+							dateCreated={item.dateCreated}
+							setMessage={setMessage}
+							sortCriteria={item.sortCriteria}
+						/>
+					))}
+				</div>
 			) : (
 				<p>No items to display</p>
-			)}	
-				<br />
-				<span>{message}</span>
-
+			)}
+			<br />
+			<span>{message}</span>
 		</>
 	);
 }

@@ -4,37 +4,68 @@
 // Displays icon to indicate expand/colapsed (feel free to change icon if u like)
 // Manages accessibitity through aria attributes
 
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaShareAlt } from 'react-icons/fa';
+import './Disclosure.css';
 
-const Disclosure = ({
+export function Disclosure({
 	id,
 	children,
-	buttonText,
+	listofNames,
 	iconExpanded,
 	iconCollapsed,
-}) => {
-	const [isOpen, setIsOpen] = useState(false); // initialize the state to track whether the disclosure is open or closed
+	currentListPath,
+	listpath,
+	setListPath,
+}) {
+	const navigate = useNavigate();
+	const [isOpen, setIsOpen] = useState(false);
 
-	//checks current state
-	const toggleDisclosure = () => {
+	useEffect(() => {
+		if (currentListPath !== listpath) {
+			setIsOpen(false);
+		}
+	}, [currentListPath]);
+
+	const toggleDisclosure = (e) => {
+		e.preventDefault();
 		if (isOpen) {
 			setIsOpen(false);
 		} else {
 			setIsOpen(true);
+			setListPath(listpath);
+		}
+	};
+
+	const handleKeyDown = (e) => {
+		if (
+			e.keyCode === 13 || // Keycode for Enter key
+			e.keyCode === 32 // Keycode for Spacebar key
+		) {
+			toggleDisclosure(e);
 		}
 	};
 
 	return (
-		<div className="Disclosure" id={id}>
+		<div className="Accordion" id={id}>
 			<button
-				className="Disclosure-button"
+				className="Disclosure-header"
 				id={`${id}-button`}
 				onClick={toggleDisclosure}
+				onKeyDown={handleKeyDown}
 				aria-controls={`${id}-content`}
 				aria-expanded={isOpen}
 			>
 				{isOpen ? iconExpanded : iconCollapsed}
-				<span>{buttonText}</span>
+				<span>{listofNames}</span>
+
+				<FaShareAlt
+					icon="fa-solid fa-share-nodes"
+					className="share-icon"
+					aria-label="Share"
+					onClick={() => navigate('/manage-list')}
+				/>
 			</button>
 			{isOpen && (
 				<div
@@ -47,6 +78,4 @@ const Disclosure = ({
 			)}
 		</div>
 	);
-};
-
-export default Disclosure;
+}
