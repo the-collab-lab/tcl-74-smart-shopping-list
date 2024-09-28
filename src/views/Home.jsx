@@ -1,11 +1,11 @@
 import './Home.css';
-import { SingleList } from '../components';
 import { useState } from 'react';
 import { createList } from '../api';
-import { useNavigate } from 'react-router-dom';
+import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
+import { Disclosure } from './Disclosure';
+import { List } from './List';
 
-export function Home({ data, setListPath, user }) {
-	const navigate = useNavigate();
+export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
 	const userEmail = user?.email;
 
@@ -19,11 +19,9 @@ export function Home({ data, setListPath, user }) {
 		event.preventDefault();
 		if (listName) {
 			try {
-				// throw new Error ("Error")
 				const newListPath = await createList(userId, userEmail, listName);
 				alert('List is sucessfully created');
 				setListPath(newListPath);
-				navigate('/list');
 			} catch {
 				alert('There was an error adding your list to db');
 			}
@@ -34,33 +32,39 @@ export function Home({ data, setListPath, user }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
-			<ul>
-				{data.map((list) => {
-					return (
-						<SingleList
-							key={list.path}
-							name={list.name}
-							path={list.path}
-							setListPath={setListPath}
-						/>
-					);
-				})}
-			</ul>
 			<div>
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="list-name">List Name : </label>
+					<label htmlFor="list-name">Create a List </label>
 					<input
 						id="list-name"
 						type="text"
 						value={listName}
 						onChange={handleChange}
+						placeholder="Add a list"
 					></input>
-					<button>Submit</button>
+					<button>Add</button>
 				</form>
 			</div>
+
+			{lists.length === 0 ? (
+				<p>No lists available. Create a new list below.</p>
+			) : (
+				<ul>
+					{lists.map((list) => (
+						<Disclosure
+							key={list.path}
+							listofNames={list.name}
+							iconExpanded={<FaAngleDown />}
+							iconCollapsed={<FaAngleRight />}
+							listpath={list.path}
+							currentListPath={listPath}
+							setListPath={setListPath}
+						>
+							<List data={data} listPath={list.path} />
+						</Disclosure>
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }

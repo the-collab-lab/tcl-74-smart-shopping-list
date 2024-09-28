@@ -1,12 +1,3 @@
-td {
-	border-bottom: 1px solid whitesmoke;
-}
-
-th {
-	background-color: #3e27ed;
-	border-bottom: 2px solid #ddd;
-}
-
 .duesoon {
 	color: orange;
 	font-weight: bold;
@@ -30,4 +21,26 @@ th {
 .overdue {
 	color: red;
 	font-weight: bold;
+}
+.ListItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
+	font-size: 16px;
+	margin-bottom: 10px;
+	border-radius: 8px;
+	transition: background-color 0.3s;
+}
+
+.ListItem button {
+	border: none;
+	border-radius: 4px;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.ListItem button:hover {
+	transform: scale(1.02);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

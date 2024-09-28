@@ -3,6 +3,7 @@ import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
 
 export function ListItem({
 	name,
@@ -82,26 +83,21 @@ export function ListItem({
 
 	return (
 		<>
-			<tr className="ListItem">
-				<td>{name}</td>
+			<div className="ListItem">
+				<Toggle
+					toggle={handleToggle}
+					on={purchased}
+					name={name}
+					isDisabled={isDisabled}
+					dateLastPurchased={dateLastPurchased}
+				/>
+				{name}
 
-				<td>
-					<Toggle
-						toggle={handleToggle}
-						on={purchased}
-						name={name}
-						isDisabled={isDisabled}
-						dateLastPurchased={dateLastPurchased}
-					/>
-				</td>
-				<td>
-					{dateLastPurchased ? dateLastPurchased.toDate().toLocaleString() : ''}
-				</td>
-				<td className={urgencyClass}>{sortCriteria.tag}</td>
-				<button onClick={handleDelete} aria-label={`Delete ${name}`}>
+				<div className={urgencyClass}>{sortCriteria.tag}</div>
+				<RiDeleteBin5Fill onClick={handleDelete} aria-label={`Delete ${name}`}>
 					Delete
-				</button>
-			</tr>
+				</RiDeleteBin5Fill>
+			</div>
 		</>
 	);
 }

@@ -47,7 +47,13 @@ export function App() {
 					<Route
 						index
 						element={
-							<Home data={lists} setListPath={setListPath} user={user} />
+							<Home
+								data={data}
+								lists={lists}
+								listPath={listPath}
+								setListPath={setListPath}
+								user={user}
+							/>
 						}
 					/>
 					<Route

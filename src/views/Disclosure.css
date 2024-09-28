@@ -1,0 +1,29 @@
+.Accordion {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.Disclosure-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	padding: 10px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+.list-item .share-icon {
+	margin-left: auto;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.share-icon:hover {
+	transform: scale(1.2);
+}
