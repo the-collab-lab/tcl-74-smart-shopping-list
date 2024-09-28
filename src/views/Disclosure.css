@@ -2,6 +2,9 @@
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	margin-bottom: 10px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .Disclosure-header {
@@ -15,8 +18,9 @@
 	width: 100%;
 }
 
-.share-icon {
-	margin-left: 10px;
+.list-item .share-icon {
+	margin-left: auto;
+	padding: 8px;
 	cursor: pointer;
 }
 
