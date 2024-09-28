@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import './Layout.css';
 import { auth } from '../api/config.js';
-import { useAuth, SignInButton } from '../api/useAuth.jsx';
+import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -33,22 +33,24 @@ export function Layout() {
 				<nav className="Nav">
 					<div className="Nav-container">
 						<IconButton
-							as="NavLink"
+							as={NavLink}
+							className="Nav-link"
 							icon="fa-solid fa-list"
 							label="View Lists"
-							link="/"
+							to="/"
 						/>
 						<IconButton
-							as="NavLink"
+							as={NavLink}
+							className="Nav-link"
 							icon="fa-solid fa-cart-plus"
 							label="Add Item"
-							link="/manage-list"
+							to="/manage-list"
 						/>
 						<IconButton
-							as="SignOut"
+							as={SignOutButton}
+							className="Nav-link"
 							icon="fa-solid fa-right-from-bracket"
 							label="Sign Out"
-							link="/"
 						/>
 					</div>
 				</nav>
