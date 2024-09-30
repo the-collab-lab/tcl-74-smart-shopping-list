@@ -1,8 +1,8 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import './Layout.css';
-import { SignOutButton } from '../api/useAuth.jsx';
-// import { auth } from '../api/config.js';
+import { useAuth, SignOutButton } from '../api/useAuth.jsx';
+import { auth } from '../api/config.js';
 // import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 
 /**
@@ -14,7 +14,7 @@ import { SignOutButton } from '../api/useAuth.jsx';
  */
 
 export function Layout() {
-	// const { user } = useAuth();
+	const { user } = useAuth();
 	return (
 		<>
 			<div className="Layout">
@@ -27,6 +27,13 @@ export function Layout() {
 					) : (
 						<SignInButton />
 					)} */}
+					{user && auth.currentUser ? ( // Check if the user and auth.currentUser exist
+						<div>
+							<span>Signed in as {auth.currentUser.displayName}</span>
+						</div>
+					) : (
+						<span>Not signed in</span> // Handle the case when no user is signed in
+					)}
 				</header>
 				<main className="Layout-main">
 					<Outlet />

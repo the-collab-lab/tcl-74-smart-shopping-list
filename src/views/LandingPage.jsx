@@ -2,7 +2,8 @@ import './LandingPage.css';
 import { useAuth, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { IconButton } from '../components/IconButton';
 
 export function LandingPage() {
 	const { user } = useAuth();
@@ -13,6 +14,14 @@ export function LandingPage() {
 			navigate('/app');
 		}
 	}, [user, navigate]);
+
+	const landingPageLinks = [
+		{
+			icon: 'fa-solid fa-info-circle',
+			label: 'Meet The Team',
+			to: '/meet-the-team',
+		},
+	];
 
 	return (
 		<div className="landing-container">
@@ -49,6 +58,36 @@ export function LandingPage() {
 			) : (
 				<SignInButton />
 			)}
+
+			<nav className="Nav">
+				<div className="Nav-container">
+					{landingPageLinks.map((link) => (
+						<IconButton
+							key={link.label}
+							as={NavLink}
+							className="Nav-link"
+							icon={link.icon}
+							label={link.label}
+							to={link.to}
+						/>
+					))}
+					{/* Include SignInButton in the navbar if user is not signed in */}
+					{!user && (
+						// <IconButton
+						// 	key="Sign In"
+						// 	className="Nav-link"
+						// 	icon="fa-solid fa-right-to-bracket"
+						// 	label="Sign In"
+						// 	component={SignInButton} // Use SignInButton directly
+						// />
+						<SignInButton
+							className="Nav-link"
+							icon="fa-solid fa-right-to-bracket"
+							label="Sign In"
+						/>
+					)}
+				</div>
+			</nav>
 		</div>
 	);
 }
