@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Home, Layout, List, ManageList } from './views';
 
+import LandingPage from './views/LandingPage'; //Import my LandingPage
+
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 
 import { useStateWithStorage } from './utils';
@@ -43,7 +45,8 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<Layout />}>
+				<Route path="/" element={<LandingPage />} /> {/* Landing page root */}
+				<Route path="/app" element={<Layout />}>
 					<Route
 						index
 						element={
@@ -57,11 +60,11 @@ export function App() {
 						}
 					/>
 					<Route
-						path="/list"
+						path="list" //change to relative path
 						element={<List data={data} listPath={listPath} />}
 					/>
 					<Route
-						path="/manage-list"
+						path="manage-list" //changed to relative path
 						element={<ManageList listPath={listPath} user={user} data={data} />}
 					/>
 				</Route>
@@ -69,3 +72,5 @@ export function App() {
 		</Router>
 	);
 }
+
+export default App;
