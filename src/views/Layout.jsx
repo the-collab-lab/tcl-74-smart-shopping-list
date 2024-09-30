@@ -3,7 +3,6 @@ import { IconButton } from '../components/IconButton';
 import './Layout.css';
 import { useAuth, SignOutButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
-// import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -20,19 +19,12 @@ export function Layout() {
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
-					{/* {!!user ? (
+					{user && auth.currentUser ? (
 						<div>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					) : (
-						<SignInButton />
-					)} */}
-					{user && auth.currentUser ? ( // Check if the user and auth.currentUser exist
-						<div>
-							<span>Signed in as {auth.currentUser.displayName}</span>
-						</div>
-					) : (
-						<span>Not signed in</span> // Handle the case when no user is signed in
+						<span>Not signed in</span>
 					)}
 				</header>
 				<main className="Layout-main">

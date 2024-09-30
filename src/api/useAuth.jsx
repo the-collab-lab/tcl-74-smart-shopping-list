@@ -9,11 +9,13 @@ import { useNavigate } from 'react-router-dom';
  * the button redirects the user to the Google OAuth sign-in page.
  * After the user signs in, they are redirected back to the app.
  */
-export const SignInButton = () => (
+export const SignInButton = ({ className }) => (
 	<button
+		className={className}
 		type="button"
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
+		<i className="fa-solid fa-right-to-bracket"></i> <br />
 		Sign In
 	</button>
 );
@@ -22,12 +24,12 @@ export const SignInButton = () => (
  * A button that signs the user out of the app using Firebase Auth.
  */
 export const SignOutButton = ({ className }) => {
-	const navigate = useNavigate(); // Use navigate hook
+	const navigate = useNavigate();
 
 	const handleSignOut = async () => {
 		try {
-			await auth.signOut(); // Sign out the user
-			navigate('/'); // Redirect to landing page after sign-out
+			await auth.signOut();
+			navigate('/');
 		} catch (error) {
 			console.error('Error signing out: ', error);
 		}

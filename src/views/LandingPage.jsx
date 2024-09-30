@@ -1,6 +1,5 @@
 import './LandingPage.css';
 import { useAuth, SignInButton } from '../api/useAuth.jsx';
-import { auth } from '../api/config.js';
 import { useEffect } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
@@ -14,14 +13,6 @@ export function LandingPage() {
 			navigate('/app');
 		}
 	}, [user, navigate]);
-
-	const landingPageLinks = [
-		{
-			icon: 'fa-solid fa-info-circle',
-			label: 'Meet The Team',
-			to: '/meet-the-team',
-		},
-	];
 
 	return (
 		<div className="landing-container">
@@ -51,36 +42,29 @@ export function LandingPage() {
 				planning your grocery runs with CollabShop today.
 			</p>
 
-			{!!user ? (
-				<div>
-					<span>Signed in as {auth.currentUser.displayName}</span>
-				</div>
-			) : (
-				<SignInButton />
+			{/* Show SignInButton if the user is not logged in */}
+			{!user && (
+				<IconButton
+					as={SignInButton}
+					className="sign-in-button"
+					icon="fa-solid fa-right-to-bracket"
+					label="Sign In"
+				/>
 			)}
 
 			<nav className="Nav">
 				<div className="Nav-container">
-					{landingPageLinks.map((link) => (
-						<IconButton
-							key={link.label}
-							as={NavLink}
-							className="Nav-link"
-							icon={link.icon}
-							label={link.label}
-							to={link.to}
-						/>
-					))}
-					{/* Include SignInButton in the navbar if user is not signed in */}
+					<IconButton
+						as={NavLink}
+						className="Nav-link"
+						icon="fa-solid fa-info-circle"
+						label="Meet The Team"
+						to="/meet-the-team"
+					/>
+					{/* Render SignInButton as an IconButton in the navbar */}
 					{!user && (
-						// <IconButton
-						// 	key="Sign In"
-						// 	className="Nav-link"
-						// 	icon="fa-solid fa-right-to-bracket"
-						// 	label="Sign In"
-						// 	component={SignInButton} // Use SignInButton directly
-						// />
-						<SignInButton
+						<IconButton
+							as={SignInButton}
 							className="Nav-link"
 							icon="fa-solid fa-right-to-bracket"
 							label="Sign In"

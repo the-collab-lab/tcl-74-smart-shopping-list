@@ -15,6 +15,7 @@
 .logo {
 	width: 650px;
 	height: auto;
+	max-width: 100%;
 }
 
 .main-heading {
@@ -40,28 +41,42 @@
 	font-size: 2rem;
 	color: #555;
 	margin-bottom: 20px;
+	padding: 0 10px;
+}
+
+.sign-in-button {
+	margin-top: 20px;
+}
+
+.Nav {
+	width: 100%;
+}
+
+.Nav-link {
+	margin: 10px 0;
 }
 
 @media (max-width: 768px) {
 	.main-heading {
-		font-size: 1.3rem;
+		font-size: 1.8rem;
 	}
 
 	.subheading {
-		font-size: 1.1rem;
+		font-size: 1.5rem;
 	}
 }
 
 @media (max-width: 480px) {
 	.main-heading {
-		font-size: 1.1rem;
+		font-size: 1.5rem;
 	}
 
 	.subheading {
-		font-size: 1rem;
+		font-size: 1.2rem;
 	}
 
 	.logo {
-		width: 120px;
+		width: 100%;
+		max-width: 200px;
 	}
 }
