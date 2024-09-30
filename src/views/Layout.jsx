@@ -3,7 +3,8 @@ import { IconButton } from '../components/IconButton';
 import './Layout.css';
 import { auth } from '../api/config.js';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
-
+import { FaList, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { FaCartPlus } from 'react-icons/fa6';
 /**
  * TODO: The links defined in this file don't work!
  *
@@ -18,13 +19,19 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1>Smart shopping list</h1>
+					<h1>CollabShop</h1>
 					{!!user ? (
 						<div>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					) : (
-						<SignInButton />
+						<IconButton
+							aria-label="Sign In"
+							as={SignInButton}
+							// className="Nav-link"
+							IconComponent={FaSignInAlt}
+							label="Sign In"
+						/>
 					)}
 				</header>
 				<main className="Layout-main">
@@ -33,23 +40,26 @@ export function Layout() {
 				<nav className="Nav">
 					<div className="Nav-container">
 						<IconButton
+							aria-label="View Lists"
 							as={NavLink}
 							className="Nav-link"
-							icon="fa-solid fa-list"
+							IconComponent={FaList}
 							label="View Lists"
 							to="/"
 						/>
 						<IconButton
+							aria-label="Add Item"
 							as={NavLink}
 							className="Nav-link"
-							icon="fa-solid fa-cart-plus"
+							IconComponent={FaCartPlus}
 							label="Add Item"
 							to="/manage-list"
 						/>
 						<IconButton
+							aria-label="Sign Out"
 							as={SignOutButton}
 							className="Nav-link"
-							icon="fa-solid fa-right-from-bracket"
+							IconComponent={FaSignOutAlt}
 							label="Sign Out"
 						/>
 					</div>

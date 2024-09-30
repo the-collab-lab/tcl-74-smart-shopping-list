@@ -6,7 +6,6 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaShareAlt } from 'react-icons/fa';
 import './Disclosure.css';
 
 export function Disclosure({
@@ -59,13 +58,6 @@ export function Disclosure({
 			>
 				{isOpen ? iconExpanded : iconCollapsed}
 				<span>{listofNames}</span>
-
-				<FaShareAlt
-					icon="fa-solid fa-share-nodes"
-					className="share-icon"
-					aria-label="Share"
-					onClick={() => navigate('/manage-list')}
-				/>
 			</button>
 			{isOpen && (
 				<div
