@@ -37,7 +37,7 @@ export function Layout() {
 							className="Nav-link"
 							icon="fa-solid fa-list"
 							label="View Lists"
-							to="/"
+							to="/app"
 						/>
 						<IconButton
 							as={NavLink}
