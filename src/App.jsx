@@ -40,7 +40,7 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<LandingPage user={user} />} />{' '}
+				<Route path="/" element={<LandingPage user={user} />} />
 				{/* Landing page root */}
 				<Route path="/app" element={<Layout />}>
 					<Route
