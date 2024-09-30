@@ -1,11 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import { Home, Layout, List, ManageList } from './views';
-
-import LandingPage from './views/LandingPage'; //Import my LandingPage
-
+import { Home, Layout, List, ManageList, LandingPage } from './views';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
-
 import { useStateWithStorage } from './utils';
 
 export function App() {
@@ -45,7 +40,8 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<LandingPage />} /> {/* Landing page root */}
+				<Route path="/" element={<LandingPage user={user} />} />{' '}
+				{/* Landing page root */}
 				<Route path="/app" element={<Layout />}>
 					<Route
 						index

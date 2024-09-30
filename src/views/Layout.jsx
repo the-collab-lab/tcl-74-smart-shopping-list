@@ -1,8 +1,9 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import './Layout.css';
-import { auth } from '../api/config.js';
-import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
+import { SignOutButton } from '../api/useAuth.jsx';
+// import { auth } from '../api/config.js';
+// import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -13,19 +14,19 @@ import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
  */
 
 export function Layout() {
-	const { user } = useAuth();
+	// const { user } = useAuth();
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
-					{!!user ? (
+					{/* {!!user ? (
 						<div>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					) : (
 						<SignInButton />
-					)}
+					)} */}
 				</header>
 				<main className="Layout-main">
 					<Outlet />
