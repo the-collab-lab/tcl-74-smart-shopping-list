@@ -1,18 +1,10 @@
 import './LandingPage.css';
 import { useAuth, SignInButton } from '../api/useAuth.jsx';
-import { useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 
 export function LandingPage() {
 	const { user } = useAuth();
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (user) {
-			navigate('/app'); //Redirect to the app page if the user is signed in
-		}
-	}, [user, navigate]);
 
 	return (
 		<div className="landing-container">
@@ -41,14 +33,7 @@ export function LandingPage() {
 				Ready to start your journey? Click the sign-in button below to begin
 				planning your grocery runs with CollabShop today.
 			</p>
-			{/* Show SignInButton if the user is not logged in */}
-			{!user ? (
-				<SignInButton className="sign-in-button" />
-			) : (
-				<div>
-					<span>Signed in as {user.displayName}</span>
-				</div>
-			)}
+
 			<nav className="Nav">
 				<div className="Nav-container">
 					<IconButton

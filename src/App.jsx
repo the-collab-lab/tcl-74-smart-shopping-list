@@ -40,19 +40,23 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<LandingPage user={user} />} />
+				{/* <Route path="/" element={<LandingPage user={user} />} /> */}
 				{/* Landing page root */}
-				<Route path="/app" element={<Layout />}>
+				<Route path="/" element={<Layout />}>
 					<Route
 						index
 						element={
-							<Home
-								data={data}
-								lists={lists}
-								listPath={listPath}
-								setListPath={setListPath}
-								user={user}
-							/>
+							user ? (
+								<Home
+									data={data}
+									lists={lists}
+									listPath={listPath}
+									setListPath={setListPath}
+									user={user}
+								/>
+							) : (
+								<LandingPage user={user} />
+							)
 						}
 					/>
 					<Route

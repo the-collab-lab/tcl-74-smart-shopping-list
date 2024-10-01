@@ -14,6 +14,7 @@ import { auth } from '../api/config.js';
 
 export function Layout() {
 	const { user } = useAuth();
+
 	return (
 		<>
 			<div className="Layout">
@@ -37,7 +38,7 @@ export function Layout() {
 							className="Nav-link"
 							icon="fa-solid fa-list"
 							label="View Lists"
-							to="/app" //Home Page
+							to="/" //Home Page
 						/>
 						<IconButton
 							as={NavLink}
