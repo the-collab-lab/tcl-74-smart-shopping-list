@@ -37,14 +37,14 @@ export function Layout() {
 							className="Nav-link"
 							icon="fa-solid fa-list"
 							label="View Lists"
-							to="/app"
+							to="/app" //Home Page
 						/>
 						<IconButton
 							as={NavLink}
 							className="Nav-link"
 							icon="fa-solid fa-cart-plus"
 							label="Add Item"
-							to="/manage-list"
+							to="manage-list" // Relative path to manage-list
 						/>
 						<IconButton
 							as={SignOutButton}

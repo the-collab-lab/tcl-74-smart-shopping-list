@@ -10,7 +10,7 @@ export function LandingPage() {
 
 	useEffect(() => {
 		if (user) {
-			navigate('/app');
+			navigate('/app'); //Redirect to the app page if the user is signed in
 		}
 	}, [user, navigate]);
 
@@ -43,15 +43,13 @@ export function LandingPage() {
 			</p>
 
 			{/* Show SignInButton if the user is not logged in */}
-			{!user && (
-				<IconButton
-					as={SignInButton}
-					className="sign-in-button"
-					icon="fa-solid fa-right-to-bracket"
-					label="Sign In"
-				/>
+			{!user ? (
+				<SignInButton className="sign-in-button" />
+			) : (
+				<div>
+					<span>Signed in as {user.displayName}</span>
+				</div>
 			)}
-
 			<nav className="Nav">
 				<div className="Nav-container">
 					<IconButton

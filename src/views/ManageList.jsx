@@ -23,7 +23,6 @@ export function ManageList({ listPath, user, data }) {
 		() => data.map((item) => normalizeString(item.name)),
 		[data],
 	);
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
