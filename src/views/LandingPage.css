@@ -3,9 +3,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	padding: 20px;
+	height: 80vh;
+	padding: 40px;
 	margin: 0;
+	overflow: auto;
 	box-sizing: border-box;
 	background-color: #f4f6f8f1;
 	text-align: center;
@@ -16,11 +17,12 @@
 	width: 650px;
 	height: auto;
 	max-width: 100%;
+	margin-bottom: 20px;
 }
 
 .main-heading {
 	font-size: 2.5rem;
-	line-height: 1.6;
+	line-height: 1.4;
 	color: #333;
 	max-width: 800px;
 	margin-bottom: 15px;
@@ -38,7 +40,7 @@
 }
 
 .subheading {
-	font-size: 2rem;
+	font-size: 1.8 rem;
 	color: #555;
 	margin-bottom: 20px;
 	padding: 0 10px;
@@ -50,6 +52,14 @@
 
 .Nav {
 	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	padding: 10 15px;
+	background-color: #fff;
+	clear: both;
 }
 
 .Nav-link {

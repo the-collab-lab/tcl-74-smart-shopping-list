@@ -41,7 +41,6 @@ export function LandingPage() {
 				Ready to start your journey? Click the sign-in button below to begin
 				planning your grocery runs with CollabShop today.
 			</p>
-
 			{/* Show SignInButton if the user is not logged in */}
 			{!user ? (
 				<SignInButton className="sign-in-button" />
