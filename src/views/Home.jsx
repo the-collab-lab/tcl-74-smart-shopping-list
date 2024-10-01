@@ -5,7 +5,7 @@ import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
-import { FaShareAlt } from 'react-icons/fa';
+import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
@@ -45,7 +45,13 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 						onChange={handleChange}
 						placeholder="Add a list"
 					></input>
-					<button>Add</button>
+					<IconButton
+						aria-label="Add a list"
+						as="button"
+						className="add-icon"
+						label="Add"
+						IconComponent={FaPlusSquare}
+					/>
 				</form>
 			</div>
 
@@ -53,7 +59,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 				<p>No lists available. Create a new list below.</p>
 			) : (
 				<ul>
-					{lists.map((list, idx) => (
+					{lists.map((list) => (
 						<div key={list.path} className="list-container">
 							<Disclosure
 								key={`disclosure-${list.path}`}
@@ -70,6 +76,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 								aria-label="share list"
 								as={NavLink}
 								className="share-icon"
+								label="Share"
 								key={`icon-${list.path}`}
 								IconComponent={FaShareAlt}
 								to="/manage-list"
