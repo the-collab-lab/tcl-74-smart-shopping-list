@@ -54,7 +54,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 			) : (
 				<ul>
 					{lists.map((list, idx) => (
-						<div key={list.path}>
+						<div key={list.path} className="list-container">
 							<Disclosure
 								key={`disclosure-${list.path}`}
 								listofNames={list.name}
