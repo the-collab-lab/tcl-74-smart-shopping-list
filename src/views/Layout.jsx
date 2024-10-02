@@ -1,8 +1,9 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import { FaList, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
-import './Layout.css';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
+import './Layout.css';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -66,9 +67,9 @@ export function Layout() {
 									to="/meet-the-team"
 								/>
 								<IconButton
+									aria-label="Sign In"
 									as={SignInButton}
-									className="Nav-link"
-									icon="fa-solid fa-right-to-bracket"
+									IconComponent={FaSignInAlt}
 									label="Sign In"
 								/>
 							</>
