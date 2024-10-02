@@ -25,18 +25,11 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1>CollabShop</h1>
-					{!!user ? (
+					{!!user && (
 						<div>
+							<h1>CollabShop</h1>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
-					) : (
-						<IconButton
-							aria-label="Sign In"
-							as={SignInButton}
-							IconComponent={FaSignInAlt}
-							label="Sign In"
-						/>
 					)}
 				</header>
 				<main className="Layout-main">
