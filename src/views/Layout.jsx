@@ -4,6 +4,7 @@ import {
 	FaSignInAlt,
 	FaSignOutAlt,
 	FaInfoCircle,
+	FaCartPlus,
 } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
@@ -20,7 +21,6 @@ import './Layout.css';
 
 export function Layout() {
 	const { user } = useAuth();
-
 	return (
 		<>
 			<div className="Layout">

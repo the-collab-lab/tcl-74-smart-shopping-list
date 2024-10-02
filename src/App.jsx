@@ -57,17 +57,11 @@ export function App() {
 						}
 					/>
 					<Route
-						path="list"
-						element={<List data={data} listPath={listPath} />}
-					/>
-					<Route
 						path="manage-list"
 						element={
-							user ? (
+							<ProtectedRoute>
 								<ManageList listPath={listPath} user={user} data={data} />
-							) : (
-								<LandingPage user={user} />
-							)
+							</ProtectedRoute>
 						}
 					/>
 				</Route>
