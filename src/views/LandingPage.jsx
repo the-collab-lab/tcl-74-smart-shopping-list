@@ -1,11 +1,6 @@
 import './LandingPage.css';
-import { useAuth, SignInButton } from '../api/useAuth.jsx';
-import { NavLink } from 'react-router-dom';
-import { IconButton } from '../components/IconButton';
 
 export function LandingPage() {
-	const { user } = useAuth();
-
 	return (
 		<div className="landing-container">
 			<img
@@ -33,27 +28,6 @@ export function LandingPage() {
 				Ready to start your journey? Click the sign-in button below to begin
 				planning your grocery runs with CollabShop today.
 			</p>
-
-			<nav className="Nav">
-				<div className="Nav-container">
-					<IconButton
-						as={NavLink}
-						className="Nav-link"
-						icon="fa-solid fa-info-circle"
-						label="Meet The Team"
-						to="/meet-the-team"
-					/>
-					{/* Render SignInButton as an IconButton in the navbar */}
-					{!user && (
-						<IconButton
-							as={SignInButton}
-							className="Nav-link"
-							icon="fa-solid fa-right-to-bracket"
-							label="Sign In"
-						/>
-					)}
-				</div>
-			</nav>
 		</div>
 	);
 }

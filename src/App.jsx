@@ -40,8 +40,6 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				{/* <Route path="/" element={<LandingPage user={user} />} /> */}
-				{/* Landing page root */}
 				<Route path="/" element={<Layout />}>
 					<Route
 						index
@@ -60,12 +58,18 @@ export function App() {
 						}
 					/>
 					<Route
-						path="list" //change to relative path
+						path="list"
 						element={<List data={data} listPath={listPath} />}
 					/>
 					<Route
-						path="manage-list" //changed to relative path
-						element={<ManageList listPath={listPath} user={user} data={data} />}
+						path="manage-list"
+						element={
+							user ? (
+								<ManageList listPath={listPath} user={user} data={data} />
+							) : (
+								<LandingPage user={user} />
+							)
+						}
 					/>
 				</Route>
 			</Routes>

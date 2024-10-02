@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import './Layout.css';
-import { useAuth, SignOutButton } from '../api/useAuth.jsx';
+import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 
 /**
@@ -33,26 +33,46 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<IconButton
-							as={NavLink}
-							className="Nav-link"
-							icon="fa-solid fa-list"
-							label="View Lists"
-							to="/" //Home Page
-						/>
-						<IconButton
-							as={NavLink}
-							className="Nav-link"
-							icon="fa-solid fa-cart-plus"
-							label="Add Item"
-							to="manage-list" // Relative path to manage-list
-						/>
-						<IconButton
-							as={SignOutButton}
-							className="Nav-link"
-							icon="fa-solid fa-right-from-bracket"
-							label="Sign Out"
-						/>
+						{user && auth.currentUser ? (
+							<>
+								<IconButton
+									as={NavLink}
+									className="Nav-link"
+									icon="fa-solid fa-list"
+									label="View Lists"
+									to="/" //Home Page
+								/>
+								<IconButton
+									as={NavLink}
+									className="Nav-link"
+									icon="fa-solid fa-cart-plus"
+									label="Add Item"
+									to="manage-list" // Relative path to manage-list
+								/>
+								<IconButton
+									as={SignOutButton}
+									className="Nav-link"
+									icon="fa-solid fa-right-from-bracket"
+									label="Sign Out"
+								/>
+							</>
+						) : (
+							<>
+								<IconButton
+									as={NavLink}
+									className="Nav-link"
+									icon="fa-solid fa-info-circle"
+									label="Meet The Team"
+									to="/meet-the-team"
+								/>
+								<IconButton
+									as={SignInButton}
+									className="Nav-link"
+									icon="fa-solid fa-right-to-bracket"
+									label="Sign In"
+								/>
+							</>
+						)}
 					</div>
 				</nav>
 			</div>
