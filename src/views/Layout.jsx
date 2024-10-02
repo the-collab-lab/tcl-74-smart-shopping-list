@@ -1,10 +1,15 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import {
+	FaList,
+	FaSignInAlt,
+	FaSignOutAlt,
+	FaInfoCircle,
+} from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
-import './Layout.css';
+import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
-import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
-import { FaList, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
-import { FaCartPlus } from 'react-icons/fa6';
+import './Layout.css';
+
 /**
  * TODO: The links defined in this file don't work!
  *
@@ -15,6 +20,7 @@ import { FaCartPlus } from 'react-icons/fa6';
 
 export function Layout() {
 	const { user } = useAuth();
+
 	return (
 		<>
 			<div className="Layout">
@@ -39,29 +45,50 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<IconButton
-							aria-label="View Lists"
-							as={NavLink}
-							className="Nav-link"
-							IconComponent={FaList}
-							label="View Lists"
-							to="/"
-						/>
-						<IconButton
-							aria-label="Add Item"
-							as={NavLink}
-							className="Nav-link"
-							IconComponent={FaCartPlus}
-							label="Add Item"
-							to="/manage-list"
-						/>
-						<IconButton
-							aria-label="Sign Out"
-							as={SignOutButton}
-							className="Nav-link"
-							IconComponent={FaSignOutAlt}
-							label="Sign Out"
-						/>
+						{user ? (
+							<>
+								{' '}
+								<IconButton
+									aria-label="View Lists"
+									as={NavLink}
+									className="Nav-link"
+									IconComponent={FaList}
+									label="View Lists"
+									to="/"
+								/>
+								<IconButton
+									aria-label="Add Item"
+									as={NavLink}
+									className="Nav-link"
+									IconComponent={FaCartPlus}
+									label="Add Item"
+									to="/manage-list"
+								/>
+								<IconButton
+									aria-label="Sign Out"
+									as={SignOutButton}
+									className="Nav-link"
+									IconComponent={FaSignOutAlt}
+									label="Sign Out"
+								/>
+							</>
+						) : (
+							<>
+								<IconButton
+									as={NavLink}
+									className="Nav-link"
+									IconComponent={FaInfoCircle}
+									label="Meet The Team"
+									to="/meet-the-team"
+								/>
+								<IconButton
+									aria-label="Sign In"
+									as={SignInButton}
+									IconComponent={FaSignInAlt}
+									label="Sign In"
+								/>
+							</>
+						)}
 					</div>
 				</nav>
 			</div>

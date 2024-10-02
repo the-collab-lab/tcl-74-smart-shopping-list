@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import { Home, Layout, List, ManageList } from './views';
-
+import { Home, Layout, List, ManageList, LandingPage } from './views';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
-
 import { useStateWithStorage } from './utils';
 
 export function App() {
@@ -47,28 +45,29 @@ export function App() {
 					<Route
 						index
 						element={
-							<Home
-								data={data}
-								lists={lists}
-								listPath={listPath}
-								setListPath={setListPath}
-								user={user}
-							/>
+							<ProtectedRoute>
+								<Home
+									data={data}
+									lists={lists}
+									listPath={listPath}
+									setListPath={setListPath}
+									user={user}
+								/>
+							</ProtectedRoute>
 						}
 					/>
 					<Route
-						path="/list"
+						path="list"
 						element={<List data={data} listPath={listPath} />}
 					/>
 					<Route
-						path="/manage-list"
+						path="manage-list"
 						element={
-							<ManageList
-								listPath={listPath}
-								user={user}
-								data={data}
-								lists={lists}
-							/>
+							user ? (
+								<ManageList listPath={listPath} user={user} data={data} />
+							) : (
+								<LandingPage user={user} />
+							)
 						}
 					/>
 				</Route>
@@ -76,3 +75,5 @@ export function App() {
 		</Router>
 	);
 }
+
+export default App;
