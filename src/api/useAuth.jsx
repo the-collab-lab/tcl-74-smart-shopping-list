@@ -22,7 +22,7 @@ export const SignInButton = ({ children, className }) => (
 /**
  * A button that signs the user out of the app using Firebase Auth.
  */
-export const SignOutButton = ({ className }) => {
+export const SignOutButton = ({ children, className }) => {
 	const navigate = useNavigate();
 
 	const handleSignOut = async () => {
@@ -36,8 +36,7 @@ export const SignOutButton = ({ className }) => {
 
 	return (
 		<button className={className} type="button" onClick={handleSignOut}>
-			<i className="fa-solid fa-right-from-bracket"></i> <br />
-			Sign Out
+			{children}
 		</button>
 	);
 };

@@ -4,6 +4,9 @@ import { createList } from '../api';
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
+import { IconButton } from '../components/IconButton';
+import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
@@ -42,7 +45,13 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 						onChange={handleChange}
 						placeholder="Add a list"
 					></input>
-					<button>Add</button>
+					<IconButton
+						aria-label="Add a list"
+						as="button"
+						className="add-icon"
+						label="Add"
+						IconComponent={FaPlusSquare}
+					/>
 				</form>
 			</div>
 
@@ -51,17 +60,28 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 			) : (
 				<ul>
 					{lists.map((list) => (
-						<Disclosure
-							key={list.path}
-							listofNames={list.name}
-							iconExpanded={<FaAngleDown />}
-							iconCollapsed={<FaAngleRight />}
-							listpath={list.path}
-							currentListPath={listPath}
-							setListPath={setListPath}
-						>
-							<List data={data} listPath={list.path} />
-						</Disclosure>
+						<div key={list.path} className="list-container">
+							<Disclosure
+								key={`disclosure-${list.path}`}
+								listofNames={list.name}
+								iconExpanded={<FaAngleDown />}
+								iconCollapsed={<FaAngleRight />}
+								listpath={list.path}
+								currentListPath={listPath}
+								setListPath={setListPath}
+							>
+								<List data={data} listPath={list.path} />
+							</Disclosure>
+							<IconButton
+								aria-label="share list"
+								as={NavLink}
+								className="share-icon"
+								label="Share"
+								key={`icon-${list.path}`}
+								IconComponent={FaShareAlt}
+								to="/manage-list"
+							/>
+						</div>
 					))}
 				</ul>
 			)}

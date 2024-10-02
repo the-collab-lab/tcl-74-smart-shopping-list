@@ -3,7 +3,8 @@ import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
-import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { FaTrashAlt } from 'react-icons/fa';
+import { IconButton } from './IconButton.jsx';
 
 export function ListItem({
 	name,
@@ -94,9 +95,18 @@ export function ListItem({
 				{name}
 
 				<div className={urgencyClass}>{sortCriteria.tag}</div>
-				<RiDeleteBin5Fill onClick={handleDelete} aria-label={`Delete ${name}`}>
+				{/* <RiDeleteBin5Fill onClick={handleDelete} aria-label={`Delete ${name}`}>
 					Delete
-				</RiDeleteBin5Fill>
+				</RiDeleteBin5Fill> */}
+
+				<IconButton
+					aria-label={`Delete ${name}`}
+					as="button"
+					className="delete-icon"
+					// label="Add"
+					IconComponent={FaTrashAlt}
+					onClick={handleDelete}
+				/>
 			</div>
 		</>
 	);

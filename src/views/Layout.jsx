@@ -25,13 +25,19 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1>Smart shopping list</h1>
-					{user && auth.currentUser ? (
+					<h1>CollabShop</h1>
+					{!!user ? (
 						<div>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					) : (
-						<span>Not signed in</span>
+						<IconButton
+							aria-label="Sign In"
+							as={SignInButton}
+							// className="Nav-link"
+							IconComponent={FaSignInAlt}
+							label="Sign In"
+						/>
 					)}
 				</header>
 				<main className="Layout-main">
@@ -39,26 +45,30 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						{user && auth.currentUser ? (
+						{user ? (
 							<>
+								{' '}
 								<IconButton
+									aria-label="View Lists"
 									as={NavLink}
 									className="Nav-link"
-									icon="fa-solid fa-list"
+									IconComponent={FaList}
 									label="View Lists"
-									to="/" //Home Page
+									to="/"
 								/>
 								<IconButton
+									aria-label="Add Item"
 									as={NavLink}
 									className="Nav-link"
-									icon="fa-solid fa-cart-plus"
+									IconComponent={FaCartPlus}
 									label="Add Item"
-									to="manage-list" // Relative path to manage-list
+									to="/manage-list"
 								/>
 								<IconButton
+									aria-label="Sign Out"
 									as={SignOutButton}
 									className="Nav-link"
-									icon="fa-solid fa-right-from-bracket"
+									IconComponent={FaSignOutAlt}
 									label="Sign Out"
 								/>
 							</>

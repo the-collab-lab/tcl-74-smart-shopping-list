@@ -1,7 +1,10 @@
 import { useState, useMemo } from 'react';
 import { addItem, shareList } from '../api/firebase';
+import { FaPlusSquare } from 'react-icons/fa';
+import { IconButton } from '../components/IconButton';
+import { FaEnvelope } from 'react-icons/fa6';
 
-export function ManageList({ listPath, user, data }) {
+export function ManageList({ listPath, user, data, lists }) {
 	const currentUserId = user?.uid;
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
@@ -15,6 +18,8 @@ export function ManageList({ listPath, user, data }) {
 		empty: 'Please enter an item to add to your list.',
 		duplicate: 'Item already exists!',
 	};
+
+	const extractedListName = listPath.match(/(?<=\/).*$/)[0];
 
 	const normalizeString = (str) =>
 		str.toLowerCase().replace(/[^a-z0-9-]+/g, '');
@@ -68,7 +73,7 @@ export function ManageList({ listPath, user, data }) {
 
 	return (
 		<div>
-			<h1>Manage Your Shopping List</h1>
+			<h1>Manage Your Shopping List for {extractedListName}</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item Name:</label>
 				<input
@@ -77,6 +82,13 @@ export function ManageList({ listPath, user, data }) {
 					value={itemName}
 					onChange={(e) => setItemName(e.target.value)}
 					// required
+				/>
+				<IconButton
+					aria-label="Add item to your list"
+					as="button"
+					className="add-icon"
+					label="Add"
+					IconComponent={FaPlusSquare}
 				/>
 				<fieldset>
 					<legend>How soon will you need to buy this item again?</legend>
@@ -88,7 +100,8 @@ export function ManageList({ listPath, user, data }) {
 							onChange={() => setDaysUntilNextPurchase(7)}
 						/>
 						Soon (7 days)
-					</label>
+					</label>{' '}
+					<br />
 					<label>
 						<input
 							type="radio"
@@ -97,7 +110,8 @@ export function ManageList({ listPath, user, data }) {
 							onChange={() => setDaysUntilNextPurchase(14)}
 						/>
 						Kind of soon (14 days)
-					</label>
+					</label>{' '}
+					<br />
 					<label>
 						<input
 							type="radio"
@@ -109,9 +123,6 @@ export function ManageList({ listPath, user, data }) {
 					</label>
 				</fieldset>
 				<br />
-				<button type="submit" aria-label="Add item to your list">
-					Add Item
-				</button>
 			</form>
 			<br></br>
 			{message && (
@@ -130,7 +141,14 @@ export function ManageList({ listPath, user, data }) {
 						onChange={(e) => setRecipientEmail(e.target.value)}
 						required
 					/>
-					<button type="submit">Share List</button>
+					<IconButton
+						aria-label="Share with an email"
+						as="button"
+						className="share-email"
+						label="Share"
+						IconComponent={FaEnvelope}
+						type="submit"
+					/>
 				</form>
 			</div>
 		</div>
