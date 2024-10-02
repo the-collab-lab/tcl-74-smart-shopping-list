@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home, Layout, List, ManageList, LandingPage } from './views';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
 
@@ -44,7 +45,7 @@ export function App() {
 					<Route
 						index
 						element={
-							user ? (
+							<ProtectedRoute>
 								<Home
 									data={data}
 									lists={lists}
@@ -52,9 +53,7 @@ export function App() {
 									setListPath={setListPath}
 									user={user}
 								/>
-							) : (
-								<LandingPage user={user} />
-							)
+							</ProtectedRoute>
 						}
 					/>
 					<Route

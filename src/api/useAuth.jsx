@@ -9,14 +9,13 @@ import { useNavigate } from 'react-router-dom';
  * the button redirects the user to the Google OAuth sign-in page.
  * After the user signs in, they are redirected back to the app.
  */
-export const SignInButton = ({ className }) => (
+export const SignInButton = ({ children, className }) => (
 	<button
-		className={className}
 		type="button"
+		className={className}
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
-		<i className="fa-solid fa-right-to-bracket"></i> <br />
-		Sign In
+		{children}
 	</button>
 );
 
