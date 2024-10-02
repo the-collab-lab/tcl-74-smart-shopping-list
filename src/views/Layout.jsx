@@ -1,5 +1,10 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { FaList, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import {
+	FaList,
+	FaSignInAlt,
+	FaSignOutAlt,
+	FaInfoCircle,
+} from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
@@ -62,7 +67,7 @@ export function Layout() {
 								<IconButton
 									as={NavLink}
 									className="Nav-link"
-									icon="fa-solid fa-info-circle"
+									IconComponent={FaInfoCircle}
 									label="Meet The Team"
 									to="/meet-the-team"
 								/>

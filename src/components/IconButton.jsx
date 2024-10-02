@@ -2,14 +2,13 @@ import '../views/Layout.css';
 
 export function IconButton({
 	as: Component = 'button',
-	icon,
-	label,
+	IconComponent,
 	...props
 }) {
 	return (
 		<Component {...props}>
-			{icon && <i className={icon}></i>} <br />
-			{label && <span>{label}</span>}
+			{IconComponent && <IconComponent />} <br />
+			{props.label && <span>{props.label}</span>}
 		</Component>
 	);
 }
