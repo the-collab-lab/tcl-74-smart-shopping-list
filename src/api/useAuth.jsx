@@ -2,17 +2,20 @@ import { useEffect, useState } from 'react';
 import { auth } from './config.js';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { addUserToDatabase } from './firebase.js';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * A button that signs the user in using Google OAuth. When clicked,
  * the button redirects the user to the Google OAuth sign-in page.
  * After the user signs in, they are redirected back to the app.
  */
-export const SignInButton = () => (
+export const SignInButton = ({ className }) => (
 	<button
+		className={className}
 		type="button"
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
+		<i className="fa-solid fa-right-to-bracket"></i> <br />
 		Sign In
 	</button>
 );
@@ -20,12 +23,25 @@ export const SignInButton = () => (
 /**
  * A button that signs the user out of the app using Firebase Auth.
  */
-export const SignOutButton = ({ className }) => (
-	<button className={className} type="button" onClick={() => auth.signOut()}>
-		<i className="fa-solid fa-right-from-bracket"></i> <br />
-		Sign Out
-	</button>
-);
+export const SignOutButton = ({ className }) => {
+	const navigate = useNavigate();
+
+	const handleSignOut = async () => {
+		try {
+			await auth.signOut();
+			navigate('/');
+		} catch (error) {
+			console.error('Error signing out: ', error);
+		}
+	};
+
+	return (
+		<button className={className} type="button" onClick={handleSignOut}>
+			<i className="fa-solid fa-right-from-bracket"></i> <br />
+			Sign Out
+		</button>
+	);
+};
 
 /**
  * A custom hook that listens for changes to the user's auth state.
