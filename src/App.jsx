@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, Layout, List, ManageList, LandingPage } from './views';
+import { Home, Layout, ManageList } from './views';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';

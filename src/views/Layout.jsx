@@ -34,7 +34,6 @@ export function Layout() {
 						<IconButton
 							aria-label="Sign In"
 							as={SignInButton}
-							// className="Nav-link"
 							IconComponent={FaSignInAlt}
 							label="Sign In"
 						/>
@@ -47,7 +46,6 @@ export function Layout() {
 					<div className="Nav-container">
 						{user ? (
 							<>
-								{' '}
 								<IconButton
 									aria-label="View Lists"
 									as={NavLink}

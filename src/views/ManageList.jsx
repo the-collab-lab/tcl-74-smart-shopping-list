@@ -4,7 +4,7 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { FaEnvelope } from 'react-icons/fa6';
 
-export function ManageList({ listPath, user, data, lists }) {
+export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
@@ -81,7 +81,6 @@ export function ManageList({ listPath, user, data, lists }) {
 					id="itemName"
 					value={itemName}
 					onChange={(e) => setItemName(e.target.value)}
-					// required
 				/>
 				<IconButton
 					aria-label="Add item to your list"

@@ -5,7 +5,6 @@
 // Manages accessibitity through aria attributes
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Disclosure.css';
 
 export function Disclosure({
@@ -18,7 +17,6 @@ export function Disclosure({
 	listpath,
 	setListPath,
 }) {
-	const navigate = useNavigate();
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
