@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Home, Layout, ManageList, Team } from './views';
+import { Loading } from './components/Loading';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
@@ -68,7 +69,7 @@ export function App() {
 					<Route
 						path="developers"
 						element={
-							<Suspense fallback={<div>Loading...</div>}>
+							<Suspense fallback={<Loading />}>
 								<Team />
 							</Suspense>
 						}
