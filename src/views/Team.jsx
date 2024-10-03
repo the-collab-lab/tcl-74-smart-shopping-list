@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
+import { TypeAnimation } from 'react-type-animation';
 
 const developers = [
 	{
@@ -40,9 +41,30 @@ export function Team() {
 				backgroundColor: '#f9f9f9',
 			}}
 		>
-			<h2 style={{ marginBottom: '20px', color: '#333' }}>
-				Meet CollabShop&apos;s Developers
-			</h2>
+			<h1
+				style={{
+					marginBottom: '20px',
+					color: '#333',
+					textAlign: 'center',
+					fontSize: '2em',
+				}}
+			>
+				<TypeAnimation
+					sequence={[
+						'Welcome!',
+						3000,
+						"We're happy you're here",
+						3000,
+						'We hope you enjoy CollabShop!',
+						3000,
+					]}
+					wrapper="span"
+					speed={60}
+					style={{ display: 'inline-block', fontWeight: 'bold' }}
+					repeat={Infinity}
+					aria-live="polite"
+				/>
+			</h1>
 			<div
 				className="team-container"
 				style={{
