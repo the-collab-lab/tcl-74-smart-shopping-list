@@ -27,7 +27,7 @@ export function Layout() {
 				<header className="Layout-header">
 					{!!user && (
 						<div>
-							<h1>CollabShop</h1>
+							<h1 className="text-3xl font-bold underline">CollabShop</h1>
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					)}
