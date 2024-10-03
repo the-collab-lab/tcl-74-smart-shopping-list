@@ -52,14 +52,14 @@ export function Team() {
 				<TypeAnimation
 					sequence={[
 						'Welcome!',
-						3000,
-						"We're happy you're here",
-						3000,
+						5000,
+						"We're happy you're here!",
+						5000,
 						'We hope you enjoy CollabShop!',
-						3000,
+						5000,
 					]}
 					wrapper="span"
-					speed={60}
+					speed={80}
 					style={{ display: 'inline-block', fontWeight: 'bold' }}
 					repeat={Infinity}
 					aria-live="polite"
