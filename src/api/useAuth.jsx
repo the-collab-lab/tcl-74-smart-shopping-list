@@ -19,6 +19,24 @@ export const SignInButton = ({ children, className }) => (
 	</button>
 );
 
+// const navigate = useNavigate();
+
+// export const SignInButton = ({ children, className }) => {
+// 	const handleSignIn = async () => {
+// 		try {
+// 			await signInWithPopup(auth, new GoogleAuthProvider());
+// 			navigate('/');
+// 		} catch (error) {
+// 			console.error('Error signing in: ', error);
+// 		}
+// 	};
+// 	return (
+// 		<button type="button" className={className} onClick={handleSignIn}>
+// 			{children}
+// 		</button>
+// 	);
+// };
+
 /**
  * A button that signs the user out of the app using Firebase Auth.
  */

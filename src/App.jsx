@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, Layout, ManageList } from './views';
+import { Suspense } from 'react';
+import { Home, Layout, ManageList, Team } from './views';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
@@ -62,6 +63,14 @@ export function App() {
 							<ProtectedRoute>
 								<ManageList listPath={listPath} user={user} data={data} />
 							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="developers"
+						element={
+							<Suspense fallback={<div>Loading...</div>}>
+								<Team />
+							</Suspense>
 						}
 					/>
 				</Route>

@@ -69,8 +69,8 @@ export function Layout() {
 									as={NavLink}
 									className="Nav-link"
 									IconComponent={FaInfoCircle}
-									label="Meet The Team"
-									to="/meet-the-team"
+									label="Developers"
+									to="/developers"
 								/>
 								<IconButton
 									aria-label="Sign In"
