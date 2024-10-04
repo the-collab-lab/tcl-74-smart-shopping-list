@@ -11,14 +11,14 @@ const developers = [
 	},
 	{
 		name: 'Nicholas Rocco',
-		photo: 'path/to/photo.jpg',
+		photo: 'public/img/nicholas.png',
 		github: 'https://github.com/NickRoccodev11',
 		linkedin: 'https://www.linkedin.com/in/nicholasroccodev/',
 		portfolio: 'https://nicholasroccodev.netlify.app/',
 	},
 	{
 		name: 'Shuveksha Tuladhar',
-		photo: 'path/to/photo.jpg',
+		photo: 'public/img/shuveksha.jpg',
 		github: 'https://github.com/shuveksha-tuladhar',
 		linkedin: 'https://www.linkedin.com/in/shuvekshatuladhar/',
 		portfolio: 'https://shuveksha-tuladhar.github.io/',
@@ -56,6 +56,8 @@ export function Team() {
 						"We're happy you're here!",
 						5000,
 						'We hope you enjoy CollabShop!',
+						5000,
+						'We hope you connect with us!',
 						5000,
 					]}
 					wrapper="span"
