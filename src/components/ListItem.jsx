@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
+import { notify } from '../utils/notifications';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -15,7 +16,6 @@ export function ListItem({
 	purchaseInterval,
 	dateCreated,
 	sortCriteria,
-	setMessage,
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -55,7 +55,7 @@ export function ListItem({
 					dateCreated,
 				});
 				console.log(`${name} updated successfully`);
-				alert(`${name} is purchased successfully`);
+				notify(`${name} has been purchased successfully!`, 'success');
 				setIsDisabled(true);
 			} catch (error) {
 				console.error('Error updating item:', error);
@@ -64,7 +64,6 @@ export function ListItem({
 		}
 	};
 
-	// handleDelete Function
 	const handleDelete = async () => {
 		const deleteConfirm = window.confirm(
 			`Are you sure you want to delete ${name}?`,
@@ -73,7 +72,7 @@ export function ListItem({
 		if (deleteConfirm) {
 			try {
 				await deleteItem(listPath, itemId);
-				setMessage(`${name} has been deleted successfully!`);
+				notify(`${name} has been deleted successfully!`, 'success');
 			} catch (error) {
 				console.log(`Error:`, error);
 			}
@@ -95,15 +94,11 @@ export function ListItem({
 				{name}
 
 				<div className={urgencyClass}>{sortCriteria.tag}</div>
-				{/* <RiDeleteBin5Fill onClick={handleDelete} aria-label={`Delete ${name}`}>
-					Delete
-				</RiDeleteBin5Fill> */}
 
 				<IconButton
 					aria-label={`Delete ${name}`}
 					as="button"
 					className="delete-icon"
-					// label="Add"
 					IconComponent={FaTrashAlt}
 					onClick={handleDelete}
 				/>

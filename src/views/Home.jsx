@@ -1,17 +1,18 @@
-import './Home.css';
-import { useState } from 'react';
-import { createList } from '../api';
+import { ToastContainer } from 'react-toastify';
+import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { notify } from '../utils/notifications';
+import { createList } from '../api';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
-import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import './Home.css';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
 	const userEmail = user?.email;
-
 	const [listName, setListName] = useState('');
 
 	const handleChange = (event) => {
@@ -23,19 +24,21 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 		if (listName) {
 			try {
 				const newListPath = await createList(userId, userEmail, listName);
-				alert('List is sucessfully created');
+				notify('List is sucessfully created', 'success');
 				setListPath(newListPath);
 			} catch {
-				alert('There was an error adding your list to db');
+				notify('There was an error adding your list', 'error');
 			}
 		} else {
-			alert('Please enter a valid name');
+			notify('Please enter a valid name', 'warning');
 		}
+		setListName('');
 	};
 
 	return (
 		<div className="Home">
 			<div>
+				<ToastContainer />
 				<form onSubmit={handleSubmit}>
 					<label htmlFor="list-name">Create a List </label>
 					<input
