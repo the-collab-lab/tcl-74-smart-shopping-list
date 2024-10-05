@@ -1,5 +1,4 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
-import { TypeAnimation } from 'react-type-animation';
 
 const developers = [
 	{
@@ -25,10 +24,9 @@ const developers = [
 	},
 	{
 		name: 'Stacy Daniel',
-		photo: 'path/to/photo.jpg',
+		photo: 'public/img/stacy.jpg',
 		github: 'https://github.com/stacy-tech',
 		linkedin: 'https://www.linkedin.com/in/stacy-d/',
-		portfolio: 'https://stacydaniel.com/',
 	},
 ];
 
@@ -45,28 +43,24 @@ export function Team() {
 				style={{
 					marginBottom: '20px',
 					color: '#333',
-					textAlign: 'center',
 					fontSize: '2em',
 				}}
 			>
-				<TypeAnimation
-					sequence={[
-						'Welcome!',
-						5000,
-						"We're happy you're here!",
-						5000,
-						'We hope you enjoy CollabShop!',
-						5000,
-						'We hope you connect with us!',
-						5000,
-					]}
-					wrapper="span"
-					speed={80}
-					style={{ display: 'inline-block', fontWeight: 'bold' }}
-					repeat={Infinity}
-					aria-live="polite"
-				/>
+				Meet the Team Behind CollabShop
 			</h1>
+			<p
+				style={{
+					marginBottom: '40px',
+					color: '#555',
+					fontSize: '1em',
+					lineHeight: '1.6',
+				}}
+			>
+				We are a passionate group of developers, united by our love for learning
+				and collaboration. Our goal is to create an experience that feels
+				friendly, inclusive, and helpful for all users. Let&apos;s connect and
+				grow together!
+			</p>
 			<div
 				className="team-container"
 				style={{
@@ -131,15 +125,17 @@ export function Team() {
 							>
 								<FaLinkedin size={24} />
 							</a>
-							<a
-								href={dev.portfolio}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`${dev.name} Portfolio`}
-								style={{ color: '#000' }}
-							>
-								<FaGlobe size={24} />
-							</a>
+							{dev.portfolio && (
+								<a
+									href={dev.portfolio}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${dev.name} Portfolio`}
+									style={{ color: '#000' }}
+								>
+									<FaGlobe size={24} />
+								</a>
+							)}
 						</div>
 					</div>
 				))}
