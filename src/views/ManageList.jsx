@@ -1,15 +1,16 @@
 import { useState, useMemo } from 'react';
-import { addItem, shareList } from '../api/firebase';
+import { addItem } from '../api/firebase';
 import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
-import { FaEnvelope } from 'react-icons/fa6';
+import { Share } from './Share';
 
 export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
-	const [recipientEmail, setRecipientEmail] = useState('');
+
+	const [isModalDialogOpen, setIsModalDialogOpen] = useState(false);
 
 	const messages = {
 		added: 'Your item was successfully added!',
@@ -57,18 +58,6 @@ export function ManageList({ listPath, user, data }) {
 			console.error('Error adding item:', error);
 			setMessage('failed');
 		}
-	};
-
-	const handleShare = (event) => {
-		event.preventDefault();
-		shareList(listPath, currentUserId, recipientEmail)
-			.then((result) => {
-				alert(result);
-				setRecipientEmail('');
-			})
-			.catch((error) => {
-				alert(error);
-			});
 	};
 
 	return (
@@ -129,27 +118,7 @@ export function ManageList({ listPath, user, data }) {
 					{messages[message] || ''}
 				</p>
 			)}
-
-			<div>
-				<form onSubmit={handleShare}>
-					<label htmlFor="recipientEmail"> Recipient Email: </label>
-					<input
-						type="email"
-						id="recipientEmail"
-						value={recipientEmail}
-						onChange={(e) => setRecipientEmail(e.target.value)}
-						required
-					/>
-					<IconButton
-						aria-label="Share with an email"
-						as="button"
-						className="share-email"
-						label="Share"
-						IconComponent={FaEnvelope}
-						type="submit"
-					/>
-				</form>
-			</div>
+			<Share />
 		</div>
 	);
 }
