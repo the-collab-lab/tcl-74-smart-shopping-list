@@ -18,7 +18,6 @@
 	--color-border: hsla(220, 13%, 32%, 1);
 	--color-error: var(--color-red);
 	--color-text: var(--color-white);
-
 	/**
  * Set the value of 1rem to 10px to make relative units
  * easier to work with.
@@ -102,4 +101,8 @@ code {
 
 :root.theme-light code {
 	--color-bg: var(--color-gray-light);
+}
+
+.share-div {
+	padding-bottom: 100px;
 }

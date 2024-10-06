@@ -1,8 +1,10 @@
+import { ToastContainer } from 'react-toastify';
 import { useState, useMemo } from 'react';
 import { addItem } from '../api/firebase';
 import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { Share } from './Share';
+import { notify } from '../utils/notifications';
 
 export function ManageList({ listPath, user, data }) {
 	const currentUserId = user?.uid;
@@ -35,14 +37,14 @@ export function ManageList({ listPath, user, data }) {
 		const normalizedItemName = normalizeString(itemName.trim());
 
 		if (!normalizedItemName) {
-			setMessage('empty');
+			notify(messages['empty'], 'warning');
 			return;
 		}
 
 		const itemMatch = normalizedData.includes(normalizedItemName);
 
 		if (itemMatch) {
-			setMessage('duplicate');
+			notify(messages['duplicate'], 'warning');
 			return;
 		}
 
@@ -51,17 +53,18 @@ export function ManageList({ listPath, user, data }) {
 				itemName: normalizedItemName,
 				daysUntilNextPurchase,
 			});
-			setMessage('added');
 			setItemName('');
 			setDaysUntilNextPurchase(7);
+			notify(messages['added'], 'success');
 		} catch (error) {
 			console.error('Error adding item:', error);
-			setMessage('failed');
+			notify(messages['failed'], 'error');
 		}
 	};
 
 	return (
 		<div>
+			<ToastContainer />
 			<h1>Manage Your Shopping List for {extractedListName}</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item Name:</label>
