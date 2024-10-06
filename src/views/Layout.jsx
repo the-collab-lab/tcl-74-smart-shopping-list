@@ -9,6 +9,7 @@ import {
 import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
+import logo from '../assets/logo.png';
 import './Layout.css';
 
 /**
@@ -27,7 +28,7 @@ export function Layout() {
 				<header className="Layout-header">
 					{!!user && (
 						<div>
-							<h1>CollabShop</h1>
+							<img src={logo} alt="Logo" className="logo" />
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					)}

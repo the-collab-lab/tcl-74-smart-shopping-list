@@ -1,13 +1,10 @@
 import './LandingPage.css';
+import logo from '../assets/logo.png';
 
 export function LandingPage() {
 	return (
 		<div className="landing-container">
-			<img
-				src={`${import.meta.env.BASE_URL}logo.png`}
-				alt="Logo"
-				className="logo"
-			/>
+			<img src={logo} alt="Logo" className="logo" />
 			<h1 className="main-heading">
 				<strong>CollabShop</strong> is more than just a grocery app—it&apos;s a
 				tool that embodies the spirit of teamwork and collaboration. Created by
