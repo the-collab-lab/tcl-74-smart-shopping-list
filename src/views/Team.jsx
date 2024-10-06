@@ -1,30 +1,34 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
+import doribelAvatar from '../assets/avatars/doribelAvatar.jpg';
+import nicholasAvatar from '../assets/avatars/nicholasAvatar.png';
+import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
+import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
 
 const developers = [
 	{
 		name: 'Doribel Tercero-Parker',
-		photo: 'public/img/doribel.jpg',
+		photo: doribelAvatar,
 		github: 'https://github.com/dterceroparker',
 		linkedin: 'https://www.linkedin.com/in/doribelt-p/',
 		portfolio: 'http://doribel-portfolio.netlify.app/',
 	},
 	{
 		name: 'Nicholas Rocco',
-		photo: 'public/img/nicholas.png',
+		photo: nicholasAvatar,
 		github: 'https://github.com/NickRoccodev11',
 		linkedin: 'https://www.linkedin.com/in/nicholasroccodev/',
 		portfolio: 'https://nicholasroccodev.netlify.app/',
 	},
 	{
 		name: 'Shuveksha Tuladhar',
-		photo: 'public/img/shuveksha.jpg',
+		photo: shuvekshaAvatar,
 		github: 'https://github.com/shuveksha-tuladhar',
 		linkedin: 'https://www.linkedin.com/in/shuvekshatuladhar/',
 		portfolio: 'https://shuveksha-tuladhar.github.io/',
 	},
 	{
 		name: 'Stacy Daniel',
-		photo: 'public/img/stacy.jpg',
+		photo: stacyAvatar,
 		github: 'https://github.com/stacy-tech',
 		linkedin: 'https://www.linkedin.com/in/stacy-d/',
 	},
