@@ -5,8 +5,7 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { notify } from '../utils/notifications';
 
-export function ManageList({ listPath, user, data }) {
-	const currentUserId = user?.uid;
+export function ManageList({ listPath, data }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');

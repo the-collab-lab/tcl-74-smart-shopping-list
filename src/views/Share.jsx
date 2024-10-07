@@ -57,7 +57,7 @@ export function Share({
 						/>
 					</div>
 
-					<div className="flex justify-center items-center ">
+					<div className="flex justify-center items-center">
 						<IconButton
 							aria-label="Share with an email"
 							as="button"
