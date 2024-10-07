@@ -50,7 +50,7 @@ export function Team() {
 					fontSize: '2em',
 				}}
 			>
-				Meet the Tgit eam Behind CollabShop
+				Meet the Team Behind CollabShop
 			</h1>
 			<p
 				style={{
