@@ -45,14 +45,14 @@ const mentors = [
 		portfolio: 'https://mentor1-portfolio.com',
 	},
 	{
-		name: 'Megan Sullivan',
+		name: 'Jenny Takahara',
 		// photo: mentor2Avatar,
 		github: 'https://github.com/mentor2',
 		linkedin: 'https://www.linkedin.com/in/mentor2/',
 		portfolio: 'https://mentor2-portfolio.com',
 	},
 	{
-		name: 'Jenny Takahara',
+		name: 'Megan Sullivan',
 		// photo: mentor2Avatar,
 		github: 'https://github.com/mentor2',
 		linkedin: 'https://www.linkedin.com/in/mentor2/',
