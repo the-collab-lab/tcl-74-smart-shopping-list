@@ -1,63 +1,50 @@
-import { ToastContainer } from 'react-toastify';
 import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { notify } from '../utils/notifications';
-import { createList } from '../api';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
 import './Home.css';
+import { Share } from './Share';
+import { CreateList } from './CreateList';
+import { ToastContainer } from 'react-toastify';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
-	const userEmail = user?.email;
-	const [listName, setListName] = useState('');
 
-	const handleChange = (event) => {
-		setListName(event.target.value);
+	const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
+	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+	const [currentListPath, setCurrentListPath] = useState('');
+
+	const handleCreateListClick = () => {
+		setIsCreateListModalOpen(true);
 	};
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		if (listName) {
-			try {
-				const newListPath = await createList(userId, userEmail, listName);
-				notify('List is sucessfully created', 'success');
-				setListPath(newListPath);
-			} catch {
-				notify('There was an error adding your list', 'error');
-			}
-		} else {
-			notify('Please enter a valid name', 'warning');
-		}
-		setListName('');
+	const handleShareClick = (listPath) => {
+		setCurrentListPath(listPath);
+		setIsShareModalOpen(true);
 	};
 
 	return (
 		<div className="Home">
-			<div>
-				<ToastContainer />
-				<form onSubmit={handleSubmit}>
-					<label htmlFor="list-name">Create a List </label>
-					<input
-						id="list-name"
-						type="text"
-						value={listName}
-						onChange={handleChange}
-						placeholder="Add a list"
-					></input>
-					<IconButton
-						aria-label="Add a list"
-						as="button"
-						className="add-icon"
-						label="Add"
-						IconComponent={FaPlusSquare}
-					/>
-				</form>
+			<ToastContainer />
+			{isCreateListModalOpen && (
+				<CreateList
+					isCreateListModalOpen={isCreateListModalOpen}
+					setIsCreateListModalOpen={setIsCreateListModalOpen}
+					user={user}
+				/>
+			)}
+			<div className="flex justify-center items-center">
+				<IconButton
+					aria-label="Create a list"
+					as="button"
+					label="Create a List"
+					IconComponent={FaPlusSquare}
+					onClick={handleCreateListClick}
+				/>
 			</div>
-
 			{lists.length === 0 ? (
 				<p>No lists available. Create a new list below.</p>
 			) : (
@@ -78,15 +65,23 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 							<IconButton
 								aria-label="share list"
 								as={NavLink}
-								className="share-icon"
+								className="p-4"
 								label="Share"
 								key={`icon-${list.path}`}
 								IconComponent={FaShareAlt}
-								to="/manage-list"
+								onClick={() => handleShareClick(list.path)}
 							/>
 						</div>
 					))}
 				</ul>
+			)}
+			{isShareModalOpen && (
+				<Share
+					isModalOpen={isShareModalOpen}
+					setIsModalOpen={setIsShareModalOpen}
+					listPath={currentListPath}
+					currentUserId={userId}
+				/>
 			)}
 		</div>
 	);

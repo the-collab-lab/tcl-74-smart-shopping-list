@@ -98,7 +98,7 @@ export function ListItem({
 				<IconButton
 					aria-label={`Delete ${name}`}
 					as="button"
-					className="delete-icon"
+					className="p-1"
 					IconComponent={FaTrashAlt}
 					onClick={handleDelete}
 				/>
