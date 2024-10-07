@@ -72,27 +72,34 @@ export function Team() {
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
 				grow together!
 			</p>
+
 			{/* Developers Section */}
-			<div className="flex flex-col items-center gap-8">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 				{developers.map((dev, index) => (
 					<div
 						key={index}
-						className="bg-white rounded-lg p-6 shadow-md w-64 transition-transform transform hover:translate-y-1 hover:shadow-lg"
+						className="bg-[#168AAD] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
 					>
 						<img
 							src={dev.photo}
 							alt={dev.name ? `${dev.name}'s photo` : 'Developer photo'}
-							className="w-24 h-auto rounded-lg shadow-sm mb-4"
+							className="w-35 h-35 object-cover object-top mx-auto mb-4"
 						/>
-						<h3 className="text-[#184E77] text-xl font-semibold mb-2">
+						<h3 className="text-[#B5E48C] text-xl font-semibold mb-2">
 							{dev.name}
 						</h3>
 						<div className="flex justify-center gap-4">
 							<a href={dev.github} target="_blank" rel="noopener noreferrer">
-								<FaGithub className="text-[#184E77]" size={24} />
+								<FaGithub
+									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									size={24}
+								/>
 							</a>
 							<a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
-								<FaLinkedin className="text-[#184E77]" size={24} />
+								<FaLinkedin
+									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									size={24}
+								/>
 							</a>
 							{dev.portfolio && (
 								<a
@@ -100,7 +107,10 @@ export function Team() {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<FaGlobe className="text-[#184E77]" size={24} />
+									<FaGlobe
+										className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+										size={24}
+									/>
 								</a>
 							)}
 						</div>
@@ -109,90 +119,50 @@ export function Team() {
 			</div>
 
 			{/* Mentors Section */}
-			<h2
-				style={{
-					marginTop: '40px',
-					color: '#333',
-					fontSize: '1.8em',
-				}}
-			>
+			<h2 className="mt-10 mb-5 text-[#1A759F] text-3xl font-extrabold text-center tracking-wider">
 				Mentors
 			</h2>
-			<div
-				className="team-container"
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: '20px',
-				}}
-			>
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 				{mentors.map((mentor, index) => (
 					<div
-						className="mentor-card"
 						key={index}
-						style={{
-							backgroundColor: '#fff',
-							borderRadius: '8px',
-							padding: '20px',
-							boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-							width: '250px',
-							transition: 'transform 0.3s, box-shadow 0.3s',
-						}}
-						onMouseEnter={(e) => {
-							e.currentTarget.style.transform = 'translateY(-5px)';
-							e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
-						}}
-						onMouseLeave={(e) => {
-							e.currentTarget.style.transform = 'translateY(0)';
-							e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-						}}
+						className="bg-[#168AAD] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
 					>
 						<img
 							src={mentor.photo}
 							alt={mentor.name ? `${mentor.name}'s photo` : 'Mentor photo'}
-							style={{
-								width: '100px',
-								height: 'auto',
-								borderRadius: '5%',
-								boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-								marginBottom: '15px',
-							}}
+							className="w-28 h-28 object-cover rounded-full mx-auto mb-4"
 						/>
-						<h3 style={{ color: '#555', marginBottom: '10px' }}>
+						<h3 className="text-[#B5E48C] text-xl font-semibold mb-2">
 							{mentor.name}
 						</h3>
-						<div
-							className="mentor-links"
-							style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}
-						>
-							<a
-								href={mentor.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`${mentor.name} GitHub`}
-								style={{ color: '#333' }}
-							>
-								<FaGithub size={24} />
+						<div className="flex justify-center gap-4">
+							<a href={mentor.github} target="_blank" rel="noopener noreferrer">
+								<FaGithub
+									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									size={24}
+								/>
 							</a>
 							<a
 								href={mentor.linkedin}
 								target="_blank"
 								rel="noopener noreferrer"
-								aria-label={`${mentor.name} LinkedIn`}
-								style={{ color: '#0077b5' }}
 							>
-								<FaLinkedin size={24} />
+								<FaLinkedin
+									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									size={24}
+								/>
 							</a>
 							{mentor.portfolio && (
 								<a
 									href={mentor.portfolio}
 									target="_blank"
 									rel="noopener noreferrer"
-									aria-label={`${mentor.name} Portfolio`}
-									style={{ color: '#000' }}
 								>
-									<FaGlobe size={24} />
+									<FaGlobe
+										className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+										size={24}
+									/>
 								</a>
 							)}
 						</div>
