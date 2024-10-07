@@ -173,7 +173,7 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 		sharedLists: arrayUnion(listDocumentRef),
 	});
 	return Promise.resolve(
-		`You have successfully shared your list to ${recipientEmail}`,
+		`You have successfully shared your list to: \n${recipientEmail}`,
 	);
 }
 
