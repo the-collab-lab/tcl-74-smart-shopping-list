@@ -21,8 +21,8 @@ export function LandingPage() {
 				>
 					<strong>The Collab Lab</strong>
 				</a>
-				, our “smart” shopping list app learns your buying habits, reminds you
-				of what you might need for your next store run, and allows you to
+				, our smart shopping list app learns your buying habits, reminds you of
+				what you might need for your next store run, and allows you to
 				effortlessly share and collaborate on lists. With CollabShop, planning
 				your grocery trips becomes a seamless and enjoyable experience!
 			</h1>
