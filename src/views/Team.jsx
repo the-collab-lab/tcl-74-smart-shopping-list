@@ -73,79 +73,34 @@ export function Team() {
 				grow together!
 			</p>
 			{/* Developers Section */}
-			<div
-				className="team-container"
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: '20px',
-				}}
-			>
+			<div className="flex flex-col items-center gap-8">
 				{developers.map((dev, index) => (
 					<div
-						className="developer-card"
 						key={index}
-						style={{
-							backgroundColor: '#fff',
-							borderRadius: '8px',
-							padding: '20px',
-							boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-							width: '250px',
-							transition: 'transform 0.3s, box-shadow 0.3s',
-						}}
-						onMouseEnter={(e) => {
-							e.currentTarget.style.transform = 'translateY(-5px)';
-							e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
-						}}
-						onMouseLeave={(e) => {
-							e.currentTarget.style.transform = 'translateY(0)';
-							e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-						}}
+						className="bg-white rounded-lg p-6 shadow-md w-64 transition-transform transform hover:translate-y-1 hover:shadow-lg"
 					>
 						<img
 							src={dev.photo}
 							alt={dev.name ? `${dev.name}'s photo` : 'Developer photo'}
-							style={{
-								width: '100px',
-								height: 'auto',
-								borderRadius: '5%',
-								boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-								marginBottom: '15px',
-							}}
+							className="w-24 h-auto rounded-lg shadow-sm mb-4"
 						/>
-						<h3 style={{ color: '#555', marginBottom: '10px' }}>{dev.name}</h3>
-						<div
-							className="developer-links"
-							style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}
-						>
-							<a
-								href={dev.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`${dev.name} GitHub`}
-								style={{ color: '#333' }}
-							>
-								<FaGithub size={24} />
+						<h3 className="text-[#184E77] text-xl font-semibold mb-2">
+							{dev.name}
+						</h3>
+						<div className="flex justify-center gap-4">
+							<a href={dev.github} target="_blank" rel="noopener noreferrer">
+								<FaGithub className="text-[#184E77]" size={24} />
 							</a>
-							<a
-								href={dev.linkedin}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`${dev.name} LinkedIn`}
-								style={{ color: '#0077b5' }}
-							>
-								<FaLinkedin size={24} />
+							<a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
+								<FaLinkedin className="text-[#184E77]" size={24} />
 							</a>
 							{dev.portfolio && (
 								<a
 									href={dev.portfolio}
 									target="_blank"
 									rel="noopener noreferrer"
-									aria-label={`${dev.name} Portfolio`}
-									style={{ color: '#000' }}
 								>
-									<FaGlobe size={24} />
+									<FaGlobe className="text-[#184E77]" size={24} />
 								</a>
 							)}
 						</div>
