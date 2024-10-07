@@ -8,7 +8,6 @@ import { notify } from '../utils/notifications';
 export function ManageList({ listPath, data }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
-	const [message, setMessage] = useState('');
 
 	const messages = {
 		added: 'Your item was successfully added!',
@@ -112,11 +111,6 @@ export function ManageList({ listPath, data }) {
 				<br />
 			</form>
 			<br></br>
-			{message && (
-				<p aria-live="assertive" role="alert">
-					{messages[message] || ''}
-				</p>
-			)}
 		</div>
 	);
 }
