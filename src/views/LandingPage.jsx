@@ -3,9 +3,13 @@ import logo from '../assets/logo.png';
 
 export function LandingPage() {
 	return (
-		<div className="landing-container">
-			<img src={logo} alt="Logo" className="logo" />
-			<h1 className="main-heading">
+		<div className="flex flex-col items-center justify-center min-h-screen bg-[#99D98C] p-6">
+			<img
+				src={logo}
+				alt="CollabShop Logo, a collaboration platform for grocery shopping."
+				className="w-45 h-auto mb-6"
+			/>
+			<h1 className="text-[#184E77] text-2xl md:text-4xl font-bold text-center mb-4">
 				<strong>CollabShop</strong> is more than just a grocery app—it&apos;s a
 				tool that embodies the spirit of teamwork and collaboration. Created by
 				early-career developers from{' '}
@@ -13,17 +17,18 @@ export function LandingPage() {
 					href="https://the-collab-lab.codes/"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="collab-lab-link"
+					className="text-[#184E77] font-bold underline hover:text-[#1A759F] transition duration-300"
 				>
 					<strong>The Collab Lab</strong>
 				</a>
-				, it allows you to effortlessly share and work together on lists,
-				bringing people closer, even when planning something as simple as a
-				grocery run.
+				, our “smart” shopping list app learns your buying habits, reminds you
+				of what you might need for your next store run, and allows you to
+				effortlessly share and collaborate on lists. With CollabShop, planning
+				your grocery trips becomes a seamless and enjoyable experience!
 			</h1>
-			<p className="subheading">
-				Ready to start your journey? Click the sign-in button below to begin
-				planning your grocery runs with CollabShop today.
+			<p className="text-[#184E77] font-bold text-lg md:text-xl text-center mb-6">
+				Ready to start your journey? Begin planning your grocery runs with
+				CollabShop today!
 			</p>
 		</div>
 	);
