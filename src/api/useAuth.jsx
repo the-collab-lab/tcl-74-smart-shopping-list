@@ -9,15 +9,23 @@ import { useNavigate } from 'react-router-dom';
  * the button redirects the user to the Google OAuth sign-in page.
  * After the user signs in, they are redirected back to the app.
  */
-export const SignInButton = ({ children, className }) => (
-	<button
-		type="button"
-		className={className}
-		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
-	>
-		{children}
-	</button>
-);
+
+export const SignInButton = ({ children, className }) => {
+	const navigate = useNavigate();
+	const handleSignIn = async () => {
+		try {
+			await signInWithPopup(auth, new GoogleAuthProvider());
+			navigate('/');
+		} catch (error) {
+			console.error('Error signing in: ', error);
+		}
+	};
+	return (
+		<button type="button" className={className} onClick={handleSignIn}>
+			{children}
+		</button>
+	);
+};
 
 /**
  * A button that signs the user out of the app using Firebase Auth.

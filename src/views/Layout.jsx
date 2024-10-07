@@ -9,6 +9,7 @@ import {
 import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
+import logo from '../assets/logo.png';
 import './Layout.css';
 
 /**
@@ -27,7 +28,7 @@ export function Layout() {
 				<header className="Layout-header">
 					{!!user && (
 						<div>
-							<h1 className="text-3xl font-bold underline">CollabShop</h1>
+							<img src={logo} alt="Logo" className="logo" />
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					)}
@@ -69,8 +70,8 @@ export function Layout() {
 									as={NavLink}
 									className="Nav-link"
 									IconComponent={FaInfoCircle}
-									label="Meet The Team"
-									to="/meet-the-team"
+									label="Developers"
+									to="/developers"
 								/>
 								<IconButton
 									aria-label="Sign In"
