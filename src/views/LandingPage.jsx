@@ -27,8 +27,8 @@ export function LandingPage() {
 				your grocery trips becomes a seamless and enjoyable experience!
 			</h1>
 			<p className="text-[#184E77] font-bold text-lg md:text-xl text-center mb-6">
-				Ready to start your journey? Begin planning your grocery runs with
-				CollabShop today!
+				Ready to start your journey? Click the sign-in button below to begin
+				planning your grocery runs with CollabShop today.
 			</p>
 		</div>
 	);
