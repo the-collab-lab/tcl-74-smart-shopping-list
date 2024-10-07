@@ -3,7 +3,6 @@ import { useState, useMemo } from 'react';
 import { addItem } from '../api/firebase';
 import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
-import { Share } from './Share';
 import { notify } from '../utils/notifications';
 
 export function ManageList({ listPath, user, data }) {
@@ -11,8 +10,6 @@ export function ManageList({ listPath, user, data }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [message, setMessage] = useState('');
-
-	const [isModalDialogOpen, setIsModalDialogOpen] = useState(false);
 
 	const messages = {
 		added: 'Your item was successfully added!',
@@ -121,7 +118,6 @@ export function ManageList({ listPath, user, data }) {
 					{messages[message] || ''}
 				</p>
 			)}
-			<Share />
 		</div>
 	);
 }

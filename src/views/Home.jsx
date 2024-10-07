@@ -9,11 +9,15 @@ import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
 import './Home.css';
+import { Share } from './Share';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
 	const userEmail = user?.email;
+
 	const [listName, setListName] = useState('');
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [currentListPath, setCurrentListPath] = useState('');
 
 	const handleChange = (event) => {
 		setListName(event.target.value);
@@ -33,6 +37,11 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 			notify('Please enter a valid name', 'warning');
 		}
 		setListName('');
+	};
+
+	const handleShareClick = (listPath) => {
+		setCurrentListPath(listPath);
+		setIsModalOpen(true);
 	};
 
 	return (
@@ -82,11 +91,19 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 								label="Share"
 								key={`icon-${list.path}`}
 								IconComponent={FaShareAlt}
-								to="/manage-list"
+								onClick={() => handleShareClick(list.path)}
 							/>
 						</div>
 					))}
 				</ul>
+			)}
+			{isModalOpen && (
+				<Share
+					isModalOpen={isModalOpen}
+					setIsModalOpen={setIsModalOpen}
+					listPath={currentListPath}
+					currentUserId={userId}
+				/>
 			)}
 		</div>
 	);
