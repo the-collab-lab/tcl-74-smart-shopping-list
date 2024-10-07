@@ -62,30 +62,11 @@ const mentors = [
 
 export function Team() {
 	return (
-		<div
-			style={{
-				padding: '20px',
-				textAlign: 'center',
-				backgroundColor: '#f9f9f9',
-			}}
-		>
-			<h1
-				style={{
-					marginBottom: '20px',
-					color: '#333',
-					fontSize: '2em',
-				}}
-			>
+		<div className="bg-[#99D98C] p-10 text-center">
+			<h1 className="mb-5 text-[#184E77] text-4xl font-bold">
 				Meet the Team Behind CollabShop
 			</h1>
-			<p
-				style={{
-					marginBottom: '40px',
-					color: '#555',
-					fontSize: '1em',
-					lineHeight: '1.6',
-				}}
-			>
+			<p className="mb-10 text-[#184E77] text-lg leading-relaxed">
 				We are a passionate group of developers, united by our love for learning
 				and collaboration. Our goal is to create an experience that feels
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
