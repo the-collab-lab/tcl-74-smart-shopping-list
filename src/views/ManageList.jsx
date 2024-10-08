@@ -58,57 +58,89 @@ export function ManageList({ listPath, data }) {
 	};
 
 	return (
-		<div>
+		<div className="container mx-auto p-6 bg-bgPrimary rounded-lg shadow-md">
 			<ToastContainer />
-			<h1>Manage Your Shopping List for {extractedListName}</h1>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="itemName">Item Name:</label>
-				<input
-					type="text"
-					id="itemName"
-					value={itemName}
-					onChange={(e) => setItemName(e.target.value)}
-				/>
-				<IconButton
-					aria-label="Add item to your list"
-					as="button"
-					className="add-icon"
-					label="Add"
-					IconComponent={FaPlusSquare}
-				/>
-				<fieldset>
-					<legend>How soon will you need to buy this item again?</legend>
-					<label>
-						<input
-							type="radio"
-							value={7}
-							checked={daysUntilNextPurchase === 7}
-							onChange={() => setDaysUntilNextPurchase(7)}
-						/>
-						Soon (7 days)
-					</label>{' '}
-					<br />
-					<label>
-						<input
-							type="radio"
-							value={14}
-							checked={daysUntilNextPurchase === 14}
-							onChange={() => setDaysUntilNextPurchase(14)}
-						/>
-						Kind of soon (14 days)
-					</label>{' '}
-					<br />
-					<label>
-						<input
-							type="radio"
-							value={30}
-							checked={daysUntilNextPurchase === 30}
-							onChange={() => setDaysUntilNextPurchase(30)}
-						/>
-						Not soon (30 days)
+			<h1 className="text-4xl text-txtPrimary font-semibold mb-6 text-center">
+				Manage Your Shopping List for{' '}
+				<span className="text-txtSecondary font-bold">{extractedListName}</span>
+			</h1>
+			<form onSubmit={handleSubmit} className="space-y-6">
+				<div className="flex flex-col mb-4 items-center">
+					<label
+						htmlFor="itemName"
+						className="text-3xl text-txtPrimary mb-2 font-semibold"
+					>
+						Please enter an item name
 					</label>
+					<input
+						type="text"
+						id="itemName"
+						value={itemName}
+						onChange={(e) => setItemName(e.target.value)}
+						placeholder="Add an item name"
+						className="border border-gray-300 rounded-lg p-2 w-full focus:ring focus:ring-blue-300 focus:outline-none transition duration-150 ease-in-out hover:shadow-md"
+					/>
+				</div>
+				<fieldset className="border border-gray-200 p-8 m-6 rounded-lg shadow-md">
+					<legend className="text-3xl text-txtPrimary mb-4 font-semibold">
+						How soon will you need to buy this item again?
+					</legend>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+								<input
+									type="radio"
+									value={7}
+									checked={daysUntilNextPurchase === 7}
+									onChange={() => setDaysUntilNextPurchase(7)}
+									className="mr-3 text-txtPrimary"
+								/>
+								<span className="text-2xl font-medium text-white ">
+									Soon (7 days)
+								</span>
+							</label>
+						</div>
+
+						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+								<input
+									type="radio"
+									value={14}
+									checked={daysUntilNextPurchase === 14}
+									onChange={() => setDaysUntilNextPurchase(14)}
+									className="mr-3 text-gray-600"
+								/>
+								<span className="text-2xl font-medium text-white ">
+									Kind of soon (14 days)
+								</span>
+							</label>
+						</div>
+
+						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+								<input
+									type="radio"
+									value={30}
+									checked={daysUntilNextPurchase === 30}
+									onChange={() => setDaysUntilNextPurchase(30)}
+									className="mr-3"
+								/>
+								<span className="text-2xl font-medium text-white ">
+									Not soon (30 days)
+								</span>
+							</label>
+						</div>
+					</div>
 				</fieldset>
-				<br />
+				<div className="flex justify-center">
+					<IconButton
+						aria-label="Add item to your list"
+						as="button"
+						label="Add an item"
+						IconComponent={FaPlusSquare}
+						className="mt-1 block w-1/8 rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-lg py-3 px-4"
+					/>
+				</div>
 			</form>
 			<br></br>
 		</div>
