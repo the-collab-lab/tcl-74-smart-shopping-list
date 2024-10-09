@@ -9,11 +9,11 @@ export function CreateList({
 	isCreateListModalOpen,
 	setIsCreateListModalOpen,
 	user,
+	setListPath,
 }) {
 	const userId = user?.uid;
 	const userEmail = user?.email;
 
-	const [listPath, setListPath] = useState('');
 	const [listName, setListName] = useState('');
 
 	const handleChange = (event) => {
@@ -27,6 +27,7 @@ export function CreateList({
 				const newListPath = await createList(userId, userEmail, listName);
 				notify('List is sucessfully created', 'success');
 				setListPath(newListPath);
+				setIsCreateListModalOpen(false);
 			} catch {
 				notify('There was an error adding your list', 'error');
 			}
@@ -58,7 +59,7 @@ export function CreateList({
 					<IconButton
 						aria-label="Add a list"
 						as="button"
-						className="inline-flex justify-center rounded-md bg-[#184E77] px-4 py-[.75rem] text-lg font-medium text-white shadow-sm hover:bg-[#1E6091] transition duration-200 ease-in-out mr-10"
+						className="inline-flex justify-center rounded-md bg-btnPrimary px-4 py-[.75rem] text-lg font-medium text-white shadow-sm hover:bg-btnPrimary transition duration-200 ease-in-out mr-10"
 						label="Add"
 						IconComponent={FaPlusSquare}
 						type="submit"
@@ -67,7 +68,7 @@ export function CreateList({
 						aria-label="Cancel adding"
 						as="button"
 						onClick={() => setIsCreateListModalOpen(false)}
-						className="inline-flex justify-center rounded-md bg-[#184E77] px-4 py-[.75rem] text-lg font-medium text-white shadow-sm ring-1 ring-gray-300 hover:bg-[#1E6091] transition duration-200 ease-in-out" // Increased button padding and font size
+						className="inline-flex justify-center rounded-md bg-btnPrimary px-4 py-[.75rem] text-lg font-medium text-white shadow-sm ring-1 ring-gray-300 hover:bg-btnPrimary transition duration-200 ease-in-out" // Increased button padding and font size
 						label="Cancel"
 						IconComponent={FaTimes}
 					/>
