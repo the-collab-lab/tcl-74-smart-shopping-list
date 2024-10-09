@@ -1,10 +1,12 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
+import { Loading } from '../components/Loading';
 import doribelAvatar from '../assets/avatars/doribelAvatar.jpg';
 import nicholasAvatar from '../assets/avatars/nicholasAvatar.png';
 import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
 import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
 // import mentor1Avatar from '../assets/avatars/mentor1Avatar.jpg';
 // import mentor2Avatar from '../assets/avatars/mentor2Avatar.jpg';
+import { useEffect, useState } from 'react';
 
 const developers = [
 	{
@@ -53,7 +55,7 @@ const mentors = [
 	},
 	{
 		name: 'Megan Sullivan',
-		// photo: mentor2Avatar,
+		// photo: mentor3Avatar,
 		github: 'https://github.com/mentor2',
 		linkedin: 'https://www.linkedin.com/in/mentor2/',
 		portfolio: 'https://mentor2-portfolio.com',
@@ -61,12 +63,26 @@ const mentors = [
 ];
 
 export function Team() {
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <Loading />;
+	}
+
 	return (
-		<div className="bg-[#99D98C] p-10 text-center">
-			<h1 className="mb-5 text-[#184E77] text-4xl font-bold">
+		<div className="bg-bgPrimary p-10 text-center">
+			<h1 className="mb-5 text-txtPrimary text-4xl font-bold">
 				Meet the Team Behind CollabShop
 			</h1>
-			<p className="mb-10 text-[#184E77] text-lg leading-relaxed">
+			<p className="mb-10 text-txtPrimary text-lg leading-relaxed">
 				We are a passionate group of developers, united by our love for learning
 				and collaboration. Our goal is to create an experience that feels
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
