@@ -25,9 +25,9 @@ export function CreateList({
 		if (listName) {
 			try {
 				const newListPath = await createList(userId, userEmail, listName);
-				notify('List is sucessfully created', 'success');
 				setListPath(newListPath);
 				setIsCreateListModalOpen(false);
+				notify(`${listName} is sucessfully created`, 'success');
 			} catch {
 				notify('There was an error adding your list', 'error');
 			}
