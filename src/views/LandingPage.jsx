@@ -6,9 +6,9 @@ export function LandingPage() {
 			<img
 				src={logo}
 				alt="CollabShop Logo, a collaboration platform for grocery shopping."
-				className="w-45 h-auto mb-6"
+				className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto mb-6"
 			/>
-			<h1 className="text-txtPrimary text-2xl md:text-4xl font-bold text-center mb-4">
+			<h1 className="text-txtPrimary text-xl sm:text-2xl md:text-4xl font-bold text-center mb-4">
 				<strong>CollabShop</strong> is more than just a grocery app—it&apos;s a
 				tool that embodies the spirit of teamwork and collaboration. Created by
 				early-career developers from{' '}
@@ -25,7 +25,7 @@ export function LandingPage() {
 				effortlessly share and collaborate on lists. With CollabShop, planning
 				your grocery trips becomes a seamless and enjoyable experience!
 			</h1>
-			<p className="text-txtPrimary font-bold text-lg md:text-xl text-center mb-6">
+			<p className="text-txtPrimary font-bold text-base sm:text-lg md:text-xl text-center mb-6">
 				Ready to start your journey? Click the sign-in button below to begin
 				planning your grocery runs with CollabShop today.
 			</p>
