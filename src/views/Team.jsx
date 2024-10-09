@@ -6,6 +6,7 @@ import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
 import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
 // import mentor1Avatar from '../assets/avatars/mentor1Avatar.jpg';
 // import mentor2Avatar from '../assets/avatars/mentor2Avatar.jpg';
+// import mentor3Avatar from '../assets/avatars/mentor3Avatar.jpg';
 import { useEffect, useState } from 'react';
 
 const developers = [
