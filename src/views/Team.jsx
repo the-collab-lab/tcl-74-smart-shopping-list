@@ -4,9 +4,9 @@ import doribelAvatar from '../assets/avatars/doribelAvatar.jpg';
 import nicholasAvatar from '../assets/avatars/nicholasAvatar.png';
 import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
 import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
-// import mentor1Avatar from '../assets/avatars/mentor1Avatar.jpg';
-// import mentor2Avatar from '../assets/avatars/mentor2Avatar.jpg';
-// import mentor3Avatar from '../assets/avatars/mentor3Avatar.jpg';
+import ejAvatar from '../assets/avatars/ejAvatar.png';
+import jennyAvatar from '../assets/avatars/jennyAvatar.jpg';
+import meganAvatar from '../assets/avatars/meganAvatar.jpg';
 import { useEffect, useState } from 'react';
 
 const developers = [
@@ -42,28 +42,29 @@ const developers = [
 const mentors = [
 	{
 		name: 'EJ Mason',
-		// photo: mentor1Avatar,
-		github: 'https://github.com/mentor1',
-		linkedin: 'https://www.linkedin.com/in/mentor1/',
-		portfolio: 'https://mentor1-portfolio.com',
+		photo: ejAvatar,
+		github: 'https://github.com/mxmason',
+		linkedin: 'https://www.linkedin.com/in/mxmason/',
+		portfolio: 'http://www.ejmason.com',
 	},
 	{
 		name: 'Jenny Takahara',
-		// photo: mentor2Avatar,
-		github: 'https://github.com/mentor2',
-		linkedin: 'https://www.linkedin.com/in/mentor2/',
-		portfolio: 'https://mentor2-portfolio.com',
+		photo: jennyAvatar,
+		github: 'https://github.com/jtkabenni',
+		linkedin: 'https://www.linkedin.com/in/ehime-takahara/',
+		portfolio: 'https://www.jennytakahara.com/',
 	},
 	{
 		name: 'Megan Sullivan',
-		// photo: mentor3Avatar,
-		github: 'https://github.com/mentor2',
-		linkedin: 'https://www.linkedin.com/in/mentor2/',
-		portfolio: 'https://mentor2-portfolio.com',
+		photo: meganAvatar,
+		github: 'https://github.com/meganesu',
+		linkedin: 'https://www.linkedin.com/in/meganesu/',
+		portfolio: 'https://meganesulli.com/',
 	},
 ];
 
 export function Team() {
+	/* This will be removed once the Logo ticket is finalized to ensure the UI is correct. */
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -89,8 +90,6 @@ export function Team() {
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
 				grow together!
 			</p>
-
-			{/* Developers Section */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 				{developers.map((dev, index) => (
 					<div
@@ -134,8 +133,6 @@ export function Team() {
 					</div>
 				))}
 			</div>
-
-			{/* Mentors Section */}
 			<h2 className="mt-10 mb-5 text-[#1A759F] text-3xl font-extrabold text-center tracking-wider">
 				Mentors
 			</h2>
