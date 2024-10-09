@@ -25,11 +25,17 @@ export function Layout() {
 	return (
 		<>
 			<div className="flex flex-col min-h-screen">
-				<header className="bg-[var(--color-bg)] pb-2 pt-[max(env(safe-area-inset-top),1rem)] text-center">
+				<header className="bg-[var(--color-bg)] pb-4 pt-[max(env(safe-area-inset-top),1rem)] text-center">
 					{!!user && (
-						<div>
-							<img src={logo} alt="Logo" className="mx-auto" />
-							<span>Signed in as {auth.currentUser.displayName}</span>
+						<div className="flex flex-col items-center justify-center">
+							<img
+								src={logo}
+								alt="CollabShop Logo, a collaboration platform for grocery shopping."
+								className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto mb-4"
+							/>
+							<span className="text-txtPrimary">
+								Signed in as {auth.currentUser.displayName}
+							</span>
 						</div>
 					)}
 				</header>
