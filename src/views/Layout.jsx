@@ -54,7 +54,7 @@ export function Layout() {
 									className="Nav-link"
 									IconComponent={FaCartPlus}
 									label="Add Item"
-									to="/manage-list"
+									to="/add-item"
 								/>
 								<IconButton
 									aria-label="Sign Out"

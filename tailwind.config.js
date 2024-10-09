@@ -10,6 +10,10 @@ export default {
 				txtPrimary: '#184E77', // Primary color Text
 				txtSecondary: '#34A0A4', // Secondary color Text
 			},
+			backgroundImage: {
+				'radio-gradient':
+					'linear-gradient(to top, #34A0A4, #168AAD, #1A759F, #1E6091, #184E77)',
+			},
 		},
 	},
 	plugins: [],

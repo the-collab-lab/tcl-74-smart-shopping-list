@@ -5,7 +5,7 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { IconButton } from '../components/IconButton';
 import { notify } from '../utils/notifications';
 
-export function ManageList({ listPath, data }) {
+export function AddItem({ listPath, data }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
@@ -58,9 +58,9 @@ export function ManageList({ listPath, data }) {
 	};
 
 	return (
-		<div className="container mx-auto p-6 bg-bgPrimary rounded-lg shadow-md">
+		<div className="container p-6 rounded-lg shadow-md">
 			<ToastContainer />
-			<h1 className="text-4xl text-txtPrimary font-semibold mb-6 text-center">
+			<h1 className="text-4xl text-txtPrimary font-semibold my-6 text-center">
 				Manage Your Shopping List for{' '}
 				<span className="text-txtSecondary font-bold">{extractedListName}</span>
 			</h1>
@@ -68,7 +68,7 @@ export function ManageList({ listPath, data }) {
 				<div className="flex flex-col mb-4 items-center">
 					<label
 						htmlFor="itemName"
-						className="text-3xl text-txtPrimary mb-2 font-semibold"
+						className="text-3xl text-txtPrimary font-semibold"
 					>
 						Please enter an item name
 					</label>
@@ -85,15 +85,15 @@ export function ManageList({ listPath, data }) {
 					<legend className="text-3xl text-txtPrimary mb-4 font-semibold">
 						How soon will you need to buy this item again?
 					</legend>
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
-						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center items-center">
+						<div className="border border-gray-300 p-2 bg-radio-gradient w-[20rem] rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer w-full mb-4 mt-4">
 								<input
 									type="radio"
 									value={7}
 									checked={daysUntilNextPurchase === 7}
 									onChange={() => setDaysUntilNextPurchase(7)}
-									className="mr-3 text-txtPrimary"
+									className="mr-4 text-txtPrimary"
 								/>
 								<span className="text-2xl font-medium text-white ">
 									Soon (7 days)
@@ -101,14 +101,14 @@ export function ManageList({ listPath, data }) {
 							</label>
 						</div>
 
-						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+						<div className="border border-gray-300 p-2 bg-radio-gradient w-[20rem] rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer max-w-sm mb-4 mt-4">
 								<input
 									type="radio"
 									value={14}
 									checked={daysUntilNextPurchase === 14}
 									onChange={() => setDaysUntilNextPurchase(14)}
-									className="mr-3 text-gray-600"
+									className="mr-6"
 								/>
 								<span className="text-2xl font-medium text-white ">
 									Kind of soon (14 days)
@@ -116,8 +116,8 @@ export function ManageList({ listPath, data }) {
 							</label>
 						</div>
 
-						<div className="border border-gray-300 p-4 bg-btnPrimary rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-							<label className="flex items-center justify-center cursor-pointer w-full mb-6">
+						<div className="border border-gray-300 p-2 bg-radio-gradient w-[20rem]  rounded-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+							<label className="flex items-center justify-center cursor-pointer max-w-md mb-4 mt-4">
 								<input
 									type="radio"
 									value={30}
