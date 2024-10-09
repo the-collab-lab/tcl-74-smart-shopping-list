@@ -10,7 +10,7 @@ import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 import logo from '../assets/logo.png';
-import './Layout.css';
+//import './Layout.css';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -24,26 +24,25 @@ export function Layout() {
 	const { user } = useAuth();
 	return (
 		<>
-			<div className="Layout">
-				<header className="Layout-header">
+			<div className="flex flex-col min-h-screen">
+				<header className="bg-[var(--color-bg)] pb-2 pt-[max(env(safe-area-inset-top),1rem)] text-center">
 					{!!user && (
 						<div>
-							<img src={logo} alt="Logo" className="logo" />
+							<img src={logo} alt="Logo" className="mx-auto" />
 							<span>Signed in as {auth.currentUser.displayName}</span>
 						</div>
 					)}
 				</header>
-				<main className="Layout-main">
+				<main className="p-0 pb-[6.26rem] w-[min(72ch,100%)] mx-auto">
 					<Outlet />
 				</main>
-				<nav className="Nav">
-					<div className="Nav-container">
+				<nav className="bg-[var(--color-bg)] border-t border-[var(--color-border)] bottom-0 flex flex-row pb-[max(env(safe-area-inset-bottom),1rem)] pt-4 justify-center fixed w-full">
+					<div className="flex flex-row justify-evenly w-[min(72ch,100%)]">
 						{user ? (
 							<>
 								<IconButton
 									aria-label="View Lists"
 									as={NavLink}
-									className="Nav-link"
 									IconComponent={FaList}
 									label="View Lists"
 									to="/"
@@ -51,15 +50,14 @@ export function Layout() {
 								<IconButton
 									aria-label="Add Item"
 									as={NavLink}
-									className="Nav-link"
 									IconComponent={FaCartPlus}
+									//className
 									label="Add Item"
 									to="/manage-list"
 								/>
 								<IconButton
 									aria-label="Sign Out"
 									as={SignOutButton}
-									className="Nav-link"
 									IconComponent={FaSignOutAlt}
 									label="Sign Out"
 								/>
@@ -68,7 +66,6 @@ export function Layout() {
 							<>
 								<IconButton
 									as={NavLink}
-									className="Nav-link"
 									IconComponent={FaInfoCircle}
 									label="Developers"
 									to="/developers"

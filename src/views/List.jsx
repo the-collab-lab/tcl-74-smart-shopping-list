@@ -23,7 +23,7 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			<div className="listSearch">
+			<div>
 				<label htmlFor="search">Search Items </label>
 				<input
 					type="text"
