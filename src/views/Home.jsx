@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
-import './Home.css';
+//import './Home.css';
 import { Share } from './Share';
 import { CreateList } from './CreateList';
 import { ToastContainer } from 'react-toastify';
@@ -27,7 +27,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 	};
 
 	return (
-		<div className="Home">
+		<div className="Home flex flex-col space-y-2 p-4">
 			<ToastContainer />
 			{isCreateListModalOpen && (
 				<CreateList
@@ -50,22 +50,27 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 			) : (
 				<ul>
 					{lists.map((list) => (
-						<div key={list.path} className="list-container">
-							<Disclosure
-								key={`disclosure-${list.path}`}
-								listofNames={list.name}
-								iconExpanded={<FaAngleDown />}
-								iconCollapsed={<FaAngleRight />}
-								listpath={list.path}
-								currentListPath={listPath}
-								setListPath={setListPath}
-							>
-								<List data={data} listPath={list.path} />
-							</Disclosure>
+						<div
+							key={list.path}
+							className="flex items-start justify-between py-2"
+						>
+							<div className="flex-grow">
+								<Disclosure
+									key={`disclosure-${list.path}`}
+									listofNames={list.name}
+									iconExpanded={<FaAngleDown />}
+									iconCollapsed={<FaAngleRight />}
+									listpath={list.path}
+									currentListPath={listPath}
+									setListPath={setListPath}
+								>
+									<List data={data} listPath={list.path} />
+								</Disclosure>
+							</div>
 							<IconButton
 								aria-label="share list"
 								as={NavLink}
-								className="p-4"
+								className="flex items-center justify-center cursor-pointer p-2 border border-gray-300 rounded-md transition-transform duration-200 ease-in-out hover:scale-110"
 								label="Share"
 								key={`icon-${list.path}`}
 								IconComponent={FaShareAlt}

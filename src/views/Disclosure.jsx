@@ -45,9 +45,12 @@ export function Disclosure({
 	};
 
 	return (
-		<div className="Accordion" id={id}>
+		<div
+			className="border border-gray-300 rounded-md mb-2 w-[70%] mx-auto"
+			id={id}
+		>
 			<button
-				className="Disclosure-header"
+				className="flex items-center justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative"
 				id={`${id}-button`}
 				onClick={toggleDisclosure}
 				onKeyDown={handleKeyDown}
@@ -55,14 +58,10 @@ export function Disclosure({
 				aria-expanded={isOpen}
 			>
 				{isOpen ? iconExpanded : iconCollapsed}
-				<span>{listofNames}</span>
+				<span className="flex-grow text-center">{listofNames}</span>
 			</button>
 			{isOpen && (
-				<div
-					className="Disclosure-content"
-					id={`${id}-content`}
-					hidden={!isOpen}
-				>
+				<div id={`${id}-content`} hidden={!isOpen}>
 					{children}
 				</div>
 			)}
