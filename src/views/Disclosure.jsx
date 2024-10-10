@@ -17,7 +17,7 @@ export function Disclosure({
 	listpath,
 	setListPath,
 }) {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(listpath === currentListPath);
 
 	useEffect(() => {
 		if (currentListPath !== listpath) {

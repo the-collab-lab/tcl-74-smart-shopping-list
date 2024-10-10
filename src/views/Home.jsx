@@ -34,6 +34,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 					isCreateListModalOpen={isCreateListModalOpen}
 					setIsCreateListModalOpen={setIsCreateListModalOpen}
 					user={user}
+					setListPath={setListPath}
 				/>
 			)}
 			<div className="flex justify-center items-center">
