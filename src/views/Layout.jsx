@@ -31,7 +31,7 @@ export function Layout() {
 							<img
 								src={logo}
 								alt="CollabShop Logo, a collaboration platform for grocery shopping."
-								className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto mb-4"
+								className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
 							/>
 							<span className="text-txtPrimary">
 								Signed in as {auth.currentUser.displayName}
