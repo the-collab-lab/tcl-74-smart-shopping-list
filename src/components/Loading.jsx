@@ -7,7 +7,7 @@ export function Loading() {
 				<img
 					src={logo}
 					alt="CollabShop Logo, a collaboration platform for grocery shopping."
-					className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-4 animate-pulse"
+					className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
 				/>
 				<h2 className="text-txtPrimary text-sm sm:text-base md:text-lg font-semibold mb-2">
 					Please hold on while we prepare your experience.
