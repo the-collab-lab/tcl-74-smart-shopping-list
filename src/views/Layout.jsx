@@ -44,11 +44,16 @@ export function Layout() {
 	return (
 		<>
 			<div className="flex flex-col min-h-screen">
-				<header className="bg-bgPrimary dark:bg-bgPrimaryDark pb-2 pt-[max(env(safe-area-inset-top),1rem)] text-center">
+				<header className="bg-bgPrimary dark:bg-bgPrimaryDark pb-4 pt-[max(env(safe-area-inset-top),1rem)] text-center">
 					{!!user && (
-						<div>
-							<img src={logo} alt="Logo" className="mx-auto" />
+						<div className="flex flex-col items-center justify-center">
+							<img
+								src={logo}
+								alt="CollabShop Logo, a collaboration platform for grocery shopping."
+								className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
+							/>
 							<span className="text-txtPrimary dark:text-txtPrimaryDark">
+
 								Signed in as {auth.currentUser.displayName}
 							</span>
 						</div>
