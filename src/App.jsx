@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Suspense } from 'react';
-import { Home, Layout, ManageList, Team } from './views';
+import { Home, Layout, AddItem, Team } from './views';
 import { Loading } from './components/Loading';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
@@ -59,10 +59,10 @@ export function App() {
 						}
 					/>
 					<Route
-						path="manage-list"
+						path="add-item"
 						element={
 							<ProtectedRoute>
-								<ManageList listPath={listPath} user={user} data={data} />
+								<AddItem listPath={listPath} user={user} data={data} />
 							</ProtectedRoute>
 						}
 					/>

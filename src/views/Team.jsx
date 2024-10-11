@@ -80,7 +80,7 @@ export function Team() {
 	}
 
 	return (
-		<div className="bg-bgPrimary p-10 text-center">
+		<div className="bg-bgPrimary dark:bg-bgPrimaryDark p-10 text-center text-txtPrimary dark:text-txtPrimaryDark">
 			<h1 className="mb-5 text-txtPrimary text-4xl font-bold">
 				Meet the Team Behind CollabShop
 			</h1>
@@ -94,7 +94,7 @@ export function Team() {
 				{developers.map((dev, index) => (
 					<div
 						key={index}
-						className="bg-[#168AAD] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
+						className="bg-[#168AAD] dark:bg-[#1D1D1D] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
 					>
 						<img
 							src={dev.photo}
@@ -140,7 +140,7 @@ export function Team() {
 				{mentors.map((mentor, index) => (
 					<div
 						key={index}
-						className="bg-[#168AAD] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
+						className="bg-[#168AAD] dark:bg-[#1D1D1D] rounded-lg p-6 shadow-lg w-72 transition-transform transform hover:scale-105 hover:shadow-2xl"
 					>
 						<img
 							src={mentor.photo}
