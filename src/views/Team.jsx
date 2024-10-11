@@ -90,6 +90,18 @@ export function Team() {
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
 				grow together!
 			</p>
+			<div className="flex flex-col items-center mb-10">
+				<a
+					href="https://github.com/the-collab-lab/tcl-74-smart-shopping-list"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="CollabShop GitHub Repository"
+					className="flex flex-col items-center text-[#0e324e] hover:text-[#52b788] transition-colors"
+				>
+					<FaGithub size={30} />
+					<span className="text-lg mt-2">View CollabShop on GitHub</span>
+				</a>
+			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 				{developers.map((dev, index) => (
 					<div

@@ -8,11 +8,11 @@ export function LandingPage() {
 				alt="CollabShop Logo, a collaboration platform for grocery shopping."
 				className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
 			/>
-			<h1 className="bg-[#99D98C] text-txtPrimary dark:text-txtPrimaryDark text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 p-4 rounded-lg max-w-2xl">
+			<h1 className=" text-txtPrimary dark:text-txtPrimaryDark text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 p-4 rounded-lg max-w-2xl">
 				<strong>CollabShop</strong> is more than just a grocery app—it&apos;s a
 				tool that embodies the spirit of teamwork and collaboration.
 			</h1>
-			<p className="bg-[#99D98C] text-txtPrimary text-base sm:text-lg md:text-xl text-center mb-4 p-4 rounded-lg max-w-2xl leading-relaxed">
+			<p className="text-txtPrimary dark:text-txtPrimaryDark text-base sm:text-lg md:text-xl text-center mb-4 p-4 rounded-lg max-w-2xl leading-relaxed">
 				Created by early-career developers from{' '}
 				<a
 					href="https://the-collab-lab.codes/"
@@ -27,11 +27,11 @@ export function LandingPage() {
 				effortlessly share and collaborate on lists.
 			</p>
 
-			<p className="bg-[#99D98C] text-txtPrimary dark:text-txtPrimaryDark font-semibold text-base sm:text-lg md:text-xl text-center mb-6 p-4 rounded-lg max-w-xl">
+			<p className=" text-txtPrimary dark:text-txtPrimaryDark font-semibold text-base sm:text-lg md:text-xl text-center mb-6 p-4 rounded-lg max-w-xl">
 				With CollabShop, planning your grocery trips becomes a seamless and
 				enjoyable experience!
 			</p>
-			<p className="bg-[#99D98C] text-txtPrimary dark:text-txtPrimaryDark text-lg sm:text-xl md:text-2xl text-center font-bold mb-6 p-4 rounded-lg max-w-lg">
+			<p className="text-txtPrimary dark:text-txtPrimaryDark text-lg sm:text-xl md:text-2xl text-center font-bold mb-6 p-4 rounded-lg max-w-lg">
 				Ready to start your journey? Click the sign-in button below to begin.
 			</p>
 		</div>
