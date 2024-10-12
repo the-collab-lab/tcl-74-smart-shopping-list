@@ -81,10 +81,10 @@ export function Team() {
 
 	return (
 		<div className="bg-bgPrimary dark:bg-bgPrimaryDark p-10 text-center text-txtPrimary dark:text-txtPrimaryDark">
-			<h1 className="mb-5 text-txtPrimary text-4xl font-bold">
+			<h1 className="mb-5 text-4xl font-bold">
 				Meet the Team Behind CollabShop
 			</h1>
-			<p className="mb-10 text-txtPrimary text-lg leading-relaxed">
+			<p className="mb-10 text-lg leading-relaxed">
 				We are a passionate group of developers, united by our love for learning
 				and collaboration. Our goal is to create an experience that feels
 				friendly, inclusive, and helpful for all users. Let&apos;s connect and
@@ -96,7 +96,7 @@ export function Team() {
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="CollabShop GitHub Repository"
-					className="flex flex-col items-center text-[#0e324e] hover:text-[#52b788] transition-colors"
+					className="flex flex-col items-center hover:text-[#52b788] transition-colors"
 				>
 					<FaGithub size={30} />
 					<span className="text-lg mt-2">View CollabShop on GitHub</span>
@@ -119,13 +119,13 @@ export function Team() {
 						<div className="flex justify-center gap-4">
 							<a href={dev.github} target="_blank" rel="noopener noreferrer">
 								<FaGithub
-									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									className="hover:text-[#52b788] transition-colors"
 									size={24}
 								/>
 							</a>
 							<a href={dev.linkedin} target="_blank" rel="noopener noreferrer">
 								<FaLinkedin
-									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									className="hover:text-[#52b788] transition-colors"
 									size={24}
 								/>
 							</a>
@@ -136,7 +136,7 @@ export function Team() {
 									rel="noopener noreferrer"
 								>
 									<FaGlobe
-										className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+										className="hover:text-[#52b788] transition-colors"
 										size={24}
 									/>
 								</a>
@@ -145,7 +145,7 @@ export function Team() {
 					</div>
 				))}
 			</div>
-			<h2 className="mt-10 mb-5 text-[#1A759F] text-3xl font-extrabold text-center tracking-wider">
+			<h2 className="mt-10 mb-5 text-3xl font-extrabold text-center tracking-wider">
 				Mentors
 			</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
@@ -165,7 +165,7 @@ export function Team() {
 						<div className="flex justify-center gap-4">
 							<a href={mentor.github} target="_blank" rel="noopener noreferrer">
 								<FaGithub
-									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									className=" hover:text-[#52b788] transition-colors"
 									size={24}
 								/>
 							</a>
@@ -175,7 +175,7 @@ export function Team() {
 								rel="noopener noreferrer"
 							>
 								<FaLinkedin
-									className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+									className=" hover:text-[#52b788] transition-colors"
 									size={24}
 								/>
 							</a>
@@ -186,7 +186,7 @@ export function Team() {
 									rel="noopener noreferrer"
 								>
 									<FaGlobe
-										className="text-[#0e324e] hover:text-[#52b788] transition-colors"
+										className=" hover:text-[#52b788] transition-colors"
 										size={24}
 									/>
 								</a>
