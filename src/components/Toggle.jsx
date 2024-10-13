@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Toggle.css';
 
 export function Toggle({ on, toggle, name, isDisabled }) {
 	const [message, setMessage] = useState('');
@@ -23,20 +22,20 @@ export function Toggle({ on, toggle, name, isDisabled }) {
 		}
 	};
 	return (
-		<div className="Toggle">
-			<label className="Toggle-label" htmlFor={name}>
+		<div className="flex items-center mr-2">
+			<label className="text-base" htmlFor={name}>
 				<input
 					type="checkbox"
 					id={name}
 					checked={on}
 					onChange={handleToggle}
 					onClick={handleClick}
-					className="Toggle-checkbox"
+					className="mr-2 cursor-pointer"
 					disabled={isDisabled}
 					aria-label={`Toggle purchase status for ${name}`}
 				/>
 			</label>
-			{message && <p className="Toggle-message">{message}</p>}
+			{message && <p className="ml-2">{message}</p>}
 		</div>
 	);
 }
