@@ -13,7 +13,7 @@ export function IconButton({
 			${props.disabled ? 'bg-[#184E77] text-black cursor-not-allowed' : 'bg-[#184E77] text-white hover:bg-[#1E6091]'}`}
 			disabled={props.disabled}
 		>
-			{IconComponent && <IconComponent className="mr-4 text-2xl" />}
+			{IconComponent && <IconComponent className={`mr-2 ml-2 text-2xl  `} />}
 			{props.label && <span className="text-2xl">{props.label}</span>}
 		</Component>
 	);

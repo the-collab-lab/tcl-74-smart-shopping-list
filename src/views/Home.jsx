@@ -21,11 +21,6 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 		setIsCreateListModalOpen(true);
 	};
 
-	const handleShareClick = (listPath) => {
-		setCurrentListPath(listPath);
-		setIsShareModalOpen(true);
-	};
-
 	return (
 		<div className="Home flex flex-col space-y-2 p-4">
 			<ToastContainer />
@@ -63,20 +58,13 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 									iconCollapsed={<FaAngleRight />}
 									listpath={list.path}
 									currentListPath={listPath}
+									setCurrentListPath={setCurrentListPath}
 									setListPath={setListPath}
+									currentUserId={userId}
 								>
 									<List data={data} listPath={list.path} />
 								</Disclosure>
 							</div>
-							<IconButton
-								aria-label="share list"
-								as={NavLink}
-								className="flex items-center justify-center cursor-pointer p-2 border border-gray-300 rounded-md transition-transform duration-200 ease-in-out hover:scale-110"
-								label="Share"
-								key={`icon-${list.path}`}
-								IconComponent={FaShareAlt}
-								onClick={() => handleShareClick(list.path)}
-							/>
 						</div>
 					))}
 				</ul>

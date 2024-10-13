@@ -3,21 +3,28 @@
 // Uses a button to trigger the toggle(responds to both mouse and keyboard clicks)
 // Displays icon to indicate expand/colapsed (feel free to change icon if u like)
 // Manages accessibitity through aria attributes
-
+import { FaShareAlt } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { IconButton } from '../components/IconButton';
+import { Share } from './Share';
 import './Disclosure.css';
 
 export function Disclosure({
 	id,
 	children,
+	currentUserId,
 	listofNames,
 	iconExpanded,
 	iconCollapsed,
 	currentListPath,
 	listpath,
 	setListPath,
+	setCurrentListPath,
 }) {
 	const [isOpen, setIsOpen] = useState(listpath === currentListPath);
+	const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
+	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
 	useEffect(() => {
 		if (currentListPath !== listpath) {
@@ -44,13 +51,18 @@ export function Disclosure({
 		}
 	};
 
+	const handleShareClick = (listPath) => {
+		setCurrentListPath(listPath);
+		setIsShareModalOpen(true);
+	};
+
 	return (
 		<div
 			className="border border-gray-300 rounded-md mb-2 w-[70%] mx-auto"
 			id={id}
 		>
 			<button
-				className="flex items-center justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative"
+				className="flex items-center justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative "
 				id={`${id}-button`}
 				onClick={toggleDisclosure}
 				onKeyDown={handleKeyDown}
@@ -58,8 +70,25 @@ export function Disclosure({
 				aria-expanded={isOpen}
 			>
 				{isOpen ? iconExpanded : iconCollapsed}
-				<span className="flex-grow text-center">{listofNames}</span>
+				<span className="flex-grow text-center">{listofNames} </span>
+				<IconButton
+					aria-label="share list"
+					as={NavLink}
+					className="flex items-center justify-center cursor-pointer p-2 border border-gray-300 rounded-md transition-transform duration-200 ease-in-out hover:scale-110"
+					label="Share"
+					//	key={`icon-${list.path}`}
+					IconComponent={FaShareAlt}
+					onClick={() => handleShareClick(listpath)}
+				/>
 			</button>
+			{isShareModalOpen && (
+				<Share
+					isModalOpen={isShareModalOpen}
+					setIsModalOpen={setIsShareModalOpen}
+					listPath={currentListPath}
+					currentUserId={currentUserId}
+				/>
+			)}
 			{isOpen && (
 				<div id={`${id}-content`} hidden={!isOpen}>
 					{children}

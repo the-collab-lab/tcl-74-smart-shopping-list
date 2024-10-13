@@ -23,8 +23,9 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			<div>
+			<div className="mx-auto">
 				<label htmlFor="search">Search Items </label>
+				<br />
 				<input
 					type="text"
 					id="search"
@@ -39,7 +40,7 @@ export function List({ data, listPath }) {
 				)}
 			</div>
 			{filterList.length ? (
-				<div>
+				<div className="w-[100%]">
 					{filterList.map((item) => (
 						<ListItem
 							key={item.id}
