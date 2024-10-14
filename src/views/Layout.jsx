@@ -13,7 +13,7 @@ import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 import logo from '../assets/logo.png';
 import { useEffect } from 'react';
-//import './Layout.css';
+import { useTheme } from '../context/ThemeContext';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -25,14 +25,16 @@ import { useEffect } from 'react';
 
 export function Layout() {
 	const { user } = useAuth();
+	const { theme, setTheme } = useTheme();
 
 	//Toggle dark/light mode
 	const toggleTheme = () => {
-		const currentTheme = localStorage.getItem('theme') || 'light';
+		const currentTheme = theme;
 		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
 		//Toggle the dark class on the html element
 		document.documentElement.classList.toggle('dark', newTheme === 'dark');
+		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
 	};
 

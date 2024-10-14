@@ -23,7 +23,6 @@ export function Disclosure({
 	setCurrentListPath,
 }) {
 	const [isOpen, setIsOpen] = useState(listpath === currentListPath);
-	const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
 	useEffect(() => {
@@ -62,7 +61,7 @@ export function Disclosure({
 			id={id}
 		>
 			<button
-				className="flex items-center justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative "
+				className="flex items-center gap-4 justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative break-all "
 				id={`${id}-button`}
 				onClick={toggleDisclosure}
 				onKeyDown={handleKeyDown}
@@ -74,9 +73,9 @@ export function Disclosure({
 				<IconButton
 					aria-label="share list"
 					as={NavLink}
-					className="flex items-center justify-center cursor-pointer p-2 border border-gray-300 rounded-md transition-transform duration-200 ease-in-out hover:scale-110"
+					className="flex min-w-[87px] items-center justify-center cursor-pointer p-2 border border-gray-300 rounded-md transition-transform duration-200 ease-in-out hover:scale-110"
 					label="Share"
-					//	key={`icon-${list.path}`}
+					key={`icon-${listpath}`}
 					IconComponent={FaShareAlt}
 					onClick={() => handleShareClick(listpath)}
 				/>

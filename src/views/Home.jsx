@@ -1,20 +1,17 @@
-import { FaPlusSquare, FaShareAlt } from 'react-icons/fa';
+import { FaPlusSquare } from 'react-icons/fa';
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa6';
-import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { Disclosure } from './Disclosure';
 import { List } from './List';
 import { IconButton } from '../components/IconButton';
-//import './Home.css';
-import { Share } from './Share';
 import { CreateList } from './CreateList';
 import { ToastContainer } from 'react-toastify';
 
 export function Home({ data, lists, listPath, setListPath, user }) {
 	const userId = user?.uid;
+	console.log(listPath);
 
 	const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
-	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 	const [currentListPath, setCurrentListPath] = useState('');
 
 	const handleCreateListClick = () => {
@@ -57,7 +54,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 									iconExpanded={<FaAngleDown />}
 									iconCollapsed={<FaAngleRight />}
 									listpath={list.path}
-									currentListPath={listPath}
+									currentListPath={currentListPath}
 									setCurrentListPath={setCurrentListPath}
 									setListPath={setListPath}
 									currentUserId={userId}
@@ -68,14 +65,6 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 						</div>
 					))}
 				</ul>
-			)}
-			{isShareModalOpen && (
-				<Share
-					isModalOpen={isShareModalOpen}
-					setIsModalOpen={setIsShareModalOpen}
-					listPath={currentListPath}
-					currentUserId={userId}
-				/>
 			)}
 		</div>
 	);

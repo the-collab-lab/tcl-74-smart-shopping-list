@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
 import { Toggle } from './Toggle.jsx';
 import { notify } from '../utils/notifications';
-//import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
 import { FaTrashAlt } from 'react-icons/fa';
 import { IconButton } from './IconButton.jsx';
@@ -19,17 +18,17 @@ export function ListItem({
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
-	console.log(sortCriteria);
-	const formatDateLastPurchased = (dateLastPurchased) => {
-		if (dateLastPurchased) {
-			const date = dateLastPurchased.toDate();
-			const year = date.getFullYear();
-			const month = date.getMonth() + 1;
-			const day = date.getDate();
-			return `${month}/${day}/${year}`;
-		}
-		return 'n/a';
-	};
+
+	// const formatDateLastPurchased = (dateLastPurchased) => {
+	// 	if (dateLastPurchased) {
+	// 		const date = dateLastPurchased.toDate();
+	// 		const year = date.getFullYear();
+	// 		const month = date.getMonth() + 1;
+	// 		const day = date.getDate();
+	// 		return `${month}/${day}/${year}`;
+	// 	}
+	// 	return 'n/a';
+	// };
 
 	useEffect(() => {
 		if (dateLastPurchased) {
@@ -117,8 +116,8 @@ export function ListItem({
 
 	return (
 		<>
-			<div className=" w-full relative flex flex-wrap text-left  text-xl justify-between items-center p-[10px] mb-[10px] rounded-lg text-[2.5rem] transition-colors duration-300 min-w-0 ">
-				<div>
+			<div className=" w-full relative flex  text-2xl items-center p-[10px] mb-[10px] rounded-lg transition-colors duration-300 min-w-0 ">
+				<div className="w-[30px]">
 					<Toggle
 						toggle={handleToggle}
 						on={purchased}
@@ -127,20 +126,25 @@ export function ListItem({
 						dateLastPurchased={dateLastPurchased}
 					/>
 				</div>
-				<div className="flex justify-self-end ">{name}</div>
+				<div className="flex items-center justify-between w-full">
+					<div className=" grow mr-3">
+						<div className="break-all font-semibold">{name}</div>
+					</div>
 
-				<div className={`${urgencyMap[sortCriteria.tag][mode]}  p-5 text-xl  `}>
-					{sortCriteria.tag}{' '}
-				</div>
-
-				<div>
-					<IconButton
-						aria-label={`Delete ${name}`}
-						as="button"
-						className="p-1  hover:scale-105 hover:shadow-md hover:shadow-black/20 transition-transform "
-						IconComponent={FaTrashAlt}
-						onClick={handleDelete}
-					/>
+					<div className="flex items-center">
+						<div
+							className={`${urgencyMap[sortCriteria.tag][mode]} text-2xl inline-flex items-center rounded-md px-6 py-3 text-2xl font-semibold ring-1 ring-inset mr-6`}
+						>
+							{sortCriteria.tag}{' '}
+						</div>
+						<IconButton
+							aria-label={`Delete ${name}`}
+							as="button"
+							className="p-1  hover:scale-105 hover:shadow-md hover:shadow-black/20 transition-transform "
+							IconComponent={FaTrashAlt}
+							onClick={handleDelete}
+						/>
+					</div>
 				</div>
 			</div>
 		</>
