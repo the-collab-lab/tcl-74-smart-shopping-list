@@ -32,6 +32,7 @@ export function List({ data, listPath }) {
 					value={searchInput}
 					onChange={handleInputChange}
 					placeholder="Type to search..."
+					className="border text-black border-gray-300 rounded-lg p-2 w-1/2 focus:ring focus:ring-blue-300 focus:outline-none transition duration-150 ease-in-out hover:shadow-md"
 				/>
 				{searchInput && (
 					<button onClick={clearSearchInput} aria-label="clear search">

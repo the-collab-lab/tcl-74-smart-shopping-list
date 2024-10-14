@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { IconButton } from '../components/IconButton';
 import { Share } from './Share';
-import './Disclosure.css';
 
 export function Disclosure({
 	id,

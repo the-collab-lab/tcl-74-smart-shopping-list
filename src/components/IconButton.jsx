@@ -1,4 +1,4 @@
-import '../views/Layout.css';
+// import '../views/Layout.css';
 
 export function IconButton({
 	as: Component = 'button',
