@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function Toggle({ on, toggle, name, isDisabled }) {
+export function Checkbox({ on, toggle, name, isDisabled }) {
 	const [message, setMessage] = useState('');
 
 	const handleToggle = () => {

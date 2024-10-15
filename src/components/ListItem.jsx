@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useToggle } from '@uidotdev/usehooks';
-import { Toggle } from './Toggle.jsx';
+import { Checkbox } from './Checkbox.jsx';
 import { notify } from '../utils/notifications';
 import { updateItem, deleteItem } from '../api/firebase.js';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -18,17 +18,6 @@ export function ListItem({
 }) {
 	const [purchased, setPurchased] = useToggle(false);
 	const [isDisabled, setIsDisabled] = useState(false);
-
-	// const formatDateLastPurchased = (dateLastPurchased) => {
-	// 	if (dateLastPurchased) {
-	// 		const date = dateLastPurchased.toDate();
-	// 		const year = date.getFullYear();
-	// 		const month = date.getMonth() + 1;
-	// 		const day = date.getDate();
-	// 		return `${month}/${day}/${year}`;
-	// 	}
-	// 	return 'n/a';
-	// };
 
 	useEffect(() => {
 		if (dateLastPurchased) {
@@ -118,7 +107,7 @@ export function ListItem({
 		<>
 			<div className=" w-full relative flex  text-2xl items-center p-[10px] mb-[10px] rounded-lg transition-colors duration-300 min-w-0 ">
 				<div className="w-[30px]">
-					<Toggle
+					<Checkbox
 						toggle={handleToggle}
 						on={purchased}
 						name={name}
