@@ -53,7 +53,7 @@ export function App() {
 									<Home
 										data={data}
 										lists={lists}
-										listPath={listPath}
+										selectedListPath={listPath}
 										setListPath={setListPath}
 										user={user}
 									/>

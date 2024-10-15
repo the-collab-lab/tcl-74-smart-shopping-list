@@ -16,19 +16,20 @@ export function Disclosure({
 	listofNames,
 	iconExpanded,
 	iconCollapsed,
-	currentListPath,
+	selectedListPath,
 	listpath,
 	setListPath,
-	setCurrentListPath,
+	//setCurrentListPath,
 }) {
-	const [isOpen, setIsOpen] = useState(listpath === currentListPath);
+	const [isOpen, setIsOpen] = useState(listpath === selectedListPath);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+	console.log({ selectedListPath, listpath });
 
 	useEffect(() => {
-		if (currentListPath !== listpath) {
+		if (selectedListPath !== listpath) {
 			setIsOpen(false);
 		}
-	}, [currentListPath]);
+	}, [selectedListPath]);
 
 	const toggleDisclosure = (e) => {
 		e.preventDefault();
@@ -50,13 +51,13 @@ export function Disclosure({
 	};
 
 	const handleShareClick = (listPath) => {
-		setCurrentListPath(listPath);
+		//setCurrentListPath(listPath);
 		setIsShareModalOpen(true);
 	};
 
 	return (
 		<div
-			className="border border-gray-300 rounded-md mb-2 w-[70%] mx-auto"
+			className="border border-gray-300 rounded-md mb-2 w-[90%] mx-auto"
 			id={id}
 		>
 			<button
@@ -83,7 +84,7 @@ export function Disclosure({
 				<Share
 					isModalOpen={isShareModalOpen}
 					setIsModalOpen={setIsShareModalOpen}
-					listPath={currentListPath}
+					listPath={selectedListPath}
 					currentUserId={currentUserId}
 				/>
 			)}

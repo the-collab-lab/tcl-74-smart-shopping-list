@@ -1,3 +1,4 @@
+import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency } from '../utils/dates.js';
@@ -23,22 +24,29 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			<div className="mx-auto">
-				<label htmlFor="search">Search Items </label>
-				<br />
-				<input
-					type="text"
-					id="search"
-					value={searchInput}
-					onChange={handleInputChange}
-					placeholder="Type to search..."
-					className="border text-black border-gray-300 rounded-lg p-2 w-1/2 focus:ring focus:ring-blue-300 focus:outline-none transition duration-150 ease-in-out hover:shadow-md"
-				/>
-				{searchInput && (
-					<button onClick={clearSearchInput} aria-label="clear search">
-						X
-					</button>
-				)}
+			<div className="mx-auto max-w-lg ">
+				<label
+					htmlFor="default-search"
+					className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+				>
+					Search dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+				</label>
+				<div className="relative flex items-center  border-gray-300  px-2 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none dark:border-gray-600 mt-2 dark:placeholder-gray-400 dark:text-white has-[input:focus-visible]:outline has-[input:focus-visible]:outline-blue-300">
+					<FaSearch className="  w-5 h-5 mt-[3px] text-gray-500" />
+					<input
+						className=" border border-none bg-transparent grow focus:outline-0 p-2 "
+						id="default-search"
+						onChange={handleInputChange}
+						type="text"
+						placeholder="Search Items"
+						value={searchInput}
+					/>
+					{searchInput && (
+						<button onClick={clearSearchInput} aria-label="clear search">
+							x
+						</button>
+					)}
+				</div>
 			</div>
 			{filterList.length ? (
 				<div className="w-[100%]">
