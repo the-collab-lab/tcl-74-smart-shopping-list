@@ -15,14 +15,6 @@ import logo from '../assets/logo.png';
 import { useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
-/**
- * TODO: The links defined in this file don't work!
- *
- * Instead of anchor element, they should use a component
- * from `react-router-dom` to navigate to the routes
- * defined in `App.jsx`.
- */
-
 export function Layout() {
 	const { user } = useAuth();
 	const { theme, setTheme } = useTheme();
