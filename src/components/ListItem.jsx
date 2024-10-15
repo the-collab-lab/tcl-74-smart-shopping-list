@@ -133,7 +133,7 @@ export function ListItem({
 
 					<div className="flex items-center">
 						<div
-							className={`${urgencyMap[sortCriteria.tag][mode]} text-2xl inline-flex items-center rounded-md px-6 py-3 text-2xl font-semibold ring-1 ring-inset mr-6`}
+							className={`${urgencyMap[sortCriteria.tag][mode]} text-2xl inline-flex items-center rounded-md p-2 text-2xl font-semibold ring-1 ring-inset mr-6`}
 						>
 							{sortCriteria.tag}{' '}
 						</div>

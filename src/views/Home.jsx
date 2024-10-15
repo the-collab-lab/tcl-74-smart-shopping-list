@@ -7,12 +7,10 @@ import { IconButton } from '../components/IconButton';
 import { CreateList } from './CreateList';
 import { ToastContainer } from 'react-toastify';
 
-export function Home({ data, lists, listPath, setListPath, user }) {
+export function Home({ data, lists, selectedListPath, setListPath, user }) {
 	const userId = user?.uid;
-	console.log(listPath);
 
 	const [isCreateListModalOpen, setIsCreateListModalOpen] = useState(false);
-	const [currentListPath, setCurrentListPath] = useState('');
 
 	const handleCreateListClick = () => {
 		setIsCreateListModalOpen(true);
@@ -54,8 +52,7 @@ export function Home({ data, lists, listPath, setListPath, user }) {
 									iconExpanded={<FaAngleDown />}
 									iconCollapsed={<FaAngleRight />}
 									listpath={list.path}
-									currentListPath={currentListPath}
-									setCurrentListPath={setCurrentListPath}
+									selectedListPath={selectedListPath}
 									setListPath={setListPath}
 									currentUserId={userId}
 								>

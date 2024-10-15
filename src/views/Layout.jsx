@@ -83,6 +83,7 @@ export function Layout() {
 								<IconButton
 									aria-label="View Lists"
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaList}
 									label="View Lists"
 									to="/"
@@ -90,6 +91,7 @@ export function Layout() {
 								<IconButton
 									aria-label="Add Item"
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaCartPlus}
 									label="Add Item"
 									to="/add-item"
@@ -105,6 +107,7 @@ export function Layout() {
 							<>
 								<IconButton
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaInfoCircle}
 									label="Developers"
 									to="/developers"
