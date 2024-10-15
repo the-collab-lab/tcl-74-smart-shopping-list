@@ -23,18 +23,17 @@ export function Toggle({ on, toggle, name, isDisabled }) {
 	};
 	return (
 		<div className="flex items-center mr-2">
-			<label className="text-base" htmlFor={name}>
-				<input
-					type="checkbox"
-					id={name}
-					checked={on}
-					onChange={handleToggle}
-					onClick={handleClick}
-					className="mr-2 cursor-pointer"
-					disabled={isDisabled}
-					aria-label={`Toggle purchase status for ${name}`}
-				/>
-			</label>
+			<input
+				type="checkbox"
+				id={name}
+				checked={on}
+				onChange={handleToggle}
+				onClick={handleClick}
+				className="mr-2 cursor-pointer"
+				disabled={isDisabled}
+				aria-label={`Toggle purchase status for ${name}`}
+			/>
+
 			{message && <p className="ml-2">{message}</p>}
 		</div>
 	);

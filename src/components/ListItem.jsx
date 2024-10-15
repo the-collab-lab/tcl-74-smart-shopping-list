@@ -128,7 +128,9 @@ export function ListItem({
 				</div>
 				<div className="flex items-center justify-between w-full">
 					<div className=" grow mr-3">
-						<div className="break-all font-semibold">{name}</div>
+						<label htmlFor={name} className="break-all font-semibold">
+							{name}
+						</label>
 					</div>
 
 					<div className="flex items-center gap-4">
