@@ -53,7 +53,6 @@ export function ListItem({
 					purchaseInterval,
 					dateCreated,
 				});
-				console.log(`${name} updated successfully`);
 				notify(`${name} has been purchased successfully!`, 'success');
 				setIsDisabled(true);
 			} catch (error) {

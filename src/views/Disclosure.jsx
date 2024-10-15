@@ -17,7 +17,6 @@ export function Disclosure({
 }) {
 	const [isOpen, setIsOpen] = useState(listpath === selectedListPath);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-	console.log({ selectedListPath, listpath });
 
 	useEffect(() => {
 		if (selectedListPath !== listpath) {
