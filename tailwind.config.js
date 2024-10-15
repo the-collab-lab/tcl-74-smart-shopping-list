@@ -31,6 +31,23 @@ export default {
 			backgroundImage: {
 				'radio-gradient':
 					'linear-gradient(to top, #34A0A4, #168AAD, #1A759F, #1E6091, #184E77)',
+				'list-gradient': 'radial-gradient(circle, #daf7dc, #A4D7E1)',
+				'list-gradient-dark':
+					'radial-gradient(circle, #184E77, #1A759F, #168AAD)',
+			},
+			keyframes: {
+				slideDown: {
+					'0%': { maxHeight: '0px', opacity: '0' },
+					'100%': { maxHeight: '1000px', opacity: '2' },
+				},
+				slideUp: {
+					'0%': { maxHeight: '1000px', opacity: '2' },
+					'100%': { maxHeight: '0px', opacity: '0' },
+				},
+			},
+			animation: {
+				slideDown: 'slideDown 0.5s ease-in-out forwards',
+				slideUp: 'slideUp 0.5s ease-in-out forwards',
 			},
 		},
 	},

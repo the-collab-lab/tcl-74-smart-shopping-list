@@ -24,12 +24,12 @@ export default function ModalDialog({ isOpen, onClose, children, title }) {
 								<div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
 									<DialogTitle
 										as="h3"
-										className="text-2xl font-bold leading-6 text-gray-900"
+										className="text-3xl m-1 py-1 font-bold leading-6 text-txtPrimary"
 									>
 										{title}
 									</DialogTitle>
 									<div className="mt-2">
-										<p className="text-lg text-gray-500">{children}</p>
+										<p className="text-xl text-gray-500">{children}</p>
 									</div>
 								</div>
 							</div>

@@ -1,8 +1,3 @@
-// Allows users to expand and collapse content sections.
-//key features: toggles visibility of child elements based on open/closed
-// Uses a button to trigger the toggle(responds to both mouse and keyboard clicks)
-// Displays icon to indicate expand/colapsed (feel free to change icon if u like)
-// Manages accessibitity through aria attributes
 import { FaShareAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -19,7 +14,6 @@ export function Disclosure({
 	selectedListPath,
 	listpath,
 	setListPath,
-	//setCurrentListPath,
 }) {
 	const [isOpen, setIsOpen] = useState(listpath === selectedListPath);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -50,18 +44,17 @@ export function Disclosure({
 		}
 	};
 
-	const handleShareClick = (listPath) => {
-		//setCurrentListPath(listPath);
+	const handleShareClick = () => {
 		setIsShareModalOpen(true);
 	};
 
 	return (
 		<div
-			className="border border-gray-300 rounded-md mb-2 w-[90%] mx-auto"
+			className="border border-gray-500 rounded-lg m-2 w-[90%] mx-auto shadow-md hover:shadow-lg"
 			id={id}
 		>
 			<button
-				className="flex items-center gap-4 justify-between cursor-pointer p-2 border-b border-gray-300 w-full relative break-all "
+				className="flex bg-list-gradient dark:bg-list-gradient-dark items-center gap-4 justify-between cursor-pointer p-2 border-b border-gray-500 w-full relative break-all rounded-lg "
 				id={`${id}-button`}
 				onClick={toggleDisclosure}
 				onKeyDown={handleKeyDown}
@@ -89,7 +82,10 @@ export function Disclosure({
 				/>
 			)}
 			{isOpen && (
-				<div id={`${id}-content`} hidden={!isOpen}>
+				<div
+					id={`${id}-content`}
+					className={`overflow-hidden ${isOpen ? 'animate-slideDown' : 'animate-slideUp'}`}
+				>
 					{children}
 				</div>
 			)}

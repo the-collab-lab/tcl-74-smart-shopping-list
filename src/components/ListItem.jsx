@@ -131,7 +131,7 @@ export function ListItem({
 						<div className="break-all font-semibold">{name}</div>
 					</div>
 
-					<div className="flex items-center">
+					<div className="flex items-center gap-4">
 						<div
 							className={`${urgencyMap[sortCriteria.tag][mode]} text-2xl inline-flex items-center rounded-md p-2 text-2xl font-semibold ring-1 ring-inset mr-6`}
 						>
