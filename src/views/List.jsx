@@ -34,7 +34,7 @@ export function List({ data, listPath }) {
 				<div className="relative flex items-center  border-gray-300  px-2 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none dark:border-gray-600 mt-6 dark:placeholder-gray-400 dark:text-white has-[input:focus-visible]:outline has-[input:focus-visible]:outline-blue-300">
 					<FaSearch className="  w-5 h-5 mt-[3px] text-gray-500" />
 					<input
-						className=" border border-none bg-transparent grow focus:outline-0 p-2 "
+						className=" border border-none bg-transparent grow focus:outline-none p-2 "
 						id="default-search"
 						onChange={handleInputChange}
 						type="text"
