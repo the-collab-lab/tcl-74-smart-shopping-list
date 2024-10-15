@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const ThemeContext = createContext(null);
 
@@ -11,11 +11,18 @@ export const ThemeProvider = ({ children }) => {
 	const initialTheme = localStorage.getItem('theme');
 	const [theme, setTheme] = useState(initialTheme || 'light');
 
+	useEffect(() => {
+		document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+	}, [initialTheme]);
+
+	useEffect(() => {
+		document.documentElement.classList.toggle('dark', theme === 'dark');
+		localStorage.setItem('theme', theme);
+	}, [theme]);
+
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>
 			{children}
 		</ThemeContext.Provider>
 	);
 };
-
-//To do : Move Theme toggle logic from Layout jsx to here

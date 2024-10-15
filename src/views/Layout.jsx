@@ -12,7 +12,7 @@ import { IconButton } from '../components/IconButton';
 import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 import logo from '../assets/logo.png';
-import { useEffect } from 'react';
+
 import { useTheme } from '../context/ThemeContext';
 
 export function Layout() {
@@ -21,20 +21,10 @@ export function Layout() {
 
 	//Toggle dark/light mode
 	const toggleTheme = () => {
-		const currentTheme = theme;
-		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-		//Toggle the dark class on the html element
-		document.documentElement.classList.toggle('dark', newTheme === 'dark');
+		const newTheme = theme === 'dark' ? 'light' : 'dark';
 		setTheme(newTheme);
-		localStorage.setItem('theme', newTheme);
 	};
 
-	// Set the theme on initial load
-	useEffect(() => {
-		const savedTheme = localStorage.getItem('theme') || 'light';
-		document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-	}, []);
 	return (
 		<>
 			<div className="flex flex-col min-h-screen bg-bgPrimary dark:bg-bgPrimaryDark ">
