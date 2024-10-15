@@ -29,29 +29,29 @@ export function Layout() {
 		<>
 			<div className="flex flex-col min-h-screen bg-bgPrimary dark:bg-bgPrimaryDark ">
 				<header className="bg-bgPrimary dark:bg-bgPrimaryDark pb-4 pt-[max(env(safe-area-inset-top),1rem)] text-center">
-					{!!user && (
-						<div className="flex flex-col items-center justify-center">
-							<img
-								src={logo}
-								alt="CollabShop Logo, a collaboration platform for grocery shopping."
-								className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
-							/>
+					<div className="flex flex-col items-center justify-center">
+						<img
+							src={logo}
+							alt="CollabShop Logo, a collaboration platform for grocery shopping."
+							className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
+						/>
+						{!!user && (
 							<span className="text-txtPrimary dark:text-txtPrimaryDark">
 								Signed in as {auth.currentUser.displayName}
 							</span>
-						</div>
-					)}
+						)}
+					</div>
 
 					{/* Theme toggle button */}
 					<button
 						onClick={toggleTheme}
-						className="mt-2 p-2 bg-gray-200 dark:bg-gray-800 rounded"
+						className="bg-gray-200 dark:bg-gray-800 rounded absolute top-[max(2vw,20px)] right-[max(2vw,20px)] "
 						aria-label="Toggle Dark Mode"
 					>
-						{document.documentElement.classList.contains('dark') ? (
-							<FaSun className="text-yellow-500" />
+						{theme === 'dark' ? (
+							<FaSun className="text-yellow-500 h-10 w-10 " />
 						) : (
-							<FaMoon className="text-blue-500" />
+							<FaMoon className="text-blue-500 h-10 w-10" />
 						)}
 					</button>
 				</header>

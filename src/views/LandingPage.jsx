@@ -1,13 +1,6 @@
-import logo from '../assets/logo.png';
-
 export function LandingPage() {
 	return (
-		<div className="bg-bgPrimary dark:bg-bgPrimaryDark flex flex-col items-center justify-center min-h-screen p-6 sm:p-8 md:p-10">
-			<img
-				src={logo}
-				alt="CollabShop Logo, a collaboration platform for grocery shopping."
-				className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
-			/>
+		<div className="bg-bgPrimary dark:bg-bgPrimaryDark flex flex-col items-center justify-center p-6 sm:p-8 md:p-10">
 			<h1 className=" text-txtPrimary dark:text-txtPrimaryDark text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 p-4 rounded-lg max-w-2xl">
 				<strong>CollabShop</strong> is more than just a grocery app—it&apos;s a
 				tool that embodies the spirit of teamwork and collaboration.
