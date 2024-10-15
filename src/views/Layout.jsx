@@ -13,7 +13,7 @@ import { useAuth, SignOutButton, SignInButton } from '../api/useAuth.jsx';
 import { auth } from '../api/config.js';
 import logo from '../assets/logo.png';
 import { useEffect } from 'react';
-//import './Layout.css';
+import { useTheme } from '../context/ThemeContext';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -25,14 +25,16 @@ import { useEffect } from 'react';
 
 export function Layout() {
 	const { user } = useAuth();
+	const { theme, setTheme } = useTheme();
 
 	//Toggle dark/light mode
 	const toggleTheme = () => {
-		const currentTheme = localStorage.getItem('theme') || 'light';
+		const currentTheme = theme;
 		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
 		//Toggle the dark class on the html element
 		document.documentElement.classList.toggle('dark', newTheme === 'dark');
+		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
 	};
 
@@ -43,7 +45,7 @@ export function Layout() {
 	}, []);
 	return (
 		<>
-			<div className="flex flex-col min-h-screen">
+			<div className="flex flex-col min-h-screen bg-bgPrimary dark:bg-bgPrimaryDark ">
 				<header className="bg-bgPrimary dark:bg-bgPrimaryDark pb-4 pt-[max(env(safe-area-inset-top),1rem)] text-center">
 					{!!user && (
 						<div className="flex flex-col items-center justify-center">
@@ -53,7 +55,6 @@ export function Layout() {
 								className="w-64 sm:w-72 md:w-80 lg:w-96 h-auto mb-6 max-w-full rounded-lg shadow-sm transform hover:scale-105 transition-all duration-300 ease-in-out"
 							/>
 							<span className="text-txtPrimary dark:text-txtPrimaryDark">
-
 								Signed in as {auth.currentUser.displayName}
 							</span>
 						</div>
@@ -82,6 +83,7 @@ export function Layout() {
 								<IconButton
 									aria-label="View Lists"
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaList}
 									label="View Lists"
 									to="/"
@@ -89,6 +91,7 @@ export function Layout() {
 								<IconButton
 									aria-label="Add Item"
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaCartPlus}
 									label="Add Item"
 									to="/add-item"
@@ -104,6 +107,7 @@ export function Layout() {
 							<>
 								<IconButton
 									as={NavLink}
+									className="aria-[current=page]:font-bold aria-[current=page]:underline"
 									IconComponent={FaInfoCircle}
 									label="Developers"
 									to="/developers"

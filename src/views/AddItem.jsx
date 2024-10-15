@@ -60,7 +60,7 @@ export function AddItem({ listPath, data }) {
 	return (
 		<div className="container p-6 rounded-lg shadow-md">
 			<ToastContainer />
-			<h1 className="text-4xl text-txtPrimary font-semibold my-6 text-center">
+			<h1 className="text-4xl text-txtPrimary dark:text-txtPrimaryDark font-semibold my-6 text-center">
 				Manage Your Shopping List for{' '}
 				<span className="text-txtSecondary font-bold">{extractedListName}</span>
 			</h1>
@@ -68,7 +68,7 @@ export function AddItem({ listPath, data }) {
 				<div className="flex flex-col mb-4 items-center">
 					<label
 						htmlFor="itemName"
-						className="text-3xl text-txtPrimary font-semibold"
+						className="text-3xl text-txtPrimary dark:text-txtPrimaryDark font-semibold p-5"
 					>
 						Please enter an item name
 					</label>
@@ -78,11 +78,11 @@ export function AddItem({ listPath, data }) {
 						value={itemName}
 						onChange={(e) => setItemName(e.target.value)}
 						placeholder="Add an item name"
-						className="border border-gray-300 rounded-lg p-2 w-full focus:ring focus:ring-blue-300 focus:outline-none transition duration-150 ease-in-out hover:shadow-md"
+						className="border text-black border-gray-300 rounded-lg p-2 w-3/4 focus:ring focus:ring-blue-300 focus:outline-none transition duration-150 ease-in-out hover:shadow-md dark:border-gray-600 dark:placeholder-gray-400 dark:bg-gray-700 dark:text-white"
 					/>
 				</div>
 				<fieldset className="border border-gray-200 p-8 m-6 rounded-lg shadow-md">
-					<legend className="text-3xl text-txtPrimary mb-4 font-semibold">
+					<legend className="text-3xl text-txtPrimary dark:text-txtPrimaryDark mb-4 font-semibold">
 						How soon will you need to buy this item again?
 					</legend>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center items-center">

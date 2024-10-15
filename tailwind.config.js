@@ -5,8 +5,9 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				bgAccent: '#D9ED92', //Accent color for disclosures
 				btnPrimary: '#184E77', // Primary color for Buttons
-				bgPrimary: '#99D98C', // Primary color for Backgrounds
+				bgPrimary: '#daf7dc', // Primary color for Backgrounds
 				bgSecondary: '#34A0A4', // Accent color for NavBar
 				txtPrimary: '#184E77', // Primary color Text
 				txtSecondary: '#34A0A4', // Secondary color Text
@@ -15,10 +16,38 @@ export default {
 				bgSecondaryDark: '#2C2C2C', // Dark secondary color
 				txtPrimaryDark: '#FFFFFF', // Light text color
 				txtSecondaryDark: '#A0A0A0', // Secondary light text color
+				//Purchase Urgency Colors
+				duesoondark: '#F79720',
+				duekindofsoondark: '#E3DB02',
+				notduesoondark: '#4ED91C',
+				nolongeractivedark: '#A0A0A0',
+				overduedark: '#DB1212',
+				duesoon: ' #C76D00',
+				duekindofsoon: '#A29B00',
+				notduesoon: ' #2C5E02',
+				nolongeractive: ' #6B6B6B',
+				overdue: '#9C0F0F',
 			},
 			backgroundImage: {
 				'radio-gradient':
 					'linear-gradient(to top, #34A0A4, #168AAD, #1A759F, #1E6091, #184E77)',
+				'list-gradient': 'radial-gradient(circle, #daf7dc, #A4D7E1)',
+				'list-gradient-dark':
+					'radial-gradient(circle, #184E77, #1A759F, #168AAD)',
+			},
+			keyframes: {
+				slideDown: {
+					'0%': { maxHeight: '0px', opacity: '0' },
+					'100%': { maxHeight: '1000px', opacity: '2' },
+				},
+				slideUp: {
+					'0%': { maxHeight: '1000px', opacity: '2' },
+					'100%': { maxHeight: '0px', opacity: '0' },
+				},
+			},
+			animation: {
+				slideDown: 'slideDown 0.5s ease-in-out forwards',
+				slideUp: 'slideUp 0.5s ease-in-out forwards',
 			},
 		},
 	},

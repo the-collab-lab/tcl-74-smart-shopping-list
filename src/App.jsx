@@ -5,6 +5,7 @@ import { Loading } from './components/Loading';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
+import { ThemeProvider } from './context/ThemeContext';
 
 export function App() {
 	/**
@@ -41,42 +42,44 @@ export function App() {
 	const data = useShoppingListData(listPath);
 
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route
-						index
-						element={
-							<ProtectedRoute>
-								<Home
-									data={data}
-									lists={lists}
-									listPath={listPath}
-									setListPath={setListPath}
-									user={user}
-								/>
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path="add-item"
-						element={
-							<ProtectedRoute>
-								<AddItem listPath={listPath} user={user} data={data} />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path="developers"
-						element={
-							<Suspense fallback={<Loading />}>
-								<Team />
-							</Suspense>
-						}
-					/>
-				</Route>
-			</Routes>
-		</Router>
+		<ThemeProvider>
+			<Router>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route
+							index
+							element={
+								<ProtectedRoute>
+									<Home
+										data={data}
+										lists={lists}
+										selectedListPath={listPath}
+										setListPath={setListPath}
+										user={user}
+									/>
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="add-item"
+							element={
+								<ProtectedRoute>
+									<AddItem listPath={listPath} user={user} data={data} />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="developers"
+							element={
+								<Suspense fallback={<Loading />}>
+									<Team />
+								</Suspense>
+							}
+						/>
+					</Route>
+				</Routes>
+			</Router>
+		</ThemeProvider>
 	);
 }
 

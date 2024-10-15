@@ -43,7 +43,7 @@ export function CreateList({
 			onClose={() => setIsCreateListModalOpen(false)}
 			title={`Please enter a List Name`}
 			titleClassName="text-3xl font-bold"
-			className="p-8 rounded-lg shadow-lg bg-white max-w-lg mx-auto"
+			className="p-5 rounded-lg shadow-lg bg-white max-w-lg mx-auto"
 		>
 			<form onSubmit={handleSubmit}>
 				<input
@@ -51,7 +51,7 @@ export function CreateList({
 					type="text"
 					value={listName}
 					onChange={handleChange}
-					className="m-6 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-lg py-3 px-4"
+					className="m-6 block w-[90%] rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-lg py-3 px-4"
 					placeholder="Add a list"
 				></input>
 

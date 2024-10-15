@@ -41,7 +41,7 @@ export function Share({
 					<div className="mb-10">
 						<label
 							htmlFor="recipientEmail"
-							className="block text-2xl font-medium text-gray-800"
+							className="block text-2xl font-medium text-gray-800 mb-6"
 						>
 							{' '}
 							Please enter the email to share your list:{' '}
