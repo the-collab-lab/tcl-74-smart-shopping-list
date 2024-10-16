@@ -1,5 +1,4 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
-import { Loading } from '../components/Loading';
 import doribelAvatar from '../assets/avatars/doribelAvatar.jpg';
 import nicholasAvatar from '../assets/avatars/nicholasAvatar.png';
 import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
@@ -7,7 +6,6 @@ import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
 import ejAvatar from '../assets/avatars/ejAvatar.png';
 import jennyAvatar from '../assets/avatars/jennyAvatar.jpg';
 import meganAvatar from '../assets/avatars/meganAvatar.jpg';
-import { useEffect, useState } from 'react';
 
 const developers = [
 	{
@@ -64,21 +62,6 @@ const mentors = [
 ];
 
 export function Team() {
-	/* This will be removed once the Logo ticket is finalized to ensure the UI is correct. */
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 3000);
-
-		return () => clearTimeout(timer);
-	}, []);
-
-	if (isLoading) {
-		return <Loading />;
-	}
-
 	return (
 		<div className="bg-bgPrimary dark:bg-bgPrimaryDark p-10 text-center text-txtPrimary dark:text-txtPrimaryDark">
 			<h1 className="mb-5 text-4xl font-bold">
