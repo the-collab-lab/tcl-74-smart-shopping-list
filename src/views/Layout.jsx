@@ -45,13 +45,18 @@ export function Layout() {
 					{/* Theme toggle button */}
 					<button
 						onClick={toggleTheme}
-						className="bg-gray-200 dark:bg-gray-800 rounded absolute top-[max(2vw,20px)] right-[max(2vw,20px)] "
-						aria-label="Toggle Dark Mode"
+						className="bg-transparent rounded absolute top-[max(2vw,20px)] right-[max(2vw,20px)]"
 					>
 						{theme === 'dark' ? (
-							<FaSun className="text-yellow-500 h-10 w-10 " />
+							<FaSun
+								className="text-yellow-500 h-10 w-10"
+								aria-label="Switch to light mode"
+							/>
 						) : (
-							<FaMoon className="text-blue-500 h-10 w-10" />
+							<FaMoon
+								className="text-blue-500 h-10 w-10"
+								aria-label="Switch to dark mode"
+							/>
 						)}
 					</button>
 				</header>
