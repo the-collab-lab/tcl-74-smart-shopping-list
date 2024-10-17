@@ -66,6 +66,11 @@ export default defineConfig(({ mode }) => ({
 	test: {
 		globals: true,
 		environment: 'jsdom',
+		server: {
+			deps: {
+				inline: ['@the-collab-lab/shopping-list-utils'],
+			},
+		},
 		setupFiles: './tests/setup.js',
 	},
 }));
