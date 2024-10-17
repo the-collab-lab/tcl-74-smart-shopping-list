@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
 import doribelAvatar from '../assets/avatars/doribelAvatar.jpg';
-import nicholasAvatar from '../assets/avatars/nicholasAvatar.png';
+import nicholasAvatar from '../assets/avatars/nicholasAvatar.jpg';
 import shuvekshaAvatar from '../assets/avatars/shuvekshaAvatar.jpg';
 import stacyAvatar from '../assets/avatars/stacyAvatar.jpg';
 import ejAvatar from '../assets/avatars/ejAvatar.png';
