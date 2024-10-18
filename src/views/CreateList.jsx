@@ -51,9 +51,9 @@ export function CreateList({
 					type="text"
 					value={listName}
 					onChange={handleChange}
-					className="m-6 block w-[90%] rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-lg py-3 px-4"
+					className="m-6 w-[90%] border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-lg py-3 flex items-center px-2 rounded-lg dark:bg-gray-700 focus:outline-none dark:border-gray-600 mt-6 dark:placeholder-gray-400 text-white"
 					placeholder="Add a list"
-				></input>
+				/>
 
 				<div className="flex justify-center items-center ">
 					<IconButton
