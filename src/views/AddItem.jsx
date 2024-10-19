@@ -17,7 +17,7 @@ export function AddItem({ listPath, data }) {
 		duplicate: 'Item already exists!',
 	};
 
-	const extractedListName = listPath.match(/(?<=\/).*$/)[0];
+	const extractedListName = listPath?.match(/(?<=\/).*$/)[0];
 
 	const normalizeString = (str) =>
 		str.toLowerCase().replace(/[^a-z0-9-]+/g, '');
